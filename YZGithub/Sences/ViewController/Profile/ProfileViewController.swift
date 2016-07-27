@@ -35,12 +35,15 @@ class ProfileViewController: BaseViewController,UITableViewDelegate{
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(updateUserinfoData), name: NotificationGitLoginSuccessful, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(updateUserinfoData), name: NotificationGitLogOutSuccessful, object: nil)
 
-        tableView = UITableView(frame: self.view.bounds, style: .Plain)
+        tableView = UITableView(frame: self.view.bounds, style: .Grouped)
         self.view.addSubview(tableView!)
         tableView?.delegate = self
+        
         tableView?.registerClass(UITableViewCell.classForCoder(), forCellReuseIdentifier: identifier as String)
         tableView?.tableFooterView = UIView()
-        
+        let view = UIView(frame:CGRect(x: 0, y: 0, width: 20, height: 1))
+        view.backgroundColor = UIColor.redColor()
+        tableView?.tableHeaderView = view
         customUI()
     }
     
@@ -80,17 +83,17 @@ class ProfileViewController: BaseViewController,UITableViewDelegate{
         nameLable?.userInteractionEnabled = true
         header.userInteractionEnabled = true
         
-        var rows = [Row]()
+        var rows = [[Row]]()
         
-        let row = Row(text: "weatch",cellClass: Value1Cell.self)
-        let row2 = Row(text: "feedback",cellClass: Value1Cell.self)
-        let row3 = Row(text: "settings",cellClass: Value1Cell.self)
-        let row4 = Row(text: "share",cellClass: Value1Cell.self)
-        let row5 = Row(text: "rate",cellClass: Value1Cell.self)
-        let row6 = Row(text: "about",cellClass: Value1Cell.self)
-        rows = [row,row2,row3,row4,row5,row6]
+        let row = Row(text: "关注",cellClass: Value1Cell.self)
+        let row3 = Row(text: "设置",cellClass: Value1Cell.self)
+        let row4 = Row(text: "分享",cellClass: Value1Cell.self)
+        let row5 = Row(text: "评个分呗!",cellClass: Value1Cell.self)
+        let row6 = Row(text: "关于",cellClass: Value1Cell.self)
+        rows = [[row],[row3],[row4,row5,row6]]
         
-        datasource.sections = [Section(rows:rows)]
+        let header2 = Section.Extremity.Title("联系我们")
+        datasource.sections = [Section(rows:rows[0]),Section(rows:rows[1]),Section(header:header2, rows:rows[2])]
         datasource.tableView = tableView
         datasource.tableView?.delegate = self
         
@@ -116,6 +119,7 @@ class ProfileViewController: BaseViewController,UITableViewDelegate{
         
     }
 }
+
 
 extension ProfileViewController:UIScrollViewDelegate{
     func scrollViewDidScroll(scrollView: UIScrollView) {
