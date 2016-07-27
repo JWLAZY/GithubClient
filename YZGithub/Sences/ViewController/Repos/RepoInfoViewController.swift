@@ -37,16 +37,16 @@ class RepoInfoViewController: UIViewController {
     }
 }
 extension RepoInfoViewController:UITableViewDataSource{
-    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return nil
-    }
     
+    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0.1
+    }
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         
         if section == 0 {
             return 0
         }
-        return 5
+        return 10
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {

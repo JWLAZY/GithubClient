@@ -41,6 +41,7 @@
 		4686CF8B1D48901D00D8F900 /* RepoInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4686CF891D48901D00D8F900 /* RepoInfoCell.xib */; };
 		4686CF8E1D48903400D8F900 /* RepoCodeInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4686CF8C1D48903400D8F900 /* RepoCodeInfoCell.swift */; };
 		4686CF8F1D48903400D8F900 /* RepoCodeInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4686CF8D1D48903400D8F900 /* RepoCodeInfoCell.xib */; };
+		4686CF921D490A2E00D8F900 /* DeveloperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4686CF911D490A2E00D8F900 /* DeveloperViewController.swift */; };
 		46C1507F1D4754C50035DF66 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C1507E1D4754C50035DF66 /* Repository.swift */; };
 		46EAF8151D3661BD00210109 /* BaseTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46EAF8141D3661BD00210109 /* BaseTabBarViewController.swift */; };
 		46EAF8191D367F2100210109 /* UIColor+yztc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46EAF8181D367F2100210109 /* UIColor+yztc.swift */; };
@@ -99,6 +100,7 @@
 		4686CF891D48901D00D8F900 /* RepoInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RepoInfoCell.xib; sourceTree = "<group>"; };
 		4686CF8C1D48903400D8F900 /* RepoCodeInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepoCodeInfoCell.swift; sourceTree = "<group>"; };
 		4686CF8D1D48903400D8F900 /* RepoCodeInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RepoCodeInfoCell.xib; sourceTree = "<group>"; };
+		4686CF911D490A2E00D8F900 /* DeveloperViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeveloperViewController.swift; sourceTree = "<group>"; };
 		46C1507E1D4754C50035DF66 /* Repository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		46EAF8141D3661BD00210109 /* BaseTabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTabBarViewController.swift; sourceTree = "<group>"; };
 		46EAF8181D367F2100210109 /* UIColor+yztc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+yztc.swift"; sourceTree = "<group>"; };
@@ -316,6 +318,7 @@
 		4657DF0A1D33C8B8006AF3A9 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				4686CF901D49063400D8F900 /* Developer */,
 				4686CF801D4885DD00D8F900 /* Repos */,
 				46246D821D470E7500B1FA91 /* Explore */,
 				46246D831D470E7500B1FA91 /* Message */,
@@ -371,6 +374,14 @@
 				4686CF8D1D48903400D8F900 /* RepoCodeInfoCell.xib */,
 			);
 			path = Repos;
+			sourceTree = "<group>";
+		};
+		4686CF901D49063400D8F900 /* Developer */ = {
+			isa = PBXGroup;
+			children = (
+				4686CF911D490A2E00D8F900 /* DeveloperViewController.swift */,
+			);
+			path = Developer;
 			sourceTree = "<group>";
 		};
 		46C1507D1D4754AD0035DF66 /* Repository */ = {
@@ -560,6 +571,7 @@
 			files = (
 				46EAF8241D36CC3D00210109 /* UINavigationBar+yztc.swift in Sources */,
 				46246D8A1D4712D800B1FA91 /* ExploreDevelopersViewController.swift in Sources */,
+				4686CF921D490A2E00D8F900 /* DeveloperViewController.swift in Sources */,
 				4686CF861D488FFF00D8F900 /* RepoIntroCell.swift in Sources */,
 				4679A01D1D473320004574E2 /* RepoTableViewCell.swift in Sources */,
 				46374AD21D4496A800393B8A /* YZWebViewController.swift in Sources */,

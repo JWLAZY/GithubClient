@@ -127,6 +127,9 @@ extension ExploreDevelopersViewController:UITableViewDelegate{
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if indexPath.row == data.count {
             footerRefesh()
+        }else{
+            let devVC = DeveloperViewController()
+            parentViewController?.navigationController?.pushViewController(devVC, animated: true)
         }
     }
 }
