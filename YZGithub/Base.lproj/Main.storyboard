@@ -5,6 +5,42 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
+        <!--Repo Info View Controller-->
+        <scene sceneID="XUJ-fM-iql">
+            <objects>
+                <viewController storyboardIdentifier="repoinfo" id="S6s-EL-6bc" customClass="RepoInfoViewController" customModule="YZGithub" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="bGy-0V-CI3"/>
+                        <viewControllerLayoutGuide type="bottom" id="bUq-9p-gG2"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="SJg-bk-M0a">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="XEt-lC-XXa">
+                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="S6s-EL-6bc" id="BHf-mJ-Hhm"/>
+                                    <outlet property="delegate" destination="S6s-EL-6bc" id="0B6-Jt-I1X"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="bUq-9p-gG2" firstAttribute="top" secondItem="XEt-lC-XXa" secondAttribute="bottom" id="Nki-ba-cJq"/>
+                            <constraint firstAttribute="trailing" secondItem="XEt-lC-XXa" secondAttribute="trailing" id="pCN-JP-8Jk"/>
+                            <constraint firstItem="XEt-lC-XXa" firstAttribute="leading" secondItem="SJg-bk-M0a" secondAttribute="leading" id="pot-qH-iqc"/>
+                            <constraint firstItem="XEt-lC-XXa" firstAttribute="top" secondItem="bGy-0V-CI3" secondAttribute="bottom" id="uCv-ju-qog"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="XEt-lC-XXa" id="N6H-tm-fx8"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wRk-cb-ycT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1758" y="-1274"/>
+        </scene>
         <!--探索-->
         <scene sceneID="tne-QT-ifu">
             <objects>

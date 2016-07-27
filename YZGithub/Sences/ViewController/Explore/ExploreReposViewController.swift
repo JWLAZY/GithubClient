@@ -82,4 +82,10 @@ extension ExploreReposViewController:UITableViewDataSource{
 }
 extension ExploreReposViewController:UITableViewDelegate{
     
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let infoVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("repoinfo") as? RepoInfoViewController
+        infoVC?.repoInfo = reposData[indexPath.row]
+        self.parentViewController?.navigationController?.pushViewController(infoVC!, animated: true)
+    }
+    
 }

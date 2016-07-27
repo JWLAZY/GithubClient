@@ -67,10 +67,11 @@ class ExploreDevelopersViewController: UIViewController {
                         }
                     }
                 }catch{
-                    
+                    self!.tableView.dg_stopLoading()
                 }
             case let .Failure(error):
                 print(error)
+                self!.tableView.dg_stopLoading()
             }
         }
     }
@@ -111,7 +112,7 @@ extension ExploreDevelopersViewController:UITableViewDataSource{
         }
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! DeveloperTableViewCell
         
-        cell.indexLable.text = "\(indexPath.row)"
+//        cell.indexLable.text = "\(indexPath.row + 1)"
         cell.deve = data[indexPath.row]
         return cell
     }

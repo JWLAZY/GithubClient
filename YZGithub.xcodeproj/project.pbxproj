@@ -34,6 +34,13 @@
 		4686CF7A1D475BF000D8F900 /* Response+ObjectMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4686CF791D475BF000D8F900 /* Response+ObjectMapper.swift */; };
 		4686CF7D1D47C16A00D8F900 /* ParaSerachUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4686CF7C1D47C16A00D8F900 /* ParaSerachUser.swift */; };
 		4686CF7F1D47C5B600D8F900 /* SearchUserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4686CF7E1D47C5B600D8F900 /* SearchUserResponse.swift */; };
+		4686CF821D4885F200D8F900 /* RepoInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4686CF811D4885F200D8F900 /* RepoInfoViewController.swift */; };
+		4686CF861D488FFF00D8F900 /* RepoIntroCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4686CF841D488FFF00D8F900 /* RepoIntroCell.swift */; };
+		4686CF871D488FFF00D8F900 /* RepoIntroCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4686CF851D488FFF00D8F900 /* RepoIntroCell.xib */; };
+		4686CF8A1D48901D00D8F900 /* RepoInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4686CF881D48901D00D8F900 /* RepoInfoCell.swift */; };
+		4686CF8B1D48901D00D8F900 /* RepoInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4686CF891D48901D00D8F900 /* RepoInfoCell.xib */; };
+		4686CF8E1D48903400D8F900 /* RepoCodeInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4686CF8C1D48903400D8F900 /* RepoCodeInfoCell.swift */; };
+		4686CF8F1D48903400D8F900 /* RepoCodeInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4686CF8D1D48903400D8F900 /* RepoCodeInfoCell.xib */; };
 		46C1507F1D4754C50035DF66 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C1507E1D4754C50035DF66 /* Repository.swift */; };
 		46EAF8151D3661BD00210109 /* BaseTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46EAF8141D3661BD00210109 /* BaseTabBarViewController.swift */; };
 		46EAF8191D367F2100210109 /* UIColor+yztc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46EAF8181D367F2100210109 /* UIColor+yztc.swift */; };
@@ -85,6 +92,13 @@
 		4686CF791D475BF000D8F900 /* Response+ObjectMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Response+ObjectMapper.swift"; sourceTree = "<group>"; };
 		4686CF7C1D47C16A00D8F900 /* ParaSerachUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParaSerachUser.swift; sourceTree = "<group>"; };
 		4686CF7E1D47C5B600D8F900 /* SearchUserResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchUserResponse.swift; sourceTree = "<group>"; };
+		4686CF811D4885F200D8F900 /* RepoInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepoInfoViewController.swift; sourceTree = "<group>"; };
+		4686CF841D488FFF00D8F900 /* RepoIntroCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepoIntroCell.swift; sourceTree = "<group>"; };
+		4686CF851D488FFF00D8F900 /* RepoIntroCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RepoIntroCell.xib; sourceTree = "<group>"; };
+		4686CF881D48901D00D8F900 /* RepoInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepoInfoCell.swift; sourceTree = "<group>"; };
+		4686CF891D48901D00D8F900 /* RepoInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RepoInfoCell.xib; sourceTree = "<group>"; };
+		4686CF8C1D48903400D8F900 /* RepoCodeInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepoCodeInfoCell.swift; sourceTree = "<group>"; };
+		4686CF8D1D48903400D8F900 /* RepoCodeInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RepoCodeInfoCell.xib; sourceTree = "<group>"; };
 		46C1507E1D4754C50035DF66 /* Repository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		46EAF8141D3661BD00210109 /* BaseTabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTabBarViewController.swift; sourceTree = "<group>"; };
 		46EAF8181D367F2100210109 /* UIColor+yztc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+yztc.swift"; sourceTree = "<group>"; };
@@ -293,6 +307,7 @@
 		4657DF091D33C8B8006AF3A9 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				4686CF831D488FE200D8F900 /* Repos */,
 				4679A01A1D473302004574E2 /* Explore */,
 			);
 			path = View;
@@ -301,6 +316,7 @@
 		4657DF0A1D33C8B8006AF3A9 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				4686CF801D4885DD00D8F900 /* Repos */,
 				46246D821D470E7500B1FA91 /* Explore */,
 				46246D831D470E7500B1FA91 /* Message */,
 				46246D841D470E7500B1FA91 /* Stars */,
@@ -334,6 +350,27 @@
 				4686CF7C1D47C16A00D8F900 /* ParaSerachUser.swift */,
 			);
 			path = Parameters;
+			sourceTree = "<group>";
+		};
+		4686CF801D4885DD00D8F900 /* Repos */ = {
+			isa = PBXGroup;
+			children = (
+				4686CF811D4885F200D8F900 /* RepoInfoViewController.swift */,
+			);
+			path = Repos;
+			sourceTree = "<group>";
+		};
+		4686CF831D488FE200D8F900 /* Repos */ = {
+			isa = PBXGroup;
+			children = (
+				4686CF841D488FFF00D8F900 /* RepoIntroCell.swift */,
+				4686CF851D488FFF00D8F900 /* RepoIntroCell.xib */,
+				4686CF881D48901D00D8F900 /* RepoInfoCell.swift */,
+				4686CF891D48901D00D8F900 /* RepoInfoCell.xib */,
+				4686CF8C1D48903400D8F900 /* RepoCodeInfoCell.swift */,
+				4686CF8D1D48903400D8F900 /* RepoCodeInfoCell.xib */,
+			);
+			path = Repos;
 			sourceTree = "<group>";
 		};
 		46C1507D1D4754AD0035DF66 /* Repository */ = {
@@ -448,6 +485,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4686CF8B1D48901D00D8F900 /* RepoInfoCell.xib in Resources */,
+				4686CF871D488FFF00D8F900 /* RepoIntroCell.xib in Resources */,
+				4686CF8F1D48903400D8F900 /* RepoCodeInfoCell.xib in Resources */,
 				4657DEED1D33C72C006AF3A9 /* LaunchScreen.storyboard in Resources */,
 				4657DEEA1D33C72C006AF3A9 /* Assets.xcassets in Resources */,
 				4657DEE81D33C72C006AF3A9 /* Main.storyboard in Resources */,
@@ -520,6 +560,7 @@
 			files = (
 				46EAF8241D36CC3D00210109 /* UINavigationBar+yztc.swift in Sources */,
 				46246D8A1D4712D800B1FA91 /* ExploreDevelopersViewController.swift in Sources */,
+				4686CF861D488FFF00D8F900 /* RepoIntroCell.swift in Sources */,
 				4679A01D1D473320004574E2 /* RepoTableViewCell.swift in Sources */,
 				46374AD21D4496A800393B8A /* YZWebViewController.swift in Sources */,
 				4657DEE31D33C72C006AF3A9 /* AppDelegate.swift in Sources */,
@@ -527,14 +568,17 @@
 				4686CF7D1D47C16A00D8F900 /* ParaSerachUser.swift in Sources */,
 				46374ADB1D45111600393B8A /* GitHubAPI.swift in Sources */,
 				46C1507F1D4754C50035DF66 /* Repository.swift in Sources */,
+				4686CF8A1D48901D00D8F900 /* RepoInfoCell.swift in Sources */,
 				46246D881D4712B900B1FA91 /* ExploreReposViewController.swift in Sources */,
 				4679A0211D473333004574E2 /* DeveloperTableViewCell.swift in Sources */,
 				46246D811D47057C00B1FA91 /* UserInfoHelper.swift in Sources */,
+				4686CF8E1D48903400D8F900 /* RepoCodeInfoCell.swift in Sources */,
 				46374AD61D44CBE500393B8A /* NetworkHelper.swift in Sources */,
 				4686CF7A1D475BF000D8F900 /* Response+ObjectMapper.swift in Sources */,
 				46374AE21D451F7500393B8A /* ObjPermissions.swift in Sources */,
 				46EAF8201D36A44700210109 /* ProfileViewController.swift in Sources */,
 				46EAF8261D36D1ED00210109 /* ParallaxHeaderView.swift in Sources */,
+				4686CF821D4885F200D8F900 /* RepoInfoViewController.swift in Sources */,
 				46EAF8191D367F2100210109 /* UIColor+yztc.swift in Sources */,
 				46EAF8151D3661BD00210109 /* BaseTabBarViewController.swift in Sources */,
 				4686CF7F1D47C5B600D8F900 /* SearchUserResponse.swift in Sources */,
