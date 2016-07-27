@@ -11,7 +11,7 @@
 * NETWORK
 
 #### 效果图
-![](images/index.png)
+![](images/index.png)![](images/repoinfo.png)
 
 # DONE
 1. 授权登陆
