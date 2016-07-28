@@ -37,6 +37,7 @@ class RepoListViewController: UIViewController {
     }
     func customUI() {
         view.addSubview(tableView!)
+        title = "仓库列表"
         tableView?.snp_makeConstraints(closure: { (make) in
             make.top.bottom.leading.trailing.equalTo(view)
         })
@@ -77,16 +78,37 @@ extension RepoListViewController:UITableViewDataSource{
         return 0
     }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        if indexPath.row == reposArray?.count {
+            let cell = UITableViewCell(style: .Default, reuseIdentifier: "cell")
+            let label = UILabel()
+            label.frame.size = CGSize(width: 120, height: 40)
+            label.textColor = UIColor.whiteColor()
+            label.text = "点击加载更多"
+            label.textAlignment = .Center
+            cell.addSubview(label)
+            label.snp_makeConstraints(closure: { (make) in
+                make.center.equalTo(cell)
+            })
+            cell.backgroundColor = UIColor.hexStr("00631b", alpha: 1)
+            return cell
+        }
         let cell = tableView.dequeueReusableCellWithIdentifier("RepoTableViewCell", forIndexPath: indexPath) as? RepoTableViewCell
         cell?.repo = reposArray![indexPath.row]
         return cell!
     }
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if indexPath.row  == reposArray?.count{
+            return 40
+        }
         return 100
     }
 }
 extension RepoListViewController:UITableViewDelegate{
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if indexPath.row == reposArray?.count {
+            fetchRepoList()
+            return
+        }
         let sb = UIStoryboard(name: "Main", bundle: nil)
         let repoInfoVC = sb.instantiateViewControllerWithIdentifier("repoinfo") as? RepoInfoViewController
         repoInfoVC!.repoInfo = reposArray![indexPath.row]

@@ -27,6 +27,7 @@ class DeveloperListViewController: UIViewController {
     }
     func customUI() {
         view.addSubview(tableView!)
+        title = "成员列表"
         tableView?.snp_makeConstraints(closure: { (make) in
             make.bottom.top.equalTo(view)
             make.width.height.equalTo(view)
