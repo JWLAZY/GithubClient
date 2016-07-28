@@ -27,6 +27,8 @@
 		4657DEEA1D33C72C006AF3A9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4657DEE91D33C72C006AF3A9 /* Assets.xcassets */; };
 		4657DEED1D33C72C006AF3A9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4657DEEB1D33C72C006AF3A9 /* LaunchScreen.storyboard */; };
 		4657DEF81D33C72C006AF3A9 /* YZGithubTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4657DEF71D33C72C006AF3A9 /* YZGithubTests.swift */; };
+		466931DC1D49A68300CEA889 /* UserBaseInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466931DA1D49A68300CEA889 /* UserBaseInfoCell.swift */; };
+		466931DD1D49A68300CEA889 /* UserBaseInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 466931DB1D49A68300CEA889 /* UserBaseInfoCell.xib */; };
 		4679A01D1D473320004574E2 /* RepoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4679A01B1D473320004574E2 /* RepoTableViewCell.swift */; };
 		4679A01E1D473320004574E2 /* RepoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4679A01C1D473320004574E2 /* RepoTableViewCell.xib */; };
 		4679A0211D473333004574E2 /* DeveloperTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4679A01F1D473333004574E2 /* DeveloperTableViewCell.swift */; };
@@ -86,6 +88,8 @@
 		4657DEF31D33C72C006AF3A9 /* YZGithubTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YZGithubTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4657DEF71D33C72C006AF3A9 /* YZGithubTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YZGithubTests.swift; sourceTree = "<group>"; };
 		4657DEF91D33C72C006AF3A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		466931DA1D49A68300CEA889 /* UserBaseInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserBaseInfoCell.swift; sourceTree = "<group>"; };
+		466931DB1D49A68300CEA889 /* UserBaseInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserBaseInfoCell.xib; sourceTree = "<group>"; };
 		4679A01B1D473320004574E2 /* RepoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepoTableViewCell.swift; sourceTree = "<group>"; };
 		4679A01C1D473320004574E2 /* RepoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RepoTableViewCell.xib; sourceTree = "<group>"; };
 		4679A01F1D473333004574E2 /* DeveloperTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeveloperTableViewCell.swift; sourceTree = "<group>"; };
@@ -309,6 +313,7 @@
 		4657DF091D33C8B8006AF3A9 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				466931D91D49A65900CEA889 /* User */,
 				4686CF831D488FE200D8F900 /* Repos */,
 				4679A01A1D473302004574E2 /* Explore */,
 			);
@@ -334,6 +339,15 @@
 			children = (
 			);
 			path = ThridParty;
+			sourceTree = "<group>";
+		};
+		466931D91D49A65900CEA889 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				466931DA1D49A68300CEA889 /* UserBaseInfoCell.swift */,
+				466931DB1D49A68300CEA889 /* UserBaseInfoCell.xib */,
+			);
+			path = User;
 			sourceTree = "<group>";
 		};
 		4679A01A1D473302004574E2 /* Explore */ = {
@@ -498,6 +512,7 @@
 			files = (
 				4686CF8B1D48901D00D8F900 /* RepoInfoCell.xib in Resources */,
 				4686CF871D488FFF00D8F900 /* RepoIntroCell.xib in Resources */,
+				466931DD1D49A68300CEA889 /* UserBaseInfoCell.xib in Resources */,
 				4686CF8F1D48903400D8F900 /* RepoCodeInfoCell.xib in Resources */,
 				4657DEED1D33C72C006AF3A9 /* LaunchScreen.storyboard in Resources */,
 				4657DEEA1D33C72C006AF3A9 /* Assets.xcassets in Resources */,
@@ -582,6 +597,7 @@
 				46C1507F1D4754C50035DF66 /* Repository.swift in Sources */,
 				4686CF8A1D48901D00D8F900 /* RepoInfoCell.swift in Sources */,
 				46246D881D4712B900B1FA91 /* ExploreReposViewController.swift in Sources */,
+				466931DC1D49A68300CEA889 /* UserBaseInfoCell.swift in Sources */,
 				4679A0211D473333004574E2 /* DeveloperTableViewCell.swift in Sources */,
 				46246D811D47057C00B1FA91 /* UserInfoHelper.swift in Sources */,
 				4686CF8E1D48903400D8F900 /* RepoCodeInfoCell.swift in Sources */,
