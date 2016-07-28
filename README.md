@@ -11,8 +11,13 @@
 * NETWORK
 
 #### 效果图
-![](images/index.png) - - - ![](images/repoinfo.png) - - - ![](images/repoList.png)
-![](images/deveinfo.png) --- ![](images/deveList.png)
+![](images/index.png) -  - ![](images/repoinfo.png)
+
+---
+![](images/repoList.png) -  - ![](images/deveInfo.png)
+
+---
+![](images/deveList.png)
 
 # DONE
 1. 授权登陆
