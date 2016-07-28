@@ -36,6 +36,29 @@ class RepoInfoViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
 }
+
+//MARK: Delegate
+extension RepoInfoViewController:UITableViewDelegate{
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+       
+        let index = (indexPath.section,indexPath.row)
+        switch index {
+        case  (1,0):
+            let developerListVC = DeveloperListViewController()
+            developerListVC.developer = repoInfo?.owner
+            if let nav = self.parentViewController?.navigationController {
+                nav.pushViewController(developerListVC, animated: true)
+            }else{
+                self.navigationController?.pushViewController(developerListVC, animated: true)
+            }
+        default:
+            print("等等")
+        }
+        
+    }
+}
+
+//MARK: DataSource
 extension RepoInfoViewController:UITableViewDataSource{
     
     func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
@@ -57,7 +80,7 @@ extension RepoInfoViewController:UITableViewDataSource{
         case 0:
             return 1
         case 1:
-            return 6
+            return 3
         default:
             return 2
         }

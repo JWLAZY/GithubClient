@@ -46,8 +46,8 @@ struct Provider {
         switch target {
             
         default:
-            //            print("current token:\( AppToken.sharedInstance.access_token!)")
-            endpoint.endpointByAddingHTTPHeaderFields(["User-Agent":"Coderpursue"])
+            print("current token:\( AppToken.shareInstance.access_token!)")
+            endpoint.endpointByAddingHTTPHeaderFields(["User-Agent":"YZGithub"])
             
             return endpoint.endpointByAddingHTTPHeaderFields(["Authorization": AppToken.shareInstance.access_token ?? ""])
         }
@@ -87,6 +87,13 @@ public enum GitHubAPI {
     case TrendingShowcases()
     case TrendingShowcase(showcase:String)
 
+    //repository
+    case MyRepos(type:String, sort:String ,direction:String)
+    case UserRepos( username:String ,page:Int,perpage:Int,type:String, sort:String ,direction:String)
+    case OrgRepos(type:String, organization:String)
+    case PubRepos(page:Int,perpage:Int)
+    case UserSomeRepo(owner:String, repo:String)
+    
     //search
     case SearchUsers(para:ParaSearchUser)
 //    case SearchRepos(para:ParaSearchRepos)
@@ -127,7 +134,19 @@ extension GitHubAPI: TargetType {
             return "/showcases"
         case TrendingShowcase(let showcase):
             return "/showcases/\(showcase)"
+        
+        //repos
+        case MyRepos:
+            return "/user/repos"
+        case UserRepos(let username,_,_,_,_,_):
+            return "/users/\(username)/repos"
             
+        case OrgRepos(_ ,let organization):
+            return "/orgs/\(organization)/repos"
+        case PubRepos:
+            return "/repositories"
+        case UserSomeRepo(let owner,let repo):
+            return "/repos/\(owner)/\(repo)"
             
         //search
         case SearchUsers:
@@ -161,6 +180,29 @@ extension GitHubAPI: TargetType {
                 "order":para.order,
                 "page":para.page,
                 "per_page":para.perPage,
+            ]
+        case MyRepos(let type, let sort ,let direction):
+            return [
+                "type":type,
+                "sort":sort,
+                "direction":direction
+            ]
+        case UserRepos(_,let page, let perpage,let type, let sort ,let direction):
+            return [
+                "page":page,
+                "per_page":perpage,
+                "type":type,
+                "sort":sort,
+                "direction":direction
+            ]
+        case OrgRepos(let type, _):
+            return [
+                "type":type,
+            ]
+        case PubRepos(let page, let perpage):
+            return [
+                "page":page,
+                "per_page":perpage
             ]
         default:
             return nil

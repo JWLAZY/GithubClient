@@ -17,7 +17,7 @@ class SearchUserResponse: NSObject,Mappable{
     var items:[ObjUser]?
     
     required init?(_ map: Map) {
-        //        super.init(map)
+        
     }
     
     func mapping(map: Map) {

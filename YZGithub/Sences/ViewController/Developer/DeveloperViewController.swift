@@ -8,6 +8,8 @@
 
 import UIKit
 import SnapKit
+import Kingfisher
+import ObjectMapper
 
 class DeveloperViewController: UIViewController {
 
@@ -15,11 +17,12 @@ class DeveloperViewController: UIViewController {
         case UserBaseInfoCell
         case RepoInfoCell
     }
-    
+    //MARK: UI 属性
     let tableView:UITableView = UITableView(frame: CGRectZero, style: .Grouped)
     var headerView:UIView?
     var userImage:UIImageView?
     
+    //MARK: UI 数据
     var headerHeight:CGFloat {
         return 200
     }
@@ -27,10 +30,19 @@ class DeveloperViewController: UIViewController {
         return view.frame.width
     }
     
+    //MARK: Data
+    var developer:ObjUser? {
+        didSet{
+            userImage?.kf_setImageWithURL(NSURL(string: developer!.avatar_url!)!)
+            title = developer?.login
+        }
+    }
     
+    //MARK: 生命流程
     override func viewDidLoad() {
         super.viewDidLoad()
         customUI()
+        fetchDeveloperInfo()
     }
     
     func customUI(){
@@ -45,7 +57,7 @@ class DeveloperViewController: UIViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
         view.addSubview(tableView)
         automaticallyAdjustsScrollViewInsets = false
-        tableView.contentInset = UIEdgeInsetsMake(64 + headerHeight, 0, 0, 0)
+        tableView.contentInset = UIEdgeInsetsMake(64 + headerHeight, 0, 60, 0)
         tableView.snp_makeConstraints { (make) in
             make.size.equalTo(view)
             make.top.bottom.leading.trailing.equalTo(view)
@@ -64,7 +76,9 @@ class DeveloperViewController: UIViewController {
         }
         
         // MARK: user logo
+        
         userImage = UIImageView(image: UIImage(named: "app_logo_90"))
+        userImage?.kf_setImageWithURL(NSURL(string: developer!.avatar_url!)!)
         headerView?.addSubview(userImage!)
         userImage?.snp_makeConstraints(closure: { (make) in
             make.centerX.equalTo(headerView!)
@@ -73,6 +87,25 @@ class DeveloperViewController: UIViewController {
         })
         userImage?.layer.masksToBounds = true
         userImage?.layer.cornerRadius = 45
+    }
+    
+    func fetchDeveloperInfo() {
+        Provider.sharedProvider.request(GitHubAPI.UserInfo(username: (developer?.login)!)) {[weak self] (result) in
+            switch result {
+            case let .Success(response):
+                do{
+                    if let result1:ObjUser = Mapper<ObjUser>().map(try response.mapJSON()) {
+                        self!.developer = result1
+                        self!.tableView.reloadData()
+                        self?.tableView.scrollToRowAtIndexPath(NSIndexPath(forItem: 0, inSection: 0), atScrollPosition: UITableViewScrollPosition.Top, animated: true)
+                    }
+                }catch{
+                    
+                }
+            case let .Failure(error):
+                print(error)
+            }
+        }
     }
 }
 extension DeveloperViewController: UIScrollViewDelegate{
@@ -85,12 +118,26 @@ extension DeveloperViewController: UIScrollViewDelegate{
             oldFrame?.origin.y = offsetY + 64
             headerView?.frame = oldFrame!
         }else{
-            
+//            print(offsetY)
+//            var oldFrame = headerView?.frame
+//            oldFrame?.size.height = fabs(offsetY) - 64
+//            oldFrame?.origin.y = -headerHeight
+//            headerView?.frame = oldFrame!
         }
     }
 }
 extension DeveloperViewController: UITableViewDelegate{
-    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let index = (indexPath.section, indexPath.row)
+        switch index {
+        case (2,0):
+            let repoList = RepoListViewController()
+            repoList.developer = developer
+            navigationController?.pushViewController(repoList, animated: true)
+        default:
+            print("等等")
+        }
+    }
 }
 
 extension DeveloperViewController:UITableViewDataSource {
@@ -113,7 +160,7 @@ extension DeveloperViewController:UITableViewDataSource {
         case 1:
             return 1
         default:
-            return 3
+            return 1
         }
     }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -121,10 +168,22 @@ extension DeveloperViewController:UITableViewDataSource {
         case 0:
             let cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier.UserBaseInfoCell.rawValue, forIndexPath: indexPath) as? UserBaseInfoCell
             cell?.selectionStyle = .None
+            switch indexPath.row {
+            case 0:
+                cell?.customUI(name: "地址", value: developer?.location ?? "他没有写")
+            case 1:
+                cell?.customUI(name: "公司", value: developer?.company ?? "他没有写")
+            default:
+                cell?.customUI(name: "简介", value: developer?.bio ?? "这个人很懒,什么都没有写!")
+            }
+            return cell!
+        case 1:
+            let cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier.RepoInfoCell.rawValue, forIndexPath: indexPath) as? RepoInfoCell
+            cell?.customUI(UIImage(named: "octicon_person_25")!,actionName:"详细详细")
             return cell!
         default:
             let cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier.RepoInfoCell.rawValue, forIndexPath: indexPath) as? RepoInfoCell
-            
+            cell?.customUI(UIImage(named: "coticon_repository_25")!, actionName: "仓库")
             return cell!
         }
         

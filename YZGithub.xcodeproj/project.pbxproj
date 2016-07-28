@@ -29,6 +29,8 @@
 		4657DEF81D33C72C006AF3A9 /* YZGithubTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4657DEF71D33C72C006AF3A9 /* YZGithubTests.swift */; };
 		466931DC1D49A68300CEA889 /* UserBaseInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466931DA1D49A68300CEA889 /* UserBaseInfoCell.swift */; };
 		466931DD1D49A68300CEA889 /* UserBaseInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 466931DB1D49A68300CEA889 /* UserBaseInfoCell.xib */; };
+		466931DF1D49B5DD00CEA889 /* DeveloperListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466931DE1D49B5DD00CEA889 /* DeveloperListViewController.swift */; };
+		466931E11D49F0E500CEA889 /* RepoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466931E01D49F0E500CEA889 /* RepoListViewController.swift */; };
 		4679A01D1D473320004574E2 /* RepoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4679A01B1D473320004574E2 /* RepoTableViewCell.swift */; };
 		4679A01E1D473320004574E2 /* RepoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4679A01C1D473320004574E2 /* RepoTableViewCell.xib */; };
 		4679A0211D473333004574E2 /* DeveloperTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4679A01F1D473333004574E2 /* DeveloperTableViewCell.swift */; };
@@ -90,6 +92,8 @@
 		4657DEF91D33C72C006AF3A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		466931DA1D49A68300CEA889 /* UserBaseInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserBaseInfoCell.swift; sourceTree = "<group>"; };
 		466931DB1D49A68300CEA889 /* UserBaseInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserBaseInfoCell.xib; sourceTree = "<group>"; };
+		466931DE1D49B5DD00CEA889 /* DeveloperListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeveloperListViewController.swift; sourceTree = "<group>"; };
+		466931E01D49F0E500CEA889 /* RepoListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepoListViewController.swift; sourceTree = "<group>"; };
 		4679A01B1D473320004574E2 /* RepoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepoTableViewCell.swift; sourceTree = "<group>"; };
 		4679A01C1D473320004574E2 /* RepoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RepoTableViewCell.xib; sourceTree = "<group>"; };
 		4679A01F1D473333004574E2 /* DeveloperTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeveloperTableViewCell.swift; sourceTree = "<group>"; };
@@ -373,6 +377,7 @@
 			isa = PBXGroup;
 			children = (
 				4686CF811D4885F200D8F900 /* RepoInfoViewController.swift */,
+				466931E01D49F0E500CEA889 /* RepoListViewController.swift */,
 			);
 			path = Repos;
 			sourceTree = "<group>";
@@ -394,6 +399,7 @@
 			isa = PBXGroup;
 			children = (
 				4686CF911D490A2E00D8F900 /* DeveloperViewController.swift */,
+				466931DE1D49B5DD00CEA889 /* DeveloperListViewController.swift */,
 			);
 			path = Developer;
 			sourceTree = "<group>";
@@ -585,6 +591,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				46EAF8241D36CC3D00210109 /* UINavigationBar+yztc.swift in Sources */,
+				466931DF1D49B5DD00CEA889 /* DeveloperListViewController.swift in Sources */,
 				46246D8A1D4712D800B1FA91 /* ExploreDevelopersViewController.swift in Sources */,
 				4686CF921D490A2E00D8F900 /* DeveloperViewController.swift in Sources */,
 				4686CF861D488FFF00D8F900 /* RepoIntroCell.swift in Sources */,
@@ -599,6 +606,7 @@
 				46246D881D4712B900B1FA91 /* ExploreReposViewController.swift in Sources */,
 				466931DC1D49A68300CEA889 /* UserBaseInfoCell.swift in Sources */,
 				4679A0211D473333004574E2 /* DeveloperTableViewCell.swift in Sources */,
+				466931E11D49F0E500CEA889 /* RepoListViewController.swift in Sources */,
 				46246D811D47057C00B1FA91 /* UserInfoHelper.swift in Sources */,
 				4686CF8E1D48903400D8F900 /* RepoCodeInfoCell.swift in Sources */,
 				46374AD61D44CBE500393B8A /* NetworkHelper.swift in Sources */,

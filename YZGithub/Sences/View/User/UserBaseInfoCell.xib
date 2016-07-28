@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -14,30 +15,42 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="个性标签" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jsH-T0-fu8">
-                        <rect key="frame" x="10" y="10" width="68" height="23"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="简介" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jsH-T0-fu8">
+                        <rect key="frame" x="10" y="10" width="40" height="21"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="68" id="hhh-ah-bFg"/>
+                            <constraint firstAttribute="width" constant="40" id="hhh-ah-bFg"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.60784313725490191" green="0.60784313725490191" blue="0.60784313725490191" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我是一个小白鼠" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZUY-eL-OQb">
-                        <rect key="frame" x="108" y="13" width="105" height="18"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我是一个小白鼠" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZUY-eL-OQb">
+                        <rect key="frame" x="60" y="10" width="242" height="15"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="bottomMargin" secondItem="ZUY-eL-OQb" secondAttribute="bottom" constant="10" id="0Yf-eg-ezS"/>
+                    <constraint firstItem="ZUY-eL-OQb" firstAttribute="top" secondItem="jsH-T0-fu8" secondAttribute="top" id="8Bf-cD-j82"/>
                     <constraint firstItem="jsH-T0-fu8" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="YBI-65-Cln"/>
                     <constraint firstItem="jsH-T0-fu8" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="e0c-w4-ieD"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="ZUY-eL-OQb" secondAttribute="trailing" constant="10" id="g6C-0F-pul"/>
                     <constraint firstItem="ZUY-eL-OQb" firstAttribute="centerY" secondItem="jsH-T0-fu8" secondAttribute="centerY" id="hqW-Dj-O3q"/>
-                    <constraint firstAttribute="bottom" secondItem="jsH-T0-fu8" secondAttribute="bottom" constant="10" id="otM-NN-J1Z"/>
-                    <constraint firstItem="ZUY-eL-OQb" firstAttribute="leading" secondItem="jsH-T0-fu8" secondAttribute="trailing" constant="30" id="tB5-93-0sU"/>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="jsH-T0-fu8" secondAttribute="bottom" constant="10" id="otM-NN-J1Z"/>
+                    <constraint firstItem="ZUY-eL-OQb" firstAttribute="leading" secondItem="jsH-T0-fu8" secondAttribute="trailing" constant="10" id="tB5-93-0sU"/>
                 </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="hqW-Dj-O3q"/>
+                    </mask>
+                </variation>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="attrNameLabel" destination="jsH-T0-fu8" id="jpi-pQ-qqp"/>
+                <outlet property="attrValueLabel" destination="ZUY-eL-OQb" id="G9B-dD-YfA"/>
+            </connections>
         </tableViewCell>
     </objects>
 </document>

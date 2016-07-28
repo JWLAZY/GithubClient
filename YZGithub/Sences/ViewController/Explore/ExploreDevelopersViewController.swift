@@ -56,6 +56,10 @@ class ExploreDevelopersViewController: UIViewController {
                 do{
                     if let userResult:SearchUserResponse = Mapper<SearchUserResponse>().map(try response.mapJSON()) {
                         
+                        if userResult.items == nil{
+                            return
+                        }
+                        
                         if self!.para.page == 1{
                             self!.data.removeAll()
                             self!.data += userResult.items!
@@ -101,11 +105,14 @@ extension ExploreDevelopersViewController:UITableViewDataSource{
             let cell = UITableViewCell(style: .Default, reuseIdentifier: "next")
             let label = UILabel()
             label.frame.size = CGSize(width: 120, height: 40)
-            label.center = cell.center
+//            label.center = cell.center
             label.textColor = UIColor.whiteColor()
             label.text = "点击加载更多"
             label.textAlignment = .Center
             cell.addSubview(label)
+            label.snp_makeConstraints(closure: { (make) in
+                make.center.equalTo(cell)
+            })
             cell.backgroundColor = UIColor.hexStr("00631b", alpha: 1)
             
             return cell
@@ -129,6 +136,7 @@ extension ExploreDevelopersViewController:UITableViewDelegate{
             footerRefesh()
         }else{
             let devVC = DeveloperViewController()
+            devVC.developer = data[indexPath.row]
             parentViewController?.navigationController?.pushViewController(devVC, animated: true)
         }
     }

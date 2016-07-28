@@ -10,15 +10,18 @@ import UIKit
 
 class UserBaseInfoCell: UITableViewCell {
 
+    @IBOutlet weak var attrNameLabel: UILabel!
+    @IBOutlet weak var attrValueLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
-    
+    func customUI(name name:String, value:String) {
+        attrNameLabel.text = name
+        attrValueLabel.text = value
+    }
 }
