@@ -99,6 +99,7 @@ public enum GitHubAPI {
     //repository info /repos/:owner/:repo/readme
     case RepoReadme(owner:String,repo:String)
     case RepoBranchs(owner:String,repo:String)
+    case RepoPullRequest(owner:String,repo:String)
     
     //search
     case SearchUsers(para:ParaSearchUser)
@@ -157,6 +158,9 @@ extension GitHubAPI: TargetType {
             return "/repos/\(owner)/\(repo)/readme"
         case .RepoBranchs(let owner,let repo):
             return "/repos/\(owner)/\(repo)/branches"
+        case .RepoPullRequest(let owner, let repo):
+            return "/repos/\(owner)/\(repo)/pulls"
+            
         //search
         case SearchUsers:
             return "/search/users"

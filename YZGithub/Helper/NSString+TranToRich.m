@@ -14,8 +14,9 @@
 @implementation NSString (TranToRich)
 
 - (NSAttributedString *)richText{
-    NSAttributedString *prettyText = markdown_to_attr_string(self,0,nil);
-    return prettyText;
+    NSString *str = [[self stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+    NSAttributedString *prettyText = markdown_to_attr_string(str,0,nil);
+    return  prettyText;
 }
 
 @end

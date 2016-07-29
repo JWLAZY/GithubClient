@@ -76,6 +76,10 @@ extension RepoInfoViewController:UITableViewDelegate{
             }
         case (1,1):
             showBranches()
+        case (2,0):
+            let prvc = PRListViewController()
+            prvc.repoinfo = repoInfo
+            self.navigationController?.pushViewController(prvc, animated: true)
         case (2,1):
             let readmeVC = ReadmeViewController()
             readmeVC.repo = repoInfo

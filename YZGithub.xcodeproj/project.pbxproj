@@ -51,6 +51,10 @@
 		4686CF8E1D48903400D8F900 /* RepoCodeInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4686CF8C1D48903400D8F900 /* RepoCodeInfoCell.swift */; };
 		4686CF8F1D48903400D8F900 /* RepoCodeInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4686CF8D1D48903400D8F900 /* RepoCodeInfoCell.xib */; };
 		4686CF921D490A2E00D8F900 /* DeveloperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4686CF911D490A2E00D8F900 /* DeveloperViewController.swift */; };
+		46A448E91D4B328C00014D39 /* PullRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A448E81D4B328C00014D39 /* PullRequest.swift */; };
+		46A448EB1D4B3BF800014D39 /* PRListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A448EA1D4B3BF800014D39 /* PRListViewController.swift */; };
+		46A448EE1D4B3C2100014D39 /* PRCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A448EC1D4B3C2100014D39 /* PRCell.swift */; };
+		46A448EF1D4B3C2100014D39 /* PRCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46A448ED1D4B3C2100014D39 /* PRCell.xib */; };
 		46AB8A181D4A713C009F64F8 /* NSString+TranToRich.m in Sources */ = {isa = PBXBuildFile; fileRef = 46AB8A171D4A713C009F64F8 /* NSString+TranToRich.m */; };
 		46C1507F1D4754C50035DF66 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C1507E1D4754C50035DF66 /* Repository.swift */; };
 		46EAF8151D3661BD00210109 /* BaseTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46EAF8141D3661BD00210109 /* BaseTabBarViewController.swift */; };
@@ -122,6 +126,10 @@
 		4686CF8C1D48903400D8F900 /* RepoCodeInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepoCodeInfoCell.swift; sourceTree = "<group>"; };
 		4686CF8D1D48903400D8F900 /* RepoCodeInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RepoCodeInfoCell.xib; sourceTree = "<group>"; };
 		4686CF911D490A2E00D8F900 /* DeveloperViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeveloperViewController.swift; sourceTree = "<group>"; };
+		46A448E81D4B328C00014D39 /* PullRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PullRequest.swift; sourceTree = "<group>"; };
+		46A448EA1D4B3BF800014D39 /* PRListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PRListViewController.swift; sourceTree = "<group>"; };
+		46A448EC1D4B3C2100014D39 /* PRCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PRCell.swift; sourceTree = "<group>"; };
+		46A448ED1D4B3C2100014D39 /* PRCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PRCell.xib; sourceTree = "<group>"; };
 		46AB8A121D4A7003009F64F8 /* YZGithub-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "YZGithub-Bridging-Header.h"; sourceTree = "<group>"; };
 		46AB8A161D4A713C009F64F8 /* NSString+TranToRich.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+TranToRich.h"; sourceTree = "<group>"; };
 		46AB8A171D4A713C009F64F8 /* NSString+TranToRich.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+TranToRich.m"; sourceTree = "<group>"; };
@@ -410,6 +418,7 @@
 				4686CF811D4885F200D8F900 /* RepoInfoViewController.swift */,
 				466931E01D49F0E500CEA889 /* RepoListViewController.swift */,
 				46168C2D1D4A54EE00792D2C /* ReadmeViewController.swift */,
+				46A448EA1D4B3BF800014D39 /* PRListViewController.swift */,
 			);
 			path = Repos;
 			sourceTree = "<group>";
@@ -423,6 +432,8 @@
 				4686CF891D48901D00D8F900 /* RepoInfoCell.xib */,
 				4686CF8C1D48903400D8F900 /* RepoCodeInfoCell.swift */,
 				4686CF8D1D48903400D8F900 /* RepoCodeInfoCell.xib */,
+				46A448EC1D4B3C2100014D39 /* PRCell.swift */,
+				46A448ED1D4B3C2100014D39 /* PRCell.xib */,
 			);
 			path = Repos;
 			sourceTree = "<group>";
@@ -443,6 +454,7 @@
 				4686CF7E1D47C5B600D8F900 /* SearchUserResponse.swift */,
 				4626EB7C1D4AFB3B00067CC3 /* Branches.swift */,
 				4626EB7E1D4AFBB400067CC3 /* Commit.swift */,
+				46A448E81D4B328C00014D39 /* PullRequest.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -557,6 +569,7 @@
 				4657DEED1D33C72C006AF3A9 /* LaunchScreen.storyboard in Resources */,
 				4657DEEA1D33C72C006AF3A9 /* Assets.xcassets in Resources */,
 				4657DEE81D33C72C006AF3A9 /* Main.storyboard in Resources */,
+				46A448EF1D4B3C2100014D39 /* PRCell.xib in Resources */,
 				4679A01E1D473320004574E2 /* RepoTableViewCell.xib in Resources */,
 				4679A0221D473333004574E2 /* DeveloperTableViewCell.xib in Resources */,
 			);
@@ -629,6 +642,7 @@
 				46246D8A1D4712D800B1FA91 /* ExploreDevelopersViewController.swift in Sources */,
 				46AB8A181D4A713C009F64F8 /* NSString+TranToRich.m in Sources */,
 				4686CF921D490A2E00D8F900 /* DeveloperViewController.swift in Sources */,
+				46A448E91D4B328C00014D39 /* PullRequest.swift in Sources */,
 				4686CF861D488FFF00D8F900 /* RepoIntroCell.swift in Sources */,
 				4679A01D1D473320004574E2 /* RepoTableViewCell.swift in Sources */,
 				46374AD21D4496A800393B8A /* YZWebViewController.swift in Sources */,
@@ -649,6 +663,7 @@
 				46374AE21D451F7500393B8A /* ObjPermissions.swift in Sources */,
 				46EAF8201D36A44700210109 /* ProfileViewController.swift in Sources */,
 				46EAF8261D36D1ED00210109 /* ParallaxHeaderView.swift in Sources */,
+				46A448EB1D4B3BF800014D39 /* PRListViewController.swift in Sources */,
 				4626EB7B1D4AF8CE00067CC3 /* JWSheetItem.m in Sources */,
 				4686CF821D4885F200D8F900 /* RepoInfoViewController.swift in Sources */,
 				46EAF8191D367F2100210109 /* UIColor+yztc.swift in Sources */,
@@ -660,6 +675,7 @@
 				46374AE61D4520D400393B8A /* NotiName.swift in Sources */,
 				46374AD41D44B1CB00393B8A /* LoginViewController.swift in Sources */,
 				46EAF8221D36A52F00210109 /* BaseViewController.swift in Sources */,
+				46A448EE1D4B3C2100014D39 /* PRCell.swift in Sources */,
 				46374ADE1D451DDE00393B8A /* ObjUser.swift in Sources */,
 				4626EB7A1D4AF8CE00067CC3 /* JWSheet.m in Sources */,
 				46374AD91D450AB700393B8A /* AppToken.swift in Sources */,
