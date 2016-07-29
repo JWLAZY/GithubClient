@@ -20,5 +20,6 @@ pod "SwiftDate", "~> 2.0"
 pod 'Bugly'
 pod 'Static', git: 'https://github.com/flexih/Static.git'
 pod "XMSegmentedControl"
+pod 'AttributedMarkdown', :git => 'https://github.com/dreamwieber/AttributedMarkdown.git'
 common_pods
 end

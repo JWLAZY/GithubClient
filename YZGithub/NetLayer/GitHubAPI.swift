@@ -44,7 +44,9 @@ struct Provider {
         // Sign all non-XApp token requests
         
         switch target {
-            
+        case GitHubAPI.RepoReadme(let owner, let repo):
+            endpoint.endpointByAddingHTTPHeaderFields(["Content-Type":"application/vnd.github.VERSION.raw"])
+            fallthrough
         default:
             print("current token:\( AppToken.shareInstance.access_token!)")
             endpoint.endpointByAddingHTTPHeaderFields(["User-Agent":"YZGithub"])
@@ -93,6 +95,9 @@ public enum GitHubAPI {
     case OrgRepos(type:String, organization:String)
     case PubRepos(page:Int,perpage:Int)
     case UserSomeRepo(owner:String, repo:String)
+    
+    //repository info /repos/:owner/:repo/readme
+    case RepoReadme(owner:String,repo:String)
     
     //search
     case SearchUsers(para:ParaSearchUser)
@@ -147,6 +152,8 @@ extension GitHubAPI: TargetType {
             return "/repositories"
         case UserSomeRepo(let owner,let repo):
             return "/repos/\(owner)/\(repo)"
+        case RepoReadme(let owner, let repo):
+            return "/repos/\(owner)/\(repo)/readme"
             
         //search
         case SearchUsers:
@@ -204,6 +211,8 @@ extension GitHubAPI: TargetType {
                 "page":page,
                 "per_page":perpage
             ]
+//        case .RepoReadme(let _, let _):
+//            return [:]
         default:
             return nil
         }

@@ -51,6 +51,10 @@ extension RepoInfoViewController:UITableViewDelegate{
             }else{
                 self.navigationController?.pushViewController(developerListVC, animated: true)
             }
+        case (2,1):
+            let readmeVC = ReadmeViewController()
+            readmeVC.repo = repoInfo
+            navigationController?.pushViewController(readmeVC, animated: true)
         default:
             print("等等")
         }

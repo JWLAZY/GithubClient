@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2AD2D4D3260EA7C307040B65 /* Pods_YZGithub.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F339D813CABEAFD8E1429F38 /* Pods_YZGithub.framework */; };
+		46168C2E1D4A54EE00792D2C /* ReadmeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46168C2D1D4A54EE00792D2C /* ReadmeViewController.swift */; };
 		46246D811D47057C00B1FA91 /* UserInfoHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46246D801D47057C00B1FA91 /* UserInfoHelper.swift */; };
 		46246D861D47115300B1FA91 /* ExploreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46246D851D47115300B1FA91 /* ExploreViewController.swift */; };
 		46246D881D4712B900B1FA91 /* ExploreReposViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46246D871D4712B900B1FA91 /* ExploreReposViewController.swift */; };
@@ -46,6 +47,7 @@
 		4686CF8E1D48903400D8F900 /* RepoCodeInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4686CF8C1D48903400D8F900 /* RepoCodeInfoCell.swift */; };
 		4686CF8F1D48903400D8F900 /* RepoCodeInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4686CF8D1D48903400D8F900 /* RepoCodeInfoCell.xib */; };
 		4686CF921D490A2E00D8F900 /* DeveloperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4686CF911D490A2E00D8F900 /* DeveloperViewController.swift */; };
+		46AB8A181D4A713C009F64F8 /* NSString+TranToRich.m in Sources */ = {isa = PBXBuildFile; fileRef = 46AB8A171D4A713C009F64F8 /* NSString+TranToRich.m */; };
 		46C1507F1D4754C50035DF66 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C1507E1D4754C50035DF66 /* Repository.swift */; };
 		46EAF8151D3661BD00210109 /* BaseTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46EAF8141D3661BD00210109 /* BaseTabBarViewController.swift */; };
 		46EAF8191D367F2100210109 /* UIColor+yztc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46EAF8181D367F2100210109 /* UIColor+yztc.swift */; };
@@ -67,6 +69,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		46168C2D1D4A54EE00792D2C /* ReadmeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadmeViewController.swift; sourceTree = "<group>"; };
 		46246D801D47057C00B1FA91 /* UserInfoHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoHelper.swift; sourceTree = "<group>"; };
 		46246D851D47115300B1FA91 /* ExploreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExploreViewController.swift; sourceTree = "<group>"; };
 		46246D871D4712B900B1FA91 /* ExploreReposViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExploreReposViewController.swift; sourceTree = "<group>"; };
@@ -109,6 +112,9 @@
 		4686CF8C1D48903400D8F900 /* RepoCodeInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepoCodeInfoCell.swift; sourceTree = "<group>"; };
 		4686CF8D1D48903400D8F900 /* RepoCodeInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RepoCodeInfoCell.xib; sourceTree = "<group>"; };
 		4686CF911D490A2E00D8F900 /* DeveloperViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeveloperViewController.swift; sourceTree = "<group>"; };
+		46AB8A121D4A7003009F64F8 /* YZGithub-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "YZGithub-Bridging-Header.h"; sourceTree = "<group>"; };
+		46AB8A161D4A713C009F64F8 /* NSString+TranToRich.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+TranToRich.h"; sourceTree = "<group>"; };
+		46AB8A171D4A713C009F64F8 /* NSString+TranToRich.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+TranToRich.m"; sourceTree = "<group>"; };
 		46C1507E1D4754C50035DF66 /* Repository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		46EAF8141D3661BD00210109 /* BaseTabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTabBarViewController.swift; sourceTree = "<group>"; };
 		46EAF8181D367F2100210109 /* UIColor+yztc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+yztc.swift"; sourceTree = "<group>"; };
@@ -273,6 +279,9 @@
 			children = (
 				46374AD51D44CBE500393B8A /* NetworkHelper.swift */,
 				46246D801D47057C00B1FA91 /* UserInfoHelper.swift */,
+				46AB8A161D4A713C009F64F8 /* NSString+TranToRich.h */,
+				46AB8A171D4A713C009F64F8 /* NSString+TranToRich.m */,
+				46AB8A121D4A7003009F64F8 /* YZGithub-Bridging-Header.h */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -378,6 +387,7 @@
 			children = (
 				4686CF811D4885F200D8F900 /* RepoInfoViewController.swift */,
 				466931E01D49F0E500CEA889 /* RepoListViewController.swift */,
+				46168C2D1D4A54EE00792D2C /* ReadmeViewController.swift */,
 			);
 			path = Repos;
 			sourceTree = "<group>";
@@ -593,6 +603,7 @@
 				46EAF8241D36CC3D00210109 /* UINavigationBar+yztc.swift in Sources */,
 				466931DF1D49B5DD00CEA889 /* DeveloperListViewController.swift in Sources */,
 				46246D8A1D4712D800B1FA91 /* ExploreDevelopersViewController.swift in Sources */,
+				46AB8A181D4A713C009F64F8 /* NSString+TranToRich.m in Sources */,
 				4686CF921D490A2E00D8F900 /* DeveloperViewController.swift in Sources */,
 				4686CF861D488FFF00D8F900 /* RepoIntroCell.swift in Sources */,
 				4679A01D1D473320004574E2 /* RepoTableViewCell.swift in Sources */,
@@ -625,6 +636,7 @@
 				46EAF8221D36A52F00210109 /* BaseViewController.swift in Sources */,
 				46374ADE1D451DDE00393B8A /* ObjUser.swift in Sources */,
 				46374AD91D450AB700393B8A /* AppToken.swift in Sources */,
+				46168C2E1D4A54EE00792D2C /* ReadmeViewController.swift in Sources */,
 				46374AE01D451F4A00393B8A /* ObjEmail.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -755,10 +767,13 @@
 			baseConfigurationReference = FCEA5E31BF3E45FC5B254783 /* Pods-YZGithub.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = YZGithub/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.zjw.YZGithub;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "YZGithub/Helper/YZGithub-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -767,10 +782,12 @@
 			baseConfigurationReference = 4D2DBC43C8610F6D5B78CC0F /* Pods-YZGithub.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = YZGithub/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.zjw.YZGithub;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "YZGithub/Helper/YZGithub-Bridging-Header.h";
 			};
 			name = Release;
 		};

@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (3.4.1)
+  - AttributedMarkdown (0.9.2)
   - Bugly (2.3.0)
   - DGElasticPullToRefresh (1.0.3)
   - Iconic (1.0.0-beta2)
@@ -22,6 +23,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire
+  - AttributedMarkdown (from `https://github.com/dreamwieber/AttributedMarkdown.git`)
   - Bugly
   - DGElasticPullToRefresh
   - Iconic (from `https://github.com/dzenbot/Iconic.git`)
@@ -38,6 +40,8 @@ DEPENDENCIES:
   - XMSegmentedControl
 
 EXTERNAL SOURCES:
+  AttributedMarkdown:
+    :git: https://github.com/dreamwieber/AttributedMarkdown.git
   Iconic:
     :git: https://github.com/dzenbot/Iconic.git
     :submodules: true
@@ -45,6 +49,9 @@ EXTERNAL SOURCES:
     :git: https://github.com/flexih/Static.git
 
 CHECKOUT OPTIONS:
+  AttributedMarkdown:
+    :commit: 4aef3c80e0ffe6c7011c20c7f703ea56af774861
+    :git: https://github.com/dreamwieber/AttributedMarkdown.git
   Iconic:
     :commit: 2157bb37fdd8bff8452c03f26f388f14060586b9
     :git: https://github.com/dzenbot/Iconic.git
@@ -55,6 +62,7 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   Alamofire: 01a82e2f6c0f860ade35534c8dd88be61bdef40c
+  AttributedMarkdown: ac5060667280be8cc8ee33a46c73e4ec6b17ca1a
   Bugly: 14baf2b647a689a247aa972bf136c88c4f8ca712
   DGElasticPullToRefresh: 040f39ae69840b3261d163fe6735c5901bf851e9
   Iconic: a988d10415b097084316bc2a3385420c4bedd4dc
@@ -71,6 +79,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
   XMSegmentedControl: 51cf4f3daf14920692a064d9252aa7b29622dda6
 
-PODFILE CHECKSUM: 849ab8fa6909f037e8baf9c072502d84f7220151
+PODFILE CHECKSUM: 667b67f4bb11df41992ed36c4e9041b332e171b1
 
 COCOAPODS: 1.0.1
