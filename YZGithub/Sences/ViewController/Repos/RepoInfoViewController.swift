@@ -16,7 +16,12 @@ class RepoInfoViewController: UIViewController {
         case codeInfo = "codeInfoIdentifier"
     }
     
-    var repoInfo:Repository?
+    var repoInfo:Repository? {
+        didSet{
+            fetchBranches()
+        }
+    }
+    var branches:[Branches]?
     
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
@@ -35,6 +40,24 @@ class RepoInfoViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    func fetchBranches() {
+        Provider.sharedProvider.request(GitHubAPI.RepoBranchs(owner: repoInfo!.owner!.login!, repo: repoInfo!.name!)) { (result) in
+            switch result {
+            case let .Success(response):
+                do{
+                    if let commits:[Branches]? = try response.mapArray(Branches) {
+                        if commits != nil {
+                            self.branches = commits
+                        }
+                    }
+                }catch{
+                    
+                }
+            case let .Failure(error):
+                print(error)
+            }
+        }
+    }
 }
 
 //MARK: Delegate
@@ -51,6 +74,8 @@ extension RepoInfoViewController:UITableViewDelegate{
             }else{
                 self.navigationController?.pushViewController(developerListVC, animated: true)
             }
+        case (1,1):
+            showBranches()
         case (2,1):
             let readmeVC = ReadmeViewController()
             readmeVC.repo = repoInfo
@@ -58,7 +83,18 @@ extension RepoInfoViewController:UITableViewDelegate{
         default:
             print("等等")
         }
-        
+    }
+    func showBranches() {
+        if branches == nil {
+            return
+        }
+        let title:[String] = branches!.map { (branch:Branches) -> String in
+            return branch.name!
+        }
+        let sheet = JWSheet.init(frame: view.frame, items: title) { (index) in
+            print(index)
+        }
+        tabBarController!.view.addSubview(sheet)
     }
 }
 

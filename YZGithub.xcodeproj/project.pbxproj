@@ -13,6 +13,10 @@
 		46246D861D47115300B1FA91 /* ExploreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46246D851D47115300B1FA91 /* ExploreViewController.swift */; };
 		46246D881D4712B900B1FA91 /* ExploreReposViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46246D871D4712B900B1FA91 /* ExploreReposViewController.swift */; };
 		46246D8A1D4712D800B1FA91 /* ExploreDevelopersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46246D891D4712D800B1FA91 /* ExploreDevelopersViewController.swift */; };
+		4626EB7A1D4AF8CE00067CC3 /* JWSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 4626EB771D4AF8CE00067CC3 /* JWSheet.m */; };
+		4626EB7B1D4AF8CE00067CC3 /* JWSheetItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4626EB791D4AF8CE00067CC3 /* JWSheetItem.m */; };
+		4626EB7D1D4AFB3B00067CC3 /* Branches.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4626EB7C1D4AFB3B00067CC3 /* Branches.swift */; };
+		4626EB7F1D4AFBB400067CC3 /* Commit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4626EB7E1D4AFBB400067CC3 /* Commit.swift */; };
 		46374AD21D4496A800393B8A /* YZWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46374AD11D4496A800393B8A /* YZWebViewController.swift */; };
 		46374AD41D44B1CB00393B8A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46374AD31D44B1CA00393B8A /* LoginViewController.swift */; };
 		46374AD61D44CBE500393B8A /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46374AD51D44CBE500393B8A /* NetworkHelper.swift */; };
@@ -74,6 +78,12 @@
 		46246D851D47115300B1FA91 /* ExploreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExploreViewController.swift; sourceTree = "<group>"; };
 		46246D871D4712B900B1FA91 /* ExploreReposViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExploreReposViewController.swift; sourceTree = "<group>"; };
 		46246D891D4712D800B1FA91 /* ExploreDevelopersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExploreDevelopersViewController.swift; sourceTree = "<group>"; };
+		4626EB761D4AF8CE00067CC3 /* JWSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JWSheet.h; sourceTree = "<group>"; };
+		4626EB771D4AF8CE00067CC3 /* JWSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JWSheet.m; sourceTree = "<group>"; };
+		4626EB781D4AF8CE00067CC3 /* JWSheetItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JWSheetItem.h; sourceTree = "<group>"; };
+		4626EB791D4AF8CE00067CC3 /* JWSheetItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JWSheetItem.m; sourceTree = "<group>"; };
+		4626EB7C1D4AFB3B00067CC3 /* Branches.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Branches.swift; sourceTree = "<group>"; };
+		4626EB7E1D4AFBB400067CC3 /* Commit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Commit.swift; sourceTree = "<group>"; };
 		46374AD11D4496A800393B8A /* YZWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YZWebViewController.swift; sourceTree = "<group>"; };
 		46374AD31D44B1CA00393B8A /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		46374AD51D44CBE500393B8A /* NetworkHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkHelper.swift; sourceTree = "<group>"; };
@@ -186,6 +196,17 @@
 			children = (
 			);
 			path = Stars;
+			sourceTree = "<group>";
+		};
+		4626EB751D4AF8CE00067CC3 /* JWSheet */ = {
+			isa = PBXGroup;
+			children = (
+				4626EB761D4AF8CE00067CC3 /* JWSheet.h */,
+				4626EB771D4AF8CE00067CC3 /* JWSheet.m */,
+				4626EB781D4AF8CE00067CC3 /* JWSheetItem.h */,
+				4626EB791D4AF8CE00067CC3 /* JWSheetItem.m */,
+			);
+			path = JWSheet;
 			sourceTree = "<group>";
 		};
 		46374AD71D450AA500393B8A /* Network */ = {
@@ -350,6 +371,7 @@
 		4657DF0B1D33C8B8006AF3A9 /* ThridParty */ = {
 			isa = PBXGroup;
 			children = (
+				4626EB751D4AF8CE00067CC3 /* JWSheet */,
 			);
 			path = ThridParty;
 			sourceTree = "<group>";
@@ -419,6 +441,8 @@
 			children = (
 				46C1507E1D4754C50035DF66 /* Repository.swift */,
 				4686CF7E1D47C5B600D8F900 /* SearchUserResponse.swift */,
+				4626EB7C1D4AFB3B00067CC3 /* Branches.swift */,
+				4626EB7E1D4AFBB400067CC3 /* Commit.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -625,18 +649,22 @@
 				46374AE21D451F7500393B8A /* ObjPermissions.swift in Sources */,
 				46EAF8201D36A44700210109 /* ProfileViewController.swift in Sources */,
 				46EAF8261D36D1ED00210109 /* ParallaxHeaderView.swift in Sources */,
+				4626EB7B1D4AF8CE00067CC3 /* JWSheetItem.m in Sources */,
 				4686CF821D4885F200D8F900 /* RepoInfoViewController.swift in Sources */,
 				46EAF8191D367F2100210109 /* UIColor+yztc.swift in Sources */,
 				46EAF8151D3661BD00210109 /* BaseTabBarViewController.swift in Sources */,
 				4686CF7F1D47C5B600D8F900 /* SearchUserResponse.swift in Sources */,
+				4626EB7F1D4AFBB400067CC3 /* Commit.swift in Sources */,
 				46246D861D47115300B1FA91 /* ExploreViewController.swift in Sources */,
 				46374AE41D451FAF00393B8A /* ObjPlan.swift in Sources */,
 				46374AE61D4520D400393B8A /* NotiName.swift in Sources */,
 				46374AD41D44B1CB00393B8A /* LoginViewController.swift in Sources */,
 				46EAF8221D36A52F00210109 /* BaseViewController.swift in Sources */,
 				46374ADE1D451DDE00393B8A /* ObjUser.swift in Sources */,
+				4626EB7A1D4AF8CE00067CC3 /* JWSheet.m in Sources */,
 				46374AD91D450AB700393B8A /* AppToken.swift in Sources */,
 				46168C2E1D4A54EE00792D2C /* ReadmeViewController.swift in Sources */,
+				4626EB7D1D4AFB3B00067CC3 /* Branches.swift in Sources */,
 				46374AE01D451F4A00393B8A /* ObjEmail.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

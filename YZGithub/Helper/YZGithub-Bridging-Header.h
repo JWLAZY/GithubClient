@@ -5,3 +5,6 @@
 #import "AttributedMarkdown/markdown_lib.h"
 #import "AttributedMarkdown/markdown_peg.h"
 #import "NSString+TranToRich.h"
+
+#import "JWSheet.h"
+#import "JWSheetItem.h"
