@@ -57,7 +57,7 @@ class BaseViewController: UIViewController,UIGestureRecognizerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.navigationController?.navigationBar.setMyBackgroundColor(UIColor.navBarTintColor())
         self.navigationController?.interactivePopGestureRecognizer!.delegate = self
         // Do any additional setup after loading the view.
     }

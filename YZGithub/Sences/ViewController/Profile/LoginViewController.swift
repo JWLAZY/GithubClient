@@ -17,7 +17,10 @@ class LoginViewController: YZWebViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.navigationController?.navigationBar.setMyBackgroundColor(UIColor.navBarTintColor())
+    }
+    deinit{
+        
     }
 
     override func didReceiveMemoryWarning() {

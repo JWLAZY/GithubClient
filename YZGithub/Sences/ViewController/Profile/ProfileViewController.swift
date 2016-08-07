@@ -11,7 +11,8 @@ import SnapKit
 import Static
 import Kingfisher
 
-class ProfileViewController: BaseViewController,UITableViewDelegate{
+
+class ProfileViewController: BaseViewController{
     
     var user:ObjUser?
     var isLogin:Bool?
@@ -19,6 +20,8 @@ class ProfileViewController: BaseViewController,UITableViewDelegate{
     var tableView : UITableView?
     var profileImageView : UIImageView?
     var nameLable : UILabel?
+    var followersLable:UILabel = UILabel()
+    var startLable:UILabel = UILabel()
     var headerView:UIImageView?{
         return tableView?.viewWithTag(101) as? UIImageView
     }
@@ -28,8 +31,6 @@ class ProfileViewController: BaseViewController,UITableViewDelegate{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
         
         //通知中心.注册登录成功和退出事件
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(updateUserinfoData), name: NotificationGitLoginSuccessful, object: nil)
@@ -41,10 +42,17 @@ class ProfileViewController: BaseViewController,UITableViewDelegate{
         
         tableView?.registerClass(UITableViewCell.classForCoder(), forCellReuseIdentifier: identifier as String)
         tableView?.tableFooterView = UIView()
-        let view = UIView(frame:CGRect(x: 0, y: 0, width: 20, height: 1))
-        view.backgroundColor = UIColor.redColor()
-        tableView?.tableHeaderView = view
+        
+        //MARK: 设置头
+//        let view = UIView(frame:CGRect(x: 0, y: 0, width: 20, height: 1))
+//        view.backgroundColor = UIColor.redColor()
+//        tableView?.tableHeaderView = view
+        
         customUI()
+    }
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.setMyBackgroundColor(UIColor(red: 0/255.0, green: 130/255.0, blue: 210/255.0, alpha: 0))
     }
     
     func customUI() {
@@ -73,6 +81,8 @@ class ProfileViewController: BaseViewController,UITableViewDelegate{
         
         nameLable = UILabel()
         nameLable!.text = "登陆"
+        nameLable?.font = UIFont.systemFontOfSize(14)
+        nameLable?.textColor = UIColor.whiteColor()
         header.addSubview(nameLable!)
         nameLable!.snp_makeConstraints { (make) in
             make.centerX.equalTo(header)
@@ -83,9 +93,28 @@ class ProfileViewController: BaseViewController,UITableViewDelegate{
         nameLable?.userInteractionEnabled = true
         header.userInteractionEnabled = true
         
-        var rows = [[Row]]()
+//        //粉丝和关注的人
+        header.addSubview(followersLable)
+        followersLable.textColor = UIColor.whiteColor()
+        followersLable.font = UIFont.systemFontOfSize(13)
+        followersLable.snp_makeConstraints { (make) in
+            make.right.equalTo((nameLable?.snp_centerX)!).offset(-10)
+            make.top.equalTo((nameLable?.snp_bottom)!).offset(10)
+        }
         
-        let row = Row(text: "关注",cellClass: Value1Cell.self)
+        header.addSubview(startLable)
+        startLable.textColor = UIColor.whiteColor()
+        startLable.font = UIFont.systemFontOfSize(13)
+        startLable.snp_makeConstraints { (make) in
+            make.left.equalTo((nameLable?.snp_centerX)!).offset(10)
+            make.top.equalTo(followersLable)
+        }
+        
+        //自定义cell
+        var rows = [[Row]]()
+        let row = Row(text: "关注",cellClass: Value1Cell.self, selection: {(index) in
+            print("\(index)")
+        })
         let row3 = Row(text: "设置",cellClass: Value1Cell.self)
         let row4 = Row(text: "分享",cellClass: Value1Cell.self)
         let row5 = Row(text: "评个分呗!",cellClass: Value1Cell.self)
@@ -93,10 +122,14 @@ class ProfileViewController: BaseViewController,UITableViewDelegate{
         rows = [[row],[row3],[row4,row5,row6]]
         
         let header2 = Section.Extremity.Title("联系我们")
-        datasource.sections = [Section(rows:rows[0]),Section(rows:rows[1]),Section(header:header2, rows:rows[2])]
+        
+        let view = UIView(frame: CGRectMake(0, 0, 1, 0.01))
+        view.backgroundColor = UIColor.redColor()
+        let title =  Section.Extremity.View(view)
+        
+        datasource.sections = [Section(rows:rows[0],footer:title,header:title),Section(rows:rows[1],footer:title),Section(header:header2, rows:rows[2])]
         datasource.tableView = tableView
         datasource.tableView?.delegate = self
-        
         updateUserinfoData()
     }
     
@@ -109,17 +142,20 @@ class ProfileViewController: BaseViewController,UITableViewDelegate{
         loginVC.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(loginVC, animated: true)
     }
+    
+    //MARK: 更新UI
     func updateUserinfoData() {
         user = UserInfoHelper.sharedInstance.user
         isLogin = UserInfoHelper.sharedInstance.isLogin
         if isLogin! == true {
             nameLable?.text = user?.name
             profileImageView?.kf_setImageWithURL(NSURL(string: user!.avatar_url!)!)
+            followersLable.text = "\((user?.followers!)! as Int) 人关注"
+            startLable.text = "关注\((user?.following!)! as Int)人"
         }
         
     }
 }
-
 
 extension ProfileViewController:UIScrollViewDelegate{
     func scrollViewDidScroll(scrollView: UIScrollView) {
@@ -135,5 +171,19 @@ extension ProfileViewController:UIScrollViewDelegate{
             
         }
         
+    }
+}
+extension ProfileViewController:UITableViewDelegate{
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let index = (indexPath.section,indexPath.row)
+        switch index {
+        case (0,0):
+            let follewVC = DeveloperListViewController()
+            follewVC.developer = user
+            follewVC.listType = DeveListType.Follewers
+            self.navigationController?.pushViewController(follewVC, animated: true)
+        default:
+            print("等会")
+        }
     }
 }

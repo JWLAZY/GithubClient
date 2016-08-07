@@ -7,10 +7,27 @@
 //
 
 import UIKit
+import ObjectMapper
+import Alamofire
 
-class DeveloperListViewController: UIViewController {
+enum DeveListType {
+    case Follewers
+}
+
+class DeveloperListViewController: BaseViewController {
 
     var developer:ObjUser?
+    var developers:[ObjUser] = [ObjUser]()
+    var listType:DeveListType? {
+        didSet{
+            switch listType! {
+            case .Follewers:
+                fetchFollewers()
+            default:
+                print("==")
+            }
+        }
+    }
     
     lazy var tableView: UITableView? = {
         let table = UITableView()
@@ -34,7 +51,23 @@ class DeveloperListViewController: UIViewController {
         })
         tableView?.registerNib(UINib(nibName: "DeveloperTableViewCell",bundle: nil), forCellReuseIdentifier: "DeveloperTableViewCell")
     }
-
+    func fetchFollewers() {
+            Provider.sharedProvider.request(GitHubAPI.Followers(username: developer!.login!)) { [weak self](result) in
+                switch result {
+                case let .Success(value):
+                    do{
+                    if let deves:[ObjUser] = try value.mapArray(ObjUser) {
+                        self!.developers = deves
+                        self?.tableView?.reloadData()
+                        }
+                    }catch{
+                        print("解析失败")
+                    }
+                case let .Failure(error):
+                        print(error)
+                }
+            }
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         
@@ -43,17 +76,29 @@ class DeveloperListViewController: UIViewController {
 extension DeveloperListViewController:UITableViewDelegate{
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let devInfo = DeveloperViewController()
-        devInfo.developer = developer
+        if listType != nil{
+                devInfo.developer = developers[indexPath.row]
+        }else{
+                devInfo.developer = developer
+        }
         self.navigationController?.pushViewController(devInfo, animated: true)
     }
 }
 extension DeveloperListViewController:UITableViewDataSource{
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        if listType != nil{
+            return developers.count
+        }else{
+            return 1
+        }
     }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("DeveloperTableViewCell",forIndexPath: indexPath) as? DeveloperTableViewCell
-        cell?.deve = developer
+        if listType != nil{
+                cell?.deve = developers[indexPath.row]
+        }else{
+                cell?.deve = developer
+        }
         return cell!
     }
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {

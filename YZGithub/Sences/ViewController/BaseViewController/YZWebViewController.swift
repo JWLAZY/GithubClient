@@ -33,7 +33,7 @@ class YZWebViewController: BaseViewController, WKNavigationDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.navigationController?.navigationBar.setMyBackgroundColor(UIColor.navBarTintColor())
         customInit()
     }
     
@@ -42,7 +42,10 @@ class YZWebViewController: BaseViewController, WKNavigationDelegate {
     }
     func configWebView() {
         
-        webView = UIWebView(frame: self.view.bounds)
+        var frame = self.view.bounds
+        frame.origin.y = -44
+        frame.size.height += 44
+        webView = UIWebView(frame: frame)
         
         self.view.addSubview(webView!)
         

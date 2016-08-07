@@ -10,7 +10,6 @@ import UIKit
 import Moya
 import Alamofire
 
-
 typealias SuccessClosure = (result: AnyObject) -> Void
 typealias failClosure = (errorMsg:String?) -> Void
 
@@ -84,6 +83,9 @@ public enum GitHubAPI {
     case UpdateUserInfo(name:String, email:String, blog:String, company:String, location:String,hireable:String,bio:String)
     case AllUsers(page:Int,perpage:Int)
     
+//    users/jianwen-zheng/followers
+    case Followers(username:String)
+    
     //trending
     case TrendingRepos(since:String,language:String)
     case TrendingShowcases()
@@ -133,6 +135,8 @@ extension GitHubAPI: TargetType {
             return "/user"
         case AllUsers(_,_):
             return "/users"
+        case .Followers(let username):
+            return "users/\(username)/followers"
             
         //trending
         case TrendingRepos:
@@ -177,8 +181,6 @@ extension GitHubAPI: TargetType {
 //            return .POST
 //        case .DelEmail:
 //            return .DELETE
-       
-
         default:
             return .GET
         }

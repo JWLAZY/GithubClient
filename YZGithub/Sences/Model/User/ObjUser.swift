@@ -260,7 +260,6 @@ class ObjUser: NSObject,NSCoding,Mappable {
     }
     class func loadUserInfo() -> ObjUser? {
         return NSKeyedUnarchiver.unarchiveObjectWithFile(ObjUser.archiveURL.path!) as? ObjUser
-        
     }
     
     class func deleteUserInfo() {
