@@ -51,6 +51,15 @@
 		4686CF8E1D48903400D8F900 /* RepoCodeInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4686CF8C1D48903400D8F900 /* RepoCodeInfoCell.swift */; };
 		4686CF8F1D48903400D8F900 /* RepoCodeInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4686CF8D1D48903400D8F900 /* RepoCodeInfoCell.xib */; };
 		4686CF921D490A2E00D8F900 /* DeveloperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4686CF911D490A2E00D8F900 /* DeveloperViewController.swift */; };
+		468ADD251D579BF4006A2106 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 468ADD241D579BF4006A2106 /* SystemConfiguration.framework */; };
+		468ADD271D579C47006A2106 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 468ADD261D579C47006A2106 /* Security.framework */; };
+		468ADD291D579C5B006A2106 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 468ADD281D579C5B006A2106 /* libiconv.tbd */; };
+		468ADD2B1D579C65006A2106 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 468ADD2A1D579C65006A2106 /* CoreGraphics.framework */; };
+		468ADD2D1D579C6E006A2106 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 468ADD2C1D579C6E006A2106 /* libsqlite3.tbd */; };
+		468ADD2F1D579C7A006A2106 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 468ADD2E1D579C7A006A2106 /* CoreTelephony.framework */; };
+		468ADD311D579C82006A2106 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 468ADD301D579C82006A2106 /* libstdc++.tbd */; };
+		468ADD331D579C8C006A2106 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 468ADD321D579C8C006A2106 /* libz.tbd */; };
+		468ADD351D579EB9006A2106 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 468ADD341D579EB9006A2106 /* ImageIO.framework */; };
 		46A448E91D4B328C00014D39 /* PullRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A448E81D4B328C00014D39 /* PullRequest.swift */; };
 		46A448EB1D4B3BF800014D39 /* PRListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A448EA1D4B3BF800014D39 /* PRListViewController.swift */; };
 		46A448EE1D4B3C2100014D39 /* PRCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A448EC1D4B3C2100014D39 /* PRCell.swift */; };
@@ -126,6 +135,15 @@
 		4686CF8C1D48903400D8F900 /* RepoCodeInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepoCodeInfoCell.swift; sourceTree = "<group>"; };
 		4686CF8D1D48903400D8F900 /* RepoCodeInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RepoCodeInfoCell.xib; sourceTree = "<group>"; };
 		4686CF911D490A2E00D8F900 /* DeveloperViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeveloperViewController.swift; sourceTree = "<group>"; };
+		468ADD241D579BF4006A2106 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		468ADD261D579C47006A2106 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		468ADD281D579C5B006A2106 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
+		468ADD2A1D579C65006A2106 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		468ADD2C1D579C6E006A2106 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		468ADD2E1D579C7A006A2106 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		468ADD301D579C82006A2106 /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
+		468ADD321D579C8C006A2106 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		468ADD341D579EB9006A2106 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		46A448E81D4B328C00014D39 /* PullRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PullRequest.swift; sourceTree = "<group>"; };
 		46A448EA1D4B3BF800014D39 /* PRListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PRListViewController.swift; sourceTree = "<group>"; };
 		46A448EC1D4B3C2100014D39 /* PRCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PRCell.swift; sourceTree = "<group>"; };
@@ -151,6 +169,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				468ADD351D579EB9006A2106 /* ImageIO.framework in Frameworks */,
+				468ADD331D579C8C006A2106 /* libz.tbd in Frameworks */,
+				468ADD311D579C82006A2106 /* libstdc++.tbd in Frameworks */,
+				468ADD2F1D579C7A006A2106 /* CoreTelephony.framework in Frameworks */,
+				468ADD2D1D579C6E006A2106 /* libsqlite3.tbd in Frameworks */,
+				468ADD2B1D579C65006A2106 /* CoreGraphics.framework in Frameworks */,
+				468ADD291D579C5B006A2106 /* libiconv.tbd in Frameworks */,
+				468ADD271D579C47006A2106 /* Security.framework in Frameworks */,
+				468ADD251D579BF4006A2106 /* SystemConfiguration.framework in Frameworks */,
 				2AD2D4D3260EA7C307040B65 /* Pods_YZGithub.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -168,6 +195,15 @@
 		0EDE4F284EB0E9CB6D31A9D0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				468ADD341D579EB9006A2106 /* ImageIO.framework */,
+				468ADD321D579C8C006A2106 /* libz.tbd */,
+				468ADD301D579C82006A2106 /* libstdc++.tbd */,
+				468ADD2E1D579C7A006A2106 /* CoreTelephony.framework */,
+				468ADD2C1D579C6E006A2106 /* libsqlite3.tbd */,
+				468ADD2A1D579C65006A2106 /* CoreGraphics.framework */,
+				468ADD281D579C5B006A2106 /* libiconv.tbd */,
+				468ADD261D579C47006A2106 /* Security.framework */,
+				468ADD241D579BF4006A2106 /* SystemConfiguration.framework */,
 				F339D813CABEAFD8E1429F38 /* Pods_YZGithub.framework */,
 			);
 			name = Frameworks;

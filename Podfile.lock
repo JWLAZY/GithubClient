@@ -19,6 +19,7 @@ PODS:
   - Static (0.2.0)
   - SwiftDate (2.0.2)
   - SwiftyJSON (2.3.2)
+  - UMengSocialCOM (5.2.1)
   - XMSegmentedControl (0.1.4)
 
 DEPENDENCIES:
@@ -37,6 +38,7 @@ DEPENDENCIES:
   - Static (from `https://github.com/flexih/Static.git`)
   - SwiftDate (~> 2.0)
   - SwiftyJSON
+  - UMengSocialCOM (~> 5.2.1)
   - XMSegmentedControl
 
 EXTERNAL SOURCES:
@@ -77,8 +79,9 @@ SPEC CHECKSUMS:
   Static: b48f14dbacee91ac877bdf37c607f7524b1213ee
   SwiftDate: b4f4d0962afe48365ad2800c9850a6626deb9359
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
+  UMengSocialCOM: 074c135ce349aa4c8848d3fb8458757bcb6ffb67
   XMSegmentedControl: 51cf4f3daf14920692a064d9252aa7b29622dda6
 
-PODFILE CHECKSUM: 667b67f4bb11df41992ed36c4e9041b332e171b1
+PODFILE CHECKSUM: 227dfaa28300ac0d22ac15b3d727e0ade8949ba5
 
 COCOAPODS: 1.0.1

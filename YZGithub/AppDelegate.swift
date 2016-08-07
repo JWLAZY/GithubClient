@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         customUI()
-
+        customSocial()
         return true
     }
 
@@ -47,14 +47,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
+    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
+        return true
+    }
 
     func customUI() {
-        
         UINavigationBar.appearance().tintColor = UIColor.whiteColor()
         UINavigationBar.appearance().barTintColor = UIColor.navBarTintColor()
         UINavigationBar.appearance().titleTextAttributes = NSDictionary.init(object: UIColor.whiteColor(), forKey: NSForegroundColorAttributeName) as? [String : AnyObject]
-        
     }
-
+    func customSocial()  {
+        UMSocialData.setAppKey("56025946e0f55a744000439c")
+        UMSocialSinaSSOHandler.openNewSinaSSOWithAppKey("3006877935", secret: "46fd11d135010fcc578a1b0ced7e50d4", redirectURL: "https://api.weibo.com/oauth2/default.html")
+    }
 }
 

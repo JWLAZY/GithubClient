@@ -173,7 +173,7 @@ extension ProfileViewController:UIScrollViewDelegate{
         
     }
 }
-extension ProfileViewController:UITableViewDelegate{
+extension ProfileViewController:UITableViewDelegate, UMSocialUIDelegate{
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let index = (indexPath.section,indexPath.row)
         switch index {
@@ -182,6 +182,8 @@ extension ProfileViewController:UITableViewDelegate{
             follewVC.developer = user
             follewVC.listType = DeveListType.Follewers
             self.navigationController?.pushViewController(follewVC, animated: true)
+        case (2,0):
+            UMSocialSnsService.presentSnsIconSheetView(self, appKey: "56025946e0f55a744000439c", shareText: "加入我们吧!", shareImage: UIImage(named: "app_logo_90"), shareToSnsNames: [UMShareToSina], delegate: self)
         default:
             print("等会")
         }

@@ -8,3 +8,5 @@
 
 #import "JWSheet.h"
 #import "JWSheetItem.h"
+#import "UMSocial.h"
+#import "UMSocialSinaSSOHandler.h"
