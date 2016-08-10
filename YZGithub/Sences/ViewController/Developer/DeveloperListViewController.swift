@@ -55,7 +55,10 @@ class DeveloperListViewController: BaseViewController {
             Provider.sharedProvider.request(GitHubAPI.Followers(username: developer!.login!)) { [weak self](result) in
                 switch result {
                 case let .Success(value):
+                    
                     do{
+                    let string = try value.mapString()
+                        print(string)
                     if let deves:[ObjUser] = try value.mapArray(ObjUser) {
                         self!.developers = deves
                         self?.tableView?.reloadData()

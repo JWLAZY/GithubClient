@@ -47,7 +47,6 @@ struct Provider {
             endpoint.endpointByAddingHTTPHeaderFields(["Content-Type":"application/vnd.github.VERSION.raw"])
             fallthrough
         default:
-            print("current token:\( AppToken.shareInstance.access_token!)")
             endpoint.endpointByAddingHTTPHeaderFields(["User-Agent":"YZGithub"])
             
             return endpoint.endpointByAddingHTTPHeaderFields(["Authorization": AppToken.shareInstance.access_token ?? ""])
