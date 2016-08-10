@@ -70,7 +70,7 @@ class YZWebViewController: BaseViewController, WKNavigationDelegate {
 extension YZWebViewController:UIWebViewDelegate{
     
     func webViewDidStartLoad(webView: UIWebView) {
-//        MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+        MBProgressHUD.showHUDAddedTo(self.view, animated: true)
     }
     
     func webViewDidFinishLoad(webView: UIWebView) {

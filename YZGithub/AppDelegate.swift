@@ -54,6 +54,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func customUI() {
         UINavigationBar.appearance().tintColor = UIColor.whiteColor()
         UINavigationBar.appearance().barTintColor = UIColor.navBarTintColor()
+        //所有的导航栏的title文字属性
         UINavigationBar.appearance().titleTextAttributes = NSDictionary.init(object: UIColor.whiteColor(), forKey: NSForegroundColorAttributeName) as? [String : AnyObject]
     }
     func customSocial()  {

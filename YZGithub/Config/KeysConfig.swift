@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 public let GithubClientID = "8bea5da7a3e34cd621a6"
 
 public let GithubClientSecret = "df4312673d6b57fd1e6290dcbccea3e7ff227959"

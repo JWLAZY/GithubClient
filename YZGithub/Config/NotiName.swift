@@ -8,7 +8,6 @@
 
 import UIKit
 
-public let NotificationGitLoginSuccessful  = "GitLoginSuccessfulNotification"
-
+public let NotificationGitLoginSuccessful  =    "GitLoginSuccessfulNotification"
 public let NotificationGitLogOutSuccessful  = "GitLogOutSuccessfulNotification"
 
