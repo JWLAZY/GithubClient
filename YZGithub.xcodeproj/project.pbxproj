@@ -65,6 +65,8 @@
 		46A448EE1D4B3C2100014D39 /* PRCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A448EC1D4B3C2100014D39 /* PRCell.swift */; };
 		46A448EF1D4B3C2100014D39 /* PRCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46A448ED1D4B3C2100014D39 /* PRCell.xib */; };
 		46AB8A181D4A713C009F64F8 /* NSString+TranToRich.m in Sources */ = {isa = PBXBuildFile; fileRef = 46AB8A171D4A713C009F64F8 /* NSString+TranToRich.m */; };
+		46BF9E381D5B70890036D2F3 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BF9E371D5B70890036D2F3 /* SettingViewController.swift */; };
+		46BF9E3A1D5B7EEE0036D2F3 /* GlobalHubHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BF9E391D5B7EEE0036D2F3 /* GlobalHubHelper.swift */; };
 		46C1507F1D4754C50035DF66 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C1507E1D4754C50035DF66 /* Repository.swift */; };
 		46EAF8151D3661BD00210109 /* BaseTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46EAF8141D3661BD00210109 /* BaseTabBarViewController.swift */; };
 		46EAF8191D367F2100210109 /* UIColor+yztc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46EAF8181D367F2100210109 /* UIColor+yztc.swift */; };
@@ -151,6 +153,8 @@
 		46AB8A121D4A7003009F64F8 /* YZGithub-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "YZGithub-Bridging-Header.h"; sourceTree = "<group>"; };
 		46AB8A161D4A713C009F64F8 /* NSString+TranToRich.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+TranToRich.h"; sourceTree = "<group>"; };
 		46AB8A171D4A713C009F64F8 /* NSString+TranToRich.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+TranToRich.m"; sourceTree = "<group>"; };
+		46BF9E371D5B70890036D2F3 /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		46BF9E391D5B7EEE0036D2F3 /* GlobalHubHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalHubHelper.swift; sourceTree = "<group>"; };
 		46C1507E1D4754C50035DF66 /* Repository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		46EAF8141D3661BD00210109 /* BaseTabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTabBarViewController.swift; sourceTree = "<group>"; };
 		46EAF8181D367F2100210109 /* UIColor+yztc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+yztc.swift"; sourceTree = "<group>"; };
@@ -347,6 +351,7 @@
 				46AB8A161D4A713C009F64F8 /* NSString+TranToRich.h */,
 				46AB8A171D4A713C009F64F8 /* NSString+TranToRich.m */,
 				46AB8A121D4A7003009F64F8 /* YZGithub-Bridging-Header.h */,
+				46BF9E391D5B7EEE0036D2F3 /* GlobalHubHelper.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -510,6 +515,7 @@
 			children = (
 				46EAF81F1D36A44700210109 /* ProfileViewController.swift */,
 				46374AD31D44B1CA00393B8A /* LoginViewController.swift */,
+				46BF9E371D5B70890036D2F3 /* SettingViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -699,6 +705,7 @@
 				46374AE21D451F7500393B8A /* ObjPermissions.swift in Sources */,
 				46EAF8201D36A44700210109 /* ProfileViewController.swift in Sources */,
 				46EAF8261D36D1ED00210109 /* ParallaxHeaderView.swift in Sources */,
+				46BF9E3A1D5B7EEE0036D2F3 /* GlobalHubHelper.swift in Sources */,
 				46A448EB1D4B3BF800014D39 /* PRListViewController.swift in Sources */,
 				4626EB7B1D4AF8CE00067CC3 /* JWSheetItem.m in Sources */,
 				4686CF821D4885F200D8F900 /* RepoInfoViewController.swift in Sources */,
@@ -714,6 +721,7 @@
 				46A448EE1D4B3C2100014D39 /* PRCell.swift in Sources */,
 				46374ADE1D451DDE00393B8A /* ObjUser.swift in Sources */,
 				4626EB7A1D4AF8CE00067CC3 /* JWSheet.m in Sources */,
+				46BF9E381D5B70890036D2F3 /* SettingViewController.swift in Sources */,
 				46374AD91D450AB700393B8A /* AppToken.swift in Sources */,
 				46168C2E1D4A54EE00792D2C /* ReadmeViewController.swift in Sources */,
 				4626EB7D1D4AFB3B00067CC3 /* Branches.swift in Sources */,

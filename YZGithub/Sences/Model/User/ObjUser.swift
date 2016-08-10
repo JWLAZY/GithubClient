@@ -262,17 +262,18 @@ class ObjUser: NSObject,NSCoding,Mappable {
         return NSKeyedUnarchiver.unarchiveObjectWithFile(ObjUser.archiveURL.path!) as? ObjUser
     }
     
-    class func deleteUserInfo() {
+    class func deleteUserInfo()  -> Bool{
         
         let fileM = NSFileManager.defaultManager()
         if( fileM.fileExistsAtPath(archiveURL.path!) ){
             do {
                 try fileM.removeItemAtURL(archiveURL)
+                return true
             }catch{
-                
+                return false
             }
         }
-        
+        return false
     }
 
 }

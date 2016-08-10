@@ -43,11 +43,6 @@ class ProfileViewController: BaseViewController{
         tableView?.registerClass(UITableViewCell.classForCoder(), forCellReuseIdentifier: identifier as String)
         tableView?.tableFooterView = UIView()
         
-        //MARK: 设置头
-//        let view = UIView(frame:CGRect(x: 0, y: 0, width: 20, height: 1))
-//        view.backgroundColor = UIColor.redColor()
-//        tableView?.tableHeaderView = view
-        
         customUI()
     }
     override func viewWillAppear(animated: Bool) {
@@ -134,7 +129,6 @@ class ProfileViewController: BaseViewController{
     }
     
     func login(tap:UITapGestureRecognizer){
-        NSLog("登陆")
         NetworkHelper.clearCookies()
         let loginVC = LoginViewController()
         let url = String(format: "https://github.com/login/oauth/authorize/?client_id=%@&redirect_uri=%@&scope=%@", GithubClientID,GithubRedirectUrl,"user,user:email,user:follow,public_repo,repo,repo_deployment,repo:status,delete_repo,notifications,gist,read:repo_hook,write:repo_hook,admin:repo_hook,admin:org_hook,read:org,write:org,admin:org,read:public_key,write:public_key,admin:public_key")
@@ -152,8 +146,12 @@ class ProfileViewController: BaseViewController{
             profileImageView?.kf_setImageWithURL(NSURL(string: user!.avatar_url!)!)
             followersLable.text = "\((user?.followers!)! as Int) 人关注"
             startLable.text = "关注\((user?.following!)! as Int)人"
+        }else{
+            nameLable?.text = "登陆"
+            profileImageView?.image = UIImage(named: "app_logo_90")
+            followersLable.text = ""
+            startLable.text = ""
         }
-        
     }
 }
 
@@ -178,14 +176,24 @@ extension ProfileViewController:UITableViewDelegate, UMSocialUIDelegate{
         let index = (indexPath.section,indexPath.row)
         switch index {
         case (0,0):
+            if !isUserLogin() {
+                GlobalHubHelper.showError("请先登陆", view: view)
+                return
+            }
             let follewVC = DeveloperListViewController()
             follewVC.developer = user
             follewVC.listType = DeveListType.Follewers
             self.navigationController?.pushViewController(follewVC, animated: true)
         case (2,0):
             UMSocialSnsService.presentSnsIconSheetView(self, appKey: "56025946e0f55a744000439c", shareText: "加入我们吧!", shareImage: UIImage(named: "app_logo_90"), shareToSnsNames: [UMShareToSina], delegate: self)
+        case (1,0):
+            let setVC = SettingViewController()
+            navigationController?.pushViewController(setVC, animated: true)
         default:
             print("等会")
         }
+    }
+    func isUserLogin()  -> Bool {
+        return user  == nil ? false : true 
     }
 }
