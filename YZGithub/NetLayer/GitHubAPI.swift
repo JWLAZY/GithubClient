@@ -102,6 +102,10 @@ public enum GitHubAPI {
     case RepoBranchs(owner:String,repo:String)
     case RepoPullRequest(owner:String,repo:String)
     
+    //message
+    
+    case Message(page:Int)
+    
     //search
     case SearchUsers(para:ParaSearchUser)
 //    case SearchRepos(para:ParaSearchRepos)
@@ -164,6 +168,8 @@ extension GitHubAPI: TargetType {
         case .RepoPullRequest(let owner, let repo):
             return "/repos/\(owner)/\(repo)/pulls"
             
+        case .Message(_):
+            return "/notifications"
         //search
         case SearchUsers:
             return "/search/users"
@@ -217,6 +223,12 @@ extension GitHubAPI: TargetType {
             return [
                 "page":page,
                 "per_page":perpage
+            ]
+        case .Message(let page):
+            return [
+                    "all":false, //是否显示所有已读的消息
+                    "participating":false,//是否只显示直接参与的消息
+                    "page":page
             ]
 //        case .RepoReadme(let _, let _):
 //            return [:]
