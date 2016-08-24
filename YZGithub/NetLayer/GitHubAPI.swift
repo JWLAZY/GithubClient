@@ -54,25 +54,26 @@ struct Provider {
     }
 
     
-    static func DefaultProvider() -> GitHupPorvider<GitHubAPI> {
-        return GitHupPorvider(endpointClosure: endpointsClosure, requestClosure: endpointResolver(), stubClosure:MoyaProvider.NeverStub , manager: Alamofire.Manager.sharedInstance, plugins:[])
-    }
-    private struct SharedProvider {
-        static var instance = Provider.DefaultProvider()
-    }
-
+//    static func DefaultProvider() -> GitHupPorvider<GitHubAPI> {
+//        return GitHupPorvider(endpointClosure: endpointsClosure, requestClosure: endpointResolver(), stubClosure:MoyaProvider.NeverStub , manager: Alamofire.Manager.sharedInstance, plugins:[])
+//    }
+//    private struct SharedProvider {
+//        static var instance = Provider.DefaultProvider()
+//    }
     
-    static var sharedProvider:GitHupPorvider<GitHubAPI> {
-        
-        get {
-            return SharedProvider.instance
-        }
-        
-        set (newSharedProvider) {
-            SharedProvider.instance = newSharedProvider
-        }
-        
-    }
+    
+    static var sharedProvider:GitHupPorvider<GitHubAPI> =  GitHupPorvider(endpointClosure: endpointsClosure, requestClosure: endpointResolver(), stubClosure:MoyaProvider.NeverStub , manager: Alamofire.Manager.sharedInstance, plugins:[])
+//        {
+//        
+//        get {
+//            return SharedProvider.instance
+//        }
+//        
+//        set (newSharedProvider) {
+//            SharedProvider.instance = newSharedProvider
+//        }
+//        
+//    }
 }
 
 public enum GitHubAPI {
@@ -240,9 +241,7 @@ extension GitHubAPI: TargetType {
         switch self {
         case .MyInfo:
             return "get user info.".dataUsingEncoding(NSUTF8StringEncoding)!
-//        case .MyRepos:
-//            return "get user repos.".dataUsingEncoding(NSUTF8StringEncoding)!
-            
+
         default :
             return "default".dataUsingEncoding(NSUTF8StringEncoding)!
         }

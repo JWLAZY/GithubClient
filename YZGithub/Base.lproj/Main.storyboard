@@ -41,7 +41,7 @@
             </objects>
             <point key="canvasLocation" x="1758" y="-1274"/>
         </scene>
-        <!--探索-->
+        <!--趋势-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ExploreViewController" customModule="YZGithub" customModuleProvider="target" sceneMemberID="viewController">
@@ -54,7 +54,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="探索" id="iSb-jJ-jUu"/>
+                    <navigationItem key="navigationItem" title="趋势" id="iSb-jJ-jUu"/>
                     <connections>
                         <segue destination="kUa-6Z-e6F" kind="show" id="tJb-PX-QEf"/>
                     </connections>
@@ -82,35 +82,6 @@
             <point key="canvasLocation" x="2564" y="-585"/>
         </scene>
         <!--消息-->
-        <scene sceneID="xNa-cR-hiP">
-            <objects>
-                <tableViewController id="mQP-sw-i68" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="2lD-r3-hH1">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="oET-qq-cL4">
-                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oET-qq-cL4" id="HCR-en-Mqy">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="mQP-sw-i68" id="eq1-GO-NEJ"/>
-                            <outlet property="delegate" destination="mQP-sw-i68" id="X35-fm-Zi1"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="消息" id="sBv-HV-3DE"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="54X-x3-ar8" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1736" y="196"/>
-        </scene>
-        <!--消息-->
         <scene sceneID="hhk-no-8x8">
             <objects>
                 <navigationController id="YZ4-ql-V1P" sceneMemberID="viewController">
@@ -120,12 +91,31 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="mQP-sw-i68" kind="relationship" relationship="rootViewController" id="XsP-Ok-vbE"/>
+                        <segue destination="Lo2-UL-tbL" kind="relationship" relationship="rootViewController" id="N4a-J7-l6M"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tRi-1j-xEE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="949" y="186"/>
+        </scene>
+        <!--通知-->
+        <scene sceneID="VYq-GR-2NF">
+            <objects>
+                <viewController id="Lo2-UL-tbL" customClass="MessagesViewController" customModule="YZGithub" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="WkD-pN-1Ui"/>
+                        <viewControllerLayoutGuide type="bottom" id="dG6-mH-RN9"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="qXf-Kk-nLp">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="通知" id="IDB-sj-QWr"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jF0-fm-xF3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1643" y="198"/>
         </scene>
         <!--赞!-->
         <scene sceneID="ODp-bC-Kbz">
@@ -229,11 +219,11 @@
             </objects>
             <point key="canvasLocation" x="250" y="323"/>
         </scene>
-        <!--探索-->
+        <!--趋势-->
         <scene sceneID="Vug-fq-9RD">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bla-fM-fxn" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="探索" image="tab_trending" selectedImage="tab_trending_sel" id="AAI-Y6-2yx"/>
+                    <tabBarItem key="tabBarItem" title="趋势" image="tab_trending" selectedImage="tab_trending_sel" id="AAI-Y6-2yx"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Ytj-lL-xKa">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
