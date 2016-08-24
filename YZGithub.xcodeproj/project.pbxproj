@@ -24,6 +24,12 @@
 		4668A5221D6D3587001BE615 /* Subject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4668A5211D6D3587001BE615 /* Subject.swift */; };
 		4668A5251D6D41A3001BE615 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4668A5231D6D41A3001BE615 /* MessageCell.swift */; };
 		4668A5261D6D41A3001BE615 /* MessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4668A5241D6D41A3001BE615 /* MessageCell.xib */; };
+		4668A52B1D6D8A7D001BE615 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4668A52A1D6D8A7D001BE615 /* Event.swift */; };
+		4668A52D1D6D8BB4001BE615 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4668A52C1D6D8BB4001BE615 /* NewsViewController.swift */; };
+		4668A52F1D6D8BE5001BE615 /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4668A52E1D6D8BE5001BE615 /* BaseTableViewController.swift */; };
+		4668A5361D6D957C001BE615 /* BaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4668A5351D6D957C001BE615 /* BaseCell.swift */; };
+		4668A5391D6D9637001BE615 /* EventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4668A5371D6D9637001BE615 /* EventCell.swift */; };
+		4668A53A1D6D9637001BE615 /* EventCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4668A5381D6D9637001BE615 /* EventCell.xib */; };
 		4686CF7A1D475BF000D8F900 /* Response+ObjectMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4686CF791D475BF000D8F900 /* Response+ObjectMapper.swift */; };
 		468ADD251D579BF4006A2106 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 468ADD241D579BF4006A2106 /* SystemConfiguration.framework */; };
 		468ADD271D579C47006A2106 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 468ADD261D579C47006A2106 /* Security.framework */; };
@@ -115,6 +121,12 @@
 		4668A5211D6D3587001BE615 /* Subject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Subject.swift; sourceTree = "<group>"; };
 		4668A5231D6D41A3001BE615 /* MessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		4668A5241D6D41A3001BE615 /* MessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageCell.xib; sourceTree = "<group>"; };
+		4668A52A1D6D8A7D001BE615 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		4668A52C1D6D8BB4001BE615 /* NewsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
+		4668A52E1D6D8BE5001BE615 /* BaseTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
+		4668A5351D6D957C001BE615 /* BaseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseCell.swift; sourceTree = "<group>"; };
+		4668A5371D6D9637001BE615 /* EventCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventCell.swift; sourceTree = "<group>"; };
+		4668A5381D6D9637001BE615 /* EventCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventCell.xib; sourceTree = "<group>"; };
 		4686CF791D475BF000D8F900 /* Response+ObjectMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Response+ObjectMapper.swift"; sourceTree = "<group>"; };
 		468ADD241D579BF4006A2106 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		468ADD261D579C47006A2106 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -342,6 +354,7 @@
 		4657DF071D33C8B8006AF3A9 /* Sences */ = {
 			isa = PBXGroup;
 			children = (
+				4668A5331D6D956A001BE615 /* Base */,
 				46BF9F431D6459750036D2F3 /* BaseViewController */,
 				46BF9F471D6459750036D2F3 /* CommanModel */,
 				46BF9F4C1D6459750036D2F3 /* Developer */,
@@ -365,6 +378,7 @@
 		4668A5271D6D786E001BE615 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				4668A52C1D6D8BB4001BE615 /* NewsViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -372,6 +386,7 @@
 		4668A5281D6D786E001BE615 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				4668A52A1D6D8A7D001BE615 /* Event.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -379,8 +394,26 @@
 		4668A5291D6D786E001BE615 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				4668A5371D6D9637001BE615 /* EventCell.swift */,
+				4668A5381D6D9637001BE615 /* EventCell.xib */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		4668A5331D6D956A001BE615 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				4668A5341D6D956A001BE615 /* BaseView */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		4668A5341D6D956A001BE615 /* BaseView */ = {
+			isa = PBXGroup;
+			children = (
+				4668A5351D6D957C001BE615 /* BaseCell.swift */,
+			);
+			path = BaseView;
 			sourceTree = "<group>";
 		};
 		46BF9F431D6459750036D2F3 /* BaseViewController */ = {
@@ -389,6 +422,7 @@
 				46BF9F441D6459750036D2F3 /* BaseTabBarViewController.swift */,
 				46BF9F451D6459750036D2F3 /* BaseViewController.swift */,
 				46BF9F461D6459750036D2F3 /* YZWebViewController.swift */,
+				4668A52E1D6D8BE5001BE615 /* BaseTableViewController.swift */,
 			);
 			path = BaseViewController;
 			sourceTree = "<group>";
@@ -687,6 +721,7 @@
 				4657DEED1D33C72C006AF3A9 /* LaunchScreen.storyboard in Resources */,
 				46BF9FA81D6459750036D2F3 /* RepoIntroCell.xib in Resources */,
 				4657DEEA1D33C72C006AF3A9 /* Assets.xcassets in Resources */,
+				4668A53A1D6D9637001BE615 /* EventCell.xib in Resources */,
 				4668A5261D6D41A3001BE615 /* MessageCell.xib in Resources */,
 				46BF9FA41D6459750036D2F3 /* RepoCodeInfoCell.xib in Resources */,
 				4657DEE81D33C72C006AF3A9 /* Main.storyboard in Resources */,
@@ -763,6 +798,7 @@
 				46EAF8241D36CC3D00210109 /* UINavigationBar+yztc.swift in Sources */,
 				46BF9F931D6459750036D2F3 /* RepoTableViewCell.swift in Sources */,
 				46AB8A181D4A713C009F64F8 /* NSString+TranToRich.m in Sources */,
+				4668A5361D6D957C001BE615 /* BaseCell.swift in Sources */,
 				46BF9F911D6459750036D2F3 /* DeveloperTableViewCell.swift in Sources */,
 				46BF9F981D6459750036D2F3 /* PRListViewController.swift in Sources */,
 				4657DEE31D33C72C006AF3A9 /* AppDelegate.swift in Sources */,
@@ -771,11 +807,14 @@
 				46BF9F961D6459750036D2F3 /* ProfileViewController.swift in Sources */,
 				46BF9F9A1D6459750036D2F3 /* RepoInfoViewController.swift in Sources */,
 				46374ADB1D45111600393B8A /* GitHubAPI.swift in Sources */,
+				4668A52B1D6D8A7D001BE615 /* Event.swift in Sources */,
 				46BF9F9E1D6459750036D2F3 /* PullRequest.swift in Sources */,
 				46BF9F8C1D6459750036D2F3 /* UserBaseInfoCell.swift in Sources */,
 				46BF9F901D6459750036D2F3 /* ExploreViewController.swift in Sources */,
 				46246D811D47057C00B1FA91 /* UserInfoHelper.swift in Sources */,
 				46BF9F8A1D6459750036D2F3 /* ObjPlan.swift in Sources */,
+				4668A52F1D6D8BE5001BE615 /* BaseTableViewController.swift in Sources */,
+				4668A5391D6D9637001BE615 /* EventCell.swift in Sources */,
 				46374AD61D44CBE500393B8A /* NetworkHelper.swift in Sources */,
 				46BF9F951D6459750036D2F3 /* LoginViewController.swift in Sources */,
 				4686CF7A1D475BF000D8F900 /* Response+ObjectMapper.swift in Sources */,
@@ -802,6 +841,7 @@
 				46BF9F831D6459750036D2F3 /* YZWebViewController.swift in Sources */,
 				46BF9F9F1D6459750036D2F3 /* Repository.swift in Sources */,
 				4626EB7A1D4AF8CE00067CC3 /* JWSheet.m in Sources */,
+				4668A52D1D6D8BB4001BE615 /* NewsViewController.swift in Sources */,
 				46BF9FA51D6459750036D2F3 /* RepoInfoCell.swift in Sources */,
 				46BF9F891D6459750036D2F3 /* ObjPermissions.swift in Sources */,
 				46BF9F8E1D6459750036D2F3 /* ExploreDevelopersViewController.swift in Sources */,

@@ -13,7 +13,6 @@ import Alamofire
 typealias SuccessClosure = (result: AnyObject) -> Void
 typealias failClosure = (errorMsg:String?) -> Void
 
-
 // (Endpoint<Target>, NSURLRequest -> Void) -> Void
 func endpointResolver() -> MoyaProvider<GitHubAPI>.RequestClosure {
     return { (endpoint, closure) in
