@@ -362,6 +362,27 @@
 			path = ThridParty;
 			sourceTree = "<group>";
 		};
+		4668A5271D6D786E001BE615 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		4668A5281D6D786E001BE615 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		4668A5291D6D786E001BE615 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		46BF9F431D6459750036D2F3 /* BaseViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -571,6 +592,9 @@
 		46BF9F801D6459750036D2F3 /* Stars */ = {
 			isa = PBXGroup;
 			children = (
+				4668A5271D6D786E001BE615 /* Controller */,
+				4668A5281D6D786E001BE615 /* Model */,
+				4668A5291D6D786E001BE615 /* View */,
 			);
 			path = Stars;
 			sourceTree = "<group>";

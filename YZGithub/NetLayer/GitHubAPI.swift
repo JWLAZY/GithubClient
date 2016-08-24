@@ -36,12 +36,8 @@ class GitHupPorvider<Target where Target: TargetType>: MoyaProvider<Target> {
 
 
 struct Provider {
-    
     private static var endpointsClosure = { (target: GitHubAPI) -> Endpoint<GitHubAPI> in
-        
         var endpoint: Endpoint<GitHubAPI> = Endpoint<GitHubAPI>(URL: url(target), sampleResponseClosure: {.NetworkResponse(200, target.sampleData)}, method: target.method, parameters: target.parameters)
-        // Sign all non-XApp token requests
-        
         switch target {
         case GitHubAPI.RepoReadme(let owner, let repo):
             endpoint.endpointByAddingHTTPHeaderFields(["Content-Type":"application/vnd.github.VERSION.raw"])
@@ -52,28 +48,7 @@ struct Provider {
             return endpoint.endpointByAddingHTTPHeaderFields(["Authorization": AppToken.shareInstance.access_token ?? ""])
         }
     }
-
-    
-//    static func DefaultProvider() -> GitHupPorvider<GitHubAPI> {
-//        return GitHupPorvider(endpointClosure: endpointsClosure, requestClosure: endpointResolver(), stubClosure:MoyaProvider.NeverStub , manager: Alamofire.Manager.sharedInstance, plugins:[])
-//    }
-//    private struct SharedProvider {
-//        static var instance = Provider.DefaultProvider()
-//    }
-    
-    
     static var sharedProvider:GitHupPorvider<GitHubAPI> =  GitHupPorvider(endpointClosure: endpointsClosure, requestClosure: endpointResolver(), stubClosure:MoyaProvider.NeverStub , manager: Alamofire.Manager.sharedInstance, plugins:[])
-//        {
-//        
-//        get {
-//            return SharedProvider.instance
-//        }
-//        
-//        set (newSharedProvider) {
-//            SharedProvider.instance = newSharedProvider
-//        }
-//        
-//    }
 }
 
 public enum GitHubAPI {
@@ -83,7 +58,7 @@ public enum GitHubAPI {
     case UpdateUserInfo(name:String, email:String, blog:String, company:String, location:String,hireable:String,bio:String)
     case AllUsers(page:Int,perpage:Int)
     
-//    users/jianwen-zheng/followers
+    // users/jianwen-zheng/followers
     case Followers(username:String)
     
     //trending
@@ -104,8 +79,10 @@ public enum GitHubAPI {
     case RepoPullRequest(owner:String,repo:String)
     
     //message
-    
     case Message(page:Int)
+    
+    //news
+    case UserEvent(username:String,page:Int)
     
     //search
     case SearchUsers(para:ParaSearchUser)
@@ -174,19 +151,16 @@ extension GitHubAPI: TargetType {
         //search
         case SearchUsers:
             return "/search/users"
-//        case SearchRepos:
-//            return "/search/repositories"
+            
+        //news
+        case .UserEvent(let username,_):
+            return "/users/\(username)/received_events/public"
         }
     }
     public var method: Moya.Method{
         switch self {
         case .UpdateUserInfo:
             return .PATCH
-            //user email
-//        case .AddEmail:
-//            return .POST
-//        case .DelEmail:
-//            return .DELETE
         default:
             return .GET
         }
@@ -231,8 +205,10 @@ extension GitHubAPI: TargetType {
                     "participating":false,//是否只显示直接参与的消息
                     "page":page
             ]
-//        case .RepoReadme(let _, let _):
-//            return [:]
+        case .UserEvent( _, let page):
+            return [
+                    "page":page
+            ]
         default:
             return nil
         }
