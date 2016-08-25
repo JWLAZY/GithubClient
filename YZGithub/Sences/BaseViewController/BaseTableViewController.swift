@@ -41,11 +41,9 @@ class BaseTableViewController<T>: UIViewController,UITableViewDataSource,UITable
         tableView.delegate = self
         
         tableView.registerNib(UINib(nibName: cellName!,bundle: nil), forCellReuseIdentifier: cellName!)
-        
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableViewAutomaticDimension
     }
-    
     
     //MARK: DataSource
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

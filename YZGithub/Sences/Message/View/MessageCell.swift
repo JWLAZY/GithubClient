@@ -16,6 +16,8 @@ class MessageCell: UITableViewCell {
                 switch reason {
                 case Reason.subscribed:
                     messageTypeImage.image = UIImage(named: "octicon_watch_20")
+                    messageTypeImage.layer.cornerRadius = 100
+                    messageTypeImage.layer.masksToBounds = true
                 default:
                     messageTypeImage.image = UIImage(named: "octicon_pull_request_25")
                 }

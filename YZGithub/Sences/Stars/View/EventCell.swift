@@ -7,15 +7,25 @@
 //
 
 import UIKit
+import Kingfisher
 
 class EventCell: BaseCell {
 
+    @IBOutlet weak var eventOwnerAvator: UIImageView!
+    @IBOutlet weak var eventLabel: UILabel!
+    @IBOutlet weak var EventInfo: UILabel!
+    @IBOutlet weak var createTime: UILabel!
+    @IBOutlet weak var eventTypeImage: UIImageView!
     
     override func setModel<T>(model: T) {
         let event = model as? Event
         if let e = event {
-            print(e.actor?.login)
-            self.textLabel?.text = e.actor?.login!
+            if let url = e.actor?.avatar_url {
+                    self.eventOwnerAvator.kf_setImageWithURL(NSURL(string: url)!)
+            }
+            if let name = e.actor?.login {
+                self.eventLabel.text = name
+            }
         }
     }
     

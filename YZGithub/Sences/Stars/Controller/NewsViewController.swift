@@ -17,6 +17,7 @@ class NewsViewController: BaseTableViewController<Event> {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "动态"
         fetchData()
     }
     

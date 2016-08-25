@@ -3,18 +3,85 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="74" id="KGk-i7-Jjw" customClass="EventCell" customModule="YZGithub" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="74"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="116" id="KGk-i7-Jjw" customClass="EventCell" customModule="YZGithub" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="116"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="73"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="115"/>
                 <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ODN-3r-kCd">
+                        <rect key="frame" x="10" y="10" width="53" height="53"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="53" id="4cA-MR-zMR"/>
+                            <constraint firstAttribute="width" constant="53" id="XDR-n8-EJ7"/>
+                            <constraint firstAttribute="width" secondItem="ODN-3r-kCd" secondAttribute="height" id="npk-pB-LM4"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="事件" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4fB-OC-Gqr">
+                        <rect key="frame" x="71" y="10" width="195" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="简介" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u8r-pw-K4t">
+                        <rect key="frame" x="71" y="41" width="195" height="31"/>
+                        <constraints>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="31" id="0JC-pb-6o2"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="octicon_star_15" translatesAutoresizingMaskIntoConstraints="NO" id="7ps-tf-aor">
+                        <rect key="frame" x="274" y="20" width="26" height="26"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="7ps-tf-aor" secondAttribute="height" id="KSw-tb-6xU"/>
+                            <constraint firstAttribute="width" constant="26" id="oQl-vS-C8Q"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10 min ago" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3aw-lM-1Tu">
+                        <rect key="frame" x="71" y="82" width="195" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="7ps-tf-aor" secondAttribute="trailing" constant="20" id="12T-jb-FGF"/>
+                    <constraint firstItem="3aw-lM-1Tu" firstAttribute="trailing" secondItem="u8r-pw-K4t" secondAttribute="trailing" id="6lo-aU-qZl"/>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="ODN-3r-kCd" secondAttribute="bottom" constant="10" id="9Q4-tm-n7b"/>
+                    <constraint firstItem="ODN-3r-kCd" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="BFT-WI-eiW"/>
+                    <constraint firstItem="4fB-OC-Gqr" firstAttribute="top" secondItem="ODN-3r-kCd" secondAttribute="top" id="Exl-5N-gTg"/>
+                    <constraint firstItem="3aw-lM-1Tu" firstAttribute="leading" secondItem="u8r-pw-K4t" secondAttribute="leading" id="FPT-n9-ahF"/>
+                    <constraint firstItem="3aw-lM-1Tu" firstAttribute="top" secondItem="u8r-pw-K4t" secondAttribute="bottom" constant="10" id="Fix-Ir-MmD"/>
+                    <constraint firstItem="ODN-3r-kCd" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="J1U-Pl-kKd"/>
+                    <constraint firstItem="7ps-tf-aor" firstAttribute="leading" secondItem="4fB-OC-Gqr" secondAttribute="trailing" constant="8" id="Srk-fL-d4m"/>
+                    <constraint firstItem="7ps-tf-aor" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="WBJ-iM-3Qc"/>
+                    <constraint firstItem="4fB-OC-Gqr" firstAttribute="leading" secondItem="ODN-3r-kCd" secondAttribute="trailing" constant="8" id="YC6-sE-kYU"/>
+                    <constraint firstItem="u8r-pw-K4t" firstAttribute="leading" secondItem="4fB-OC-Gqr" secondAttribute="leading" id="Z91-wN-Dya"/>
+                    <constraint firstItem="u8r-pw-K4t" firstAttribute="top" secondItem="4fB-OC-Gqr" secondAttribute="bottom" constant="10" id="bcg-vu-oGU"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="3aw-lM-1Tu" secondAttribute="bottom" constant="4" id="sm9-lb-bMP"/>
+                    <constraint firstItem="u8r-pw-K4t" firstAttribute="trailing" secondItem="4fB-OC-Gqr" secondAttribute="trailing" id="yKH-nL-73w"/>
+                </constraints>
             </tableViewCellContentView>
-            <point key="canvasLocation" x="435" y="407"/>
+            <connections>
+                <outlet property="EventInfo" destination="u8r-pw-K4t" id="7pA-8Q-gHy"/>
+                <outlet property="createTime" destination="3aw-lM-1Tu" id="zQJ-fQ-ghP"/>
+                <outlet property="eventLabel" destination="4fB-OC-Gqr" id="h3w-ft-wxw"/>
+                <outlet property="eventOwnerAvator" destination="ODN-3r-kCd" id="R5z-OA-Ehv"/>
+                <outlet property="eventTypeImage" destination="7ps-tf-aor" id="XRC-rn-i9u"/>
+            </connections>
+            <point key="canvasLocation" x="435" y="428"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="octicon_star_15" width="15" height="15"/>
+    </resources>
 </document>

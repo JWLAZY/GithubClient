@@ -156,7 +156,7 @@
         <!--赞-->
         <scene sceneID="nq3-tg-48G">
             <objects>
-                <navigationController id="FkK-Pv-TyA" customClass="BaseNavController" customModule="YZGithub" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="new" useStoryboardIdentifierAsRestorationIdentifier="YES" id="FkK-Pv-TyA" customClass="BaseNavController" customModule="YZGithub" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="赞" image="tab_star" selectedImage="tab_star_sel" id="t46-RV-FYO"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="aQH-vn-6wS">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>

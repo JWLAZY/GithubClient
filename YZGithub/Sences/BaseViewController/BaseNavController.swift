@@ -13,8 +13,17 @@ class BaseNavController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let vc = NewsViewController(nibName: nil, bundle: nil)
-        self.pushViewController(vc, animated: true)
+        /// 感觉不同的导航控制器跳转到不同的界面
+        if let ident = self.restorationIdentifier {
+            switch ident {
+            case "new":
+                let vc = NewsViewController(nibName: nil, bundle: nil)
+                self.pushViewController(vc, animated: true)
+            default:
+                GlobalHubHelper.showError("没有这个控制器", view: self.view)
+            }
+        }
+        
 
     }
 
@@ -22,18 +31,4 @@ class BaseNavController: UINavigationController {
         super.didReceiveMemoryWarning()
     }
     
-
-
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "news" {
-            let vc = NewsViewController(nibName: nil, bundle: nil)
-            self.pushViewController(vc, animated: true)
-        }
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-
 }
