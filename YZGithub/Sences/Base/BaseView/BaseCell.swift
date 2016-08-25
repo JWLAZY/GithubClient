@@ -8,9 +8,13 @@
 
 import UIKit
 
-class BaseCell<T>: UITableViewCell {
+class BaseCell: UITableViewCell {
 
-    var model:T? 
+//    var model:T? 
+    
+    func setModel<T>(model:T) {
+        
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -11,6 +11,11 @@ import SnapKit
 
 class BaseTableViewController<T>: UIViewController,UITableViewDataSource,UITableViewDelegate {
 
+    
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+        super.init(nibName: nibNameOrNil  , bundle: nibBundleOrNil)
+    }
+    
     var dataArray:[T]? {
         didSet{
             self.tableView.reloadData()
@@ -18,7 +23,9 @@ class BaseTableViewController<T>: UIViewController,UITableViewDataSource,UITable
     }
     let tableView = UITableView(frame: CGRectZero, style: .Plain)
     var cellName:String? {
-         return NSStringFromClass(T.self as! AnyClass) + "Cell"
+        let name =  NSStringFromClass(T.self as! AnyClass) + "Cell"
+        let cellname = name.componentsSeparatedByString(".")
+         return cellname[1]
     }
     
     override func viewDidLoad() {
@@ -48,9 +55,8 @@ class BaseTableViewController<T>: UIViewController,UITableViewDataSource,UITable
         return 0
     }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-//        let anyclass:AnyClass? = NSClassFromString(cellName!)
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellName!, forIndexPath: indexPath) as? BaseCell<T>
-        cell?.model = dataArray![indexPath.row]
+        let cell = tableView.dequeueReusableCellWithIdentifier(cellName!, forIndexPath: indexPath) as? BaseCell
+        cell?.setModel(dataArray![indexPath.row])
         return cell!
     }
 

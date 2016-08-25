@@ -8,12 +8,14 @@
 
 import UIKit
 
-class EventCell: BaseCell<Event> {
+class EventCell: BaseCell {
 
     
-    override var model: Event?{
-        didSet{
-            
+    override func setModel<T>(model: T) {
+        let event = model as? Event
+        if let e = event {
+            print(e.actor?.login)
+            self.textLabel?.text = e.actor?.login!
         }
     }
     
@@ -24,7 +26,6 @@ class EventCell: BaseCell<Event> {
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
     }
     
 }

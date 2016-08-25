@@ -30,6 +30,7 @@
 		4668A5361D6D957C001BE615 /* BaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4668A5351D6D957C001BE615 /* BaseCell.swift */; };
 		4668A5391D6D9637001BE615 /* EventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4668A5371D6D9637001BE615 /* EventCell.swift */; };
 		4668A53A1D6D9637001BE615 /* EventCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4668A5381D6D9637001BE615 /* EventCell.xib */; };
+		4668A55C1D6DA2AE001BE615 /* BaseNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4668A55B1D6DA2AE001BE615 /* BaseNavController.swift */; };
 		4686CF7A1D475BF000D8F900 /* Response+ObjectMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4686CF791D475BF000D8F900 /* Response+ObjectMapper.swift */; };
 		468ADD251D579BF4006A2106 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 468ADD241D579BF4006A2106 /* SystemConfiguration.framework */; };
 		468ADD271D579C47006A2106 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 468ADD261D579C47006A2106 /* Security.framework */; };
@@ -127,6 +128,7 @@
 		4668A5351D6D957C001BE615 /* BaseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseCell.swift; sourceTree = "<group>"; };
 		4668A5371D6D9637001BE615 /* EventCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventCell.swift; sourceTree = "<group>"; };
 		4668A5381D6D9637001BE615 /* EventCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventCell.xib; sourceTree = "<group>"; };
+		4668A55B1D6DA2AE001BE615 /* BaseNavController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseNavController.swift; sourceTree = "<group>"; };
 		4686CF791D475BF000D8F900 /* Response+ObjectMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Response+ObjectMapper.swift"; sourceTree = "<group>"; };
 		468ADD241D579BF4006A2106 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		468ADD261D579C47006A2106 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -423,6 +425,7 @@
 				46BF9F451D6459750036D2F3 /* BaseViewController.swift */,
 				46BF9F461D6459750036D2F3 /* YZWebViewController.swift */,
 				4668A52E1D6D8BE5001BE615 /* BaseTableViewController.swift */,
+				4668A55B1D6DA2AE001BE615 /* BaseNavController.swift */,
 			);
 			path = BaseViewController;
 			sourceTree = "<group>";
@@ -837,6 +840,7 @@
 				46BF9F821D6459750036D2F3 /* BaseViewController.swift in Sources */,
 				46BF9F9B1D6459750036D2F3 /* RepoListViewController.swift in Sources */,
 				46374AE61D4520D400393B8A /* NotiName.swift in Sources */,
+				4668A55C1D6DA2AE001BE615 /* BaseNavController.swift in Sources */,
 				46BF9F851D6459750036D2F3 /* ParaSerachUser.swift in Sources */,
 				46BF9F831D6459750036D2F3 /* YZWebViewController.swift in Sources */,
 				46BF9F9F1D6459750036D2F3 /* Repository.swift in Sources */,
