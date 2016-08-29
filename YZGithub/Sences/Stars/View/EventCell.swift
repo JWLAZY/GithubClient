@@ -23,8 +23,60 @@ class EventCell: BaseCell {
             if let url = e.actor?.avatar_url {
                     self.eventOwnerAvator.kf_setImageWithURL(NSURL(string: url)!)
             }
-            if let name = e.actor?.login {
-                self.eventLabel.text = name
+            if let type = e.type {
+                switch type {
+                case .IssueCommentEvent:
+                    self.eventTypeImage.image = UIImage(named: "octicon_issue_25")
+                    if let body = e.payload?["comment"]?["body"] {
+                        var text = (body as? String)?.stringByReplacingOccurrencesOfString(" ", withString: "")
+                       text = text?.stringByReplacingOccurrencesOfString("\n", withString: "")
+                        text = text?.stringByReplacingOccurrencesOfString("\r", withString: "")
+                        self.EventInfo.text = text
+                    }
+                case .PullRequestEvent:
+                    self.eventTypeImage.image = UIImage(named: "octicon_pull_request_25")
+                    self.EventInfo.text = ""
+                case .WatchEvent:
+                    self.eventTypeImage.image = UIImage(named: "octicon_star_20")
+                    self.EventInfo.text = ""
+                case .CreateEvent:
+                    self.eventTypeImage.image = UIImage(named: "octicon_repo_15")
+                    self.EventInfo.text = ""
+                case .PushEvent:
+                    self.eventTypeImage.image = UIImage(named: "octicon_push_25")
+                    let commit =  e.payload!["commits"]![0] as? [String:AnyObject?]
+                    if let commit = commit {
+                            self.EventInfo.text = commit["message"]! as? String
+                    }
+                }
+            }
+            generateEvent(e)
+        }
+    }
+    func generateEvent(e:Event) {
+        if let type = e.type {
+            var eventinfo:NSMutableAttributedString?
+            self.eventLabel.attributedText = NSMutableAttributedString (string: "")
+            var info = ""
+            if let name = e.actor?.login{
+                    switch type {
+                    case .IssueCommentEvent:
+                            info  =   name  + "  " + (e.payload?["action"] as! String) + " issue  " + (e.repo?.name)!
+                    case .PullRequestEvent:
+                            info  = name  + "  " + (e.payload?["action"] as! String) + "   " + (e.repo?.name)!                        
+                    case .WatchEvent:
+                            info = name  + "  " + (e.payload?["action"] as! String) + "  " + (e.repo?.name)!                        
+                    case .CreateEvent:
+                            info = name  + "  created " + (e.payload?["ref_type"] as! String) + "  " + (e.repo?.name)!                        
+                    case .PushEvent:
+                            info = name  + "  pushed to  " + (e.payload?["ref"] as! String) + " at  " + (e.repo?.name)!
+                        }
+                eventinfo = NSMutableAttributedString(string:info, attributes: [:])
+                eventinfo?.linkWithString(name,inString: info)
+                eventinfo?.linkWithString((e.repo?.name)!,inString: info)
+            }
+            if   let temp = eventinfo {
+                self.eventLabel.attributedText = temp
             }
         }
     }

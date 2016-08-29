@@ -9,9 +9,17 @@
 import UIKit
 import ObjectMapper
 
+enum EventType:String {
+    case IssueCommentEvent
+    case PullRequestEvent
+    case WatchEvent
+    case CreateEvent
+    case PushEvent
+}
+
 class Event:NSObject,Mappable {
     var created_at:String?
-    var type:String?
+    var type:EventType?
     var payload:NSDictionary?
     var id:String?
     var actor:ObjUser?

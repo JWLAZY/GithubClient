@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		2AD2D4D3260EA7C307040B65 /* Pods_YZGithub.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F339D813CABEAFD8E1429F38 /* Pods_YZGithub.framework */; };
+		4615F81F1D73D2BD0057A689 /* String+Range.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4615F81E1D73D2BD0057A689 /* String+Range.swift */; };
+		4615F8211D73DA360057A689 /* NSMutableAttributedString+RichText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4615F8201D73DA360057A689 /* NSMutableAttributedString+RichText.swift */; };
 		46246D811D47057C00B1FA91 /* UserInfoHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46246D801D47057C00B1FA91 /* UserInfoHelper.swift */; };
 		4626EB7A1D4AF8CE00067CC3 /* JWSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 4626EB771D4AF8CE00067CC3 /* JWSheet.m */; };
 		4626EB7B1D4AF8CE00067CC3 /* JWSheetItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4626EB791D4AF8CE00067CC3 /* JWSheetItem.m */; };
@@ -100,6 +102,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4615F81E1D73D2BD0057A689 /* String+Range.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Range.swift"; sourceTree = "<group>"; };
+		4615F8201D73DA360057A689 /* NSMutableAttributedString+RichText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+RichText.swift"; sourceTree = "<group>"; };
 		46246D801D47057C00B1FA91 /* UserInfoHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoHelper.swift; sourceTree = "<group>"; };
 		4626EB761D4AF8CE00067CC3 /* JWSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JWSheet.h; sourceTree = "<group>"; };
 		4626EB771D4AF8CE00067CC3 /* JWSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JWSheet.m; sourceTree = "<group>"; };
@@ -320,6 +324,8 @@
 				46EAF8251D36D1ED00210109 /* ParallaxHeaderView.swift */,
 				46EAF8181D367F2100210109 /* UIColor+yztc.swift */,
 				46EAF8231D36CC3D00210109 /* UINavigationBar+yztc.swift */,
+				4615F81E1D73D2BD0057A689 /* String+Range.swift */,
+				4615F8201D73DA360057A689 /* NSMutableAttributedString+RichText.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -812,6 +818,7 @@
 				46374ADB1D45111600393B8A /* GitHubAPI.swift in Sources */,
 				4668A52B1D6D8A7D001BE615 /* Event.swift in Sources */,
 				46BF9F9E1D6459750036D2F3 /* PullRequest.swift in Sources */,
+				4615F8211D73DA360057A689 /* NSMutableAttributedString+RichText.swift in Sources */,
 				46BF9F8C1D6459750036D2F3 /* UserBaseInfoCell.swift in Sources */,
 				46BF9F901D6459750036D2F3 /* ExploreViewController.swift in Sources */,
 				46246D811D47057C00B1FA91 /* UserInfoHelper.swift in Sources */,
@@ -847,6 +854,7 @@
 				4626EB7A1D4AF8CE00067CC3 /* JWSheet.m in Sources */,
 				4668A52D1D6D8BB4001BE615 /* NewsViewController.swift in Sources */,
 				46BF9FA51D6459750036D2F3 /* RepoInfoCell.swift in Sources */,
+				4615F81F1D73D2BD0057A689 /* String+Range.swift in Sources */,
 				46BF9F891D6459750036D2F3 /* ObjPermissions.swift in Sources */,
 				46BF9F8E1D6459750036D2F3 /* ExploreDevelopersViewController.swift in Sources */,
 				46BF9F841D6459750036D2F3 /* AppToken.swift in Sources */,

@@ -16,6 +16,7 @@ import ObjectMapper
 class Commit: NSObject,Mappable {
     var sha:String?
     var url:String?
+    var message:String?
     required init?(_ map: Map) {
         
     }
@@ -25,5 +26,6 @@ class Commit: NSObject,Mappable {
     func mapping(map: Map) {
         sha <- map["sha"]
         url <- map["url"]
+        message <- map["message"]
     }
 }
