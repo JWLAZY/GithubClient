@@ -55,6 +55,7 @@ class BaseTableViewController<T>: UIViewController,UITableViewDataSource,UITable
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(cellName!, forIndexPath: indexPath) as? BaseCell
         cell?.setModel(dataArray![indexPath.row])
+        cell!.selectionStyle = .None
         return cell!
     }
 

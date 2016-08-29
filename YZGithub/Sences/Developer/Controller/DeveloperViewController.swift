@@ -83,7 +83,9 @@ class DeveloperViewController: UIViewController {
         // MARK: user logo
         
         userImage = UIImageView(image: UIImage(named: "app_logo_90"))
-        userImage?.kf_setImageWithURL(NSURL(string: developer!.avatar_url!)!)
+        if let developer = developer{
+            userImage?.kf_setImageWithURL(NSURL(string: developer.avatar_url!)!)
+        }
         headerView?.addSubview(userImage!)
         userImage?.snp_makeConstraints(closure: { (make) in
             make.centerX.equalTo(headerView!)

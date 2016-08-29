@@ -8,11 +8,12 @@
 
 import UIKit
 import Kingfisher
+import JLSwiftRouter
 
 class EventCell: BaseCell {
 
     @IBOutlet weak var eventOwnerAvator: UIImageView!
-    @IBOutlet weak var eventLabel: UILabel!
+    @IBOutlet weak var eventLabel: UITextView!
     @IBOutlet weak var EventInfo: UILabel!
     @IBOutlet weak var createTime: UILabel!
     @IBOutlet weak var eventTypeImage: UIImageView!
@@ -26,7 +27,7 @@ class EventCell: BaseCell {
             if let type = e.type {
                 switch type {
                 case .IssueCommentEvent:
-                    self.eventTypeImage.image = UIImage(named: "octicon_issue_25")
+                    self.eventTypeImage.image = UIImage(named: "octicon_comment_15")
                     if let body = e.payload?["comment"]?["body"] {
                         var text = (body as? String)?.stringByReplacingOccurrencesOfString(" ", withString: "")
                        text = text?.stringByReplacingOccurrencesOfString("\n", withString: "")
@@ -44,7 +45,7 @@ class EventCell: BaseCell {
                     self.EventInfo.text = ""
                 case .PushEvent:
                     self.eventTypeImage.image = UIImage(named: "octicon_push_25")
-                    let commit =  e.payload!["commits"]![0] as? [String:AnyObject?]
+                    let commit =  (e.payload!["commits"] as! [AnyObject])[0] as? [String:AnyObject?]
                     if let commit = commit {
                             self.EventInfo.text = commit["message"]! as? String
                     }
@@ -63,7 +64,7 @@ class EventCell: BaseCell {
                     case .IssueCommentEvent:
                             info  =   name  + "  " + (e.payload?["action"] as! String) + " issue  " + (e.repo?.name)!
                     case .PullRequestEvent:
-                            info  = name  + "  " + (e.payload?["action"] as! String) + "   " + (e.repo?.name)!                        
+                            info  = name  + "  " + (e.payload?["action"] as! String) + " pull request  " + (e.repo?.name)!                        
                     case .WatchEvent:
                             info = name  + "  " + (e.payload?["action"] as! String) + "  " + (e.repo?.name)!                        
                     case .CreateEvent:
@@ -83,6 +84,10 @@ class EventCell: BaseCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        eventLabel.delegate = self
+        eventLabel.editable = false
+        eventLabel.scrollEnabled = false
+        eventLabel.textContainerInset = UIEdgeInsetsMake(0, -4, 0, 0)
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
@@ -90,4 +95,11 @@ class EventCell: BaseCell {
 
     }
     
+}
+extension BaseCell:UITextViewDelegate {
+    func textView(textView: UITextView, shouldInteractWithURL URL: NSURL, inRange characterRange: NSRange) -> Bool {
+        let router = Router.sharedInstance
+        router.routeURL(URL.absoluteString) 
+        return true
+    }
 }

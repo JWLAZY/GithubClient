@@ -11,6 +11,6 @@ import UIKit
 extension NSMutableAttributedString {
     func linkWithString(string:String,inString:String) {
         let range = inString.NSRangeFromRange(inString.rangeOfString(string)!)
-        self.addAttributes([NSUnderlineStyleAttributeName:1,NSUnderlineColorAttributeName:UIColor.blueColor(),NSForegroundColorAttributeName:UIColor.blueColor()], range: range)
+        self.addAttributes([NSFontAttributeName:UIFont.italicSystemFontOfSize(16),NSLinkAttributeName:NSURL(string:"/user/jw")!], range: range)
     }
 }

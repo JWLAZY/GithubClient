@@ -8,6 +8,7 @@
 
 import UIKit
 import MBProgressHUD
+import JLSwiftRouter
 
 class NewsViewController: BaseTableViewController<Event> {
 
@@ -19,6 +20,7 @@ class NewsViewController: BaseTableViewController<Event> {
         super.viewDidLoad()
         title = "动态"
         fetchData()
+        
     }
     
     func fetchData() {

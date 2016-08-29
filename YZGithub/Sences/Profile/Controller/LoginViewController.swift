@@ -55,7 +55,7 @@ class LoginViewController: YZWebViewController {
         ]
         MBProgressHUD.showHUDAddedTo(self.view, animated: true)
         
-        Alamofire.request(.POST, "https://github.com/login/oauth/access_token",parameters: para).responseJSON { [weak self](response) in
+        Alamofire.request(.POST, "https://github.com/login/oauth/access_token",parameters: para).responseString { [weak self](response) in
             MBProgressHUD.hideAllHUDsForView(self!.view, animated: true)
             switch response.result {
             case .Failure(let error):

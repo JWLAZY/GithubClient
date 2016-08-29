@@ -8,6 +8,7 @@
 
 import UIKit
 import Iconic
+import JLSwiftRouter
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -23,6 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         customUI()
         customSocial()
+        customRouter()
         return true
     }
 
@@ -59,6 +61,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func customSocial()  {
         UMSocialData.setAppKey("56025946e0f55a744000439c")
         UMSocialSinaSSOHandler.openNewSinaSSOWithAppKey("3006877935", secret: "46fd11d135010fcc578a1b0ced7e50d4", redirectURL: "https://api.weibo.com/oauth2/default.html")
+    }
+    func customRouter() {
+        let router = Router.sharedInstance
+        router.map("/user/:name") { (result) -> (Bool) in
+            print(result)
+            let rootvc = self.window?.rootViewController
+            if  rootvc is UINavigationController{
+                let nav = rootvc as! UINavigationController
+                nav.pushViewController(DeveloperViewController(), animated: true)
+            }else if rootvc is UITabBarController {
+                let tabvc = rootvc as! UITabBarController
+                let selectVc = tabvc.selectedViewController
+                if   selectVc is UINavigationController {
+                    let nav = selectVc as! UINavigationController
+                    let devVc = DeveloperViewController()
+                    devVc.developer = UserInfoHelper.sharedInstance.user
+                    nav.pushViewController(devVc, animated: true)
+                }else{
+                    GlobalHubHelper.showError("待模态", view: (selectVc?.view)!)
+                }
+            }else {
+                GlobalHubHelper.showError("待模态", view: (rootvc?.view)!)
+            }
+            return true
+        }
     }
 }
 

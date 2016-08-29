@@ -992,10 +992,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Xiangwang Huang (BC27KYGBBN)";
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = YZGithub/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.zjw.YZGithub;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "6c682f6f-e9f0-4f78-bf50-4aed439e6e78";
 				SWIFT_OBJC_BRIDGING_HEADER = "YZGithub/Helper/YZGithub-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -1007,10 +1010,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Xiangwang Huang (BC27KYGBBN)";
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = YZGithub/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.zjw.YZGithub;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "6c682f6f-e9f0-4f78-bf50-4aed439e6e78";
 				SWIFT_OBJC_BRIDGING_HEADER = "YZGithub/Helper/YZGithub-Bridging-Header.h";
 			};
 			name = Release;
