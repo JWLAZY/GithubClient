@@ -73,8 +73,8 @@ class EventCell: BaseCell {
                             info = name  + "  pushed to  " + (e.payload?["ref"] as! String) + " at  " + (e.repo?.name)!
                         }
                 eventinfo = NSMutableAttributedString(string:info, attributes: [:])
-                eventinfo?.linkWithString(name,inString: info)
-                eventinfo?.linkWithString((e.repo?.name)!,inString: info)
+                eventinfo?.linkWithString(name,inString: info,url: "/user/\(name)")
+                eventinfo?.linkWithString((e.repo?.name)!,inString: info,url: "repo/\((e.repo?.name)!)")
             }
             if   let temp = eventinfo {
                 self.eventLabel.attributedText = temp
@@ -89,10 +89,8 @@ class EventCell: BaseCell {
         eventLabel.scrollEnabled = false
         eventLabel.textContainerInset = UIEdgeInsetsMake(0, -4, 0, 0)
     }
-
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
     }
     
 }

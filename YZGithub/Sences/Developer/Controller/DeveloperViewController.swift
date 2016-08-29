@@ -42,6 +42,11 @@ class DeveloperViewController: UIViewController {
             title = developer?.login
         }
     }
+    var developerName:String? {
+        didSet{
+            title = developerName
+        }
+    }
     
     //MARK: 生命流程
     override func viewDidLoad() {
@@ -122,7 +127,13 @@ class DeveloperViewController: UIViewController {
     }
     
     func fetchDeveloperInfo() {
-        Provider.sharedProvider.request(GitHubAPI.UserInfo(username: (developer?.login)!)) {[weak self] (result) in
+        var name:String?
+        if  developerName != nil {
+            name = developerName! 
+        }else {
+            name = (developer?.login)!
+        }
+        Provider.sharedProvider.request(GitHubAPI.UserInfo(username: name!)) {[weak self] (result) in
             switch result {
             case let .Success(response):
                 do{

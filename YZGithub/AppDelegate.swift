@@ -76,7 +76,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 if   selectVc is UINavigationController {
                     let nav = selectVc as! UINavigationController
                     let devVc = DeveloperViewController()
-                    devVc.developer = UserInfoHelper.sharedInstance.user
+                    devVc.developerName = result!["name"]
                     nav.pushViewController(devVc, animated: true)
                 }else{
                     GlobalHubHelper.showError("待模态", view: (selectVc?.view)!)

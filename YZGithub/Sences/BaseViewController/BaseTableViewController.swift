@@ -58,5 +58,4 @@ class BaseTableViewController<T>: UIViewController,UITableViewDataSource,UITable
         cell!.selectionStyle = .None
         return cell!
     }
-
 }
