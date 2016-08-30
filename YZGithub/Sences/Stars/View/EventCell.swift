@@ -74,7 +74,9 @@ class EventCell: BaseCell {
                         }
                 eventinfo = NSMutableAttributedString(string:info, attributes: [:])
                 eventinfo?.linkWithString(name,inString: info,url: "/user/\(name)")
-                eventinfo?.linkWithString((e.repo?.name)!,inString: info,url: "repo/\((e.repo?.name)!)")
+                let urlstart = e.repo?.url?.rangeOfString("/repos")?.startIndex
+                let url = e.repo?.url?.substringFromIndex(urlstart!)
+                eventinfo?.linkWithString((e.repo?.name)!,inString: info,url: url!)
             }
             if   let temp = eventinfo {
                 self.eventLabel.attributedText = temp

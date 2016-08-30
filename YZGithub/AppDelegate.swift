@@ -65,27 +65,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func customRouter() {
         let router = Router.sharedInstance
         router.map("/user/:name") { (result) -> (Bool) in
-            print(result)
-            let rootvc = self.window?.rootViewController
-            if  rootvc is UINavigationController{
-                let nav = rootvc as! UINavigationController
-                nav.pushViewController(DeveloperViewController(), animated: true)
-            }else if rootvc is UITabBarController {
-                let tabvc = rootvc as! UITabBarController
-                let selectVc = tabvc.selectedViewController
-                if   selectVc is UINavigationController {
-                    let nav = selectVc as! UINavigationController
-                    let devVc = DeveloperViewController()
-                    devVc.developerName = result!["name"]
-                    nav.pushViewController(devVc, animated: true)
-                }else{
-                    GlobalHubHelper.showError("待模态", view: (selectVc?.view)!)
-                }
-            }else {
-                GlobalHubHelper.showError("待模态", view: (rootvc?.view)!)
-            }
+            let devVc = DeveloperViewController()
+            devVc.developerName = result!["name"]
+            self.showDetailPage(devVc)
             return true
         }
+        router.map("repos/:owner/:reponame") { (result) -> (Bool) in
+            let sb = UIStoryboard(name: "Main", bundle: nil)
+            let repoVC  = sb.instantiateViewControllerWithIdentifier("repoinfo") as!RepoInfoViewController
+            repoVC.repoOwner = result!["owner"]
+            repoVC.repoName = result!["reponame"]
+            self.showDetailPage(repoVC)
+            return true
+        }
+    }
+    func showDetailPage(vc:UIViewController) {
+        let rootvc = self.window?.rootViewController
+        if  rootvc is UINavigationController{
+            let nav = rootvc as! UINavigationController
+            nav.pushViewController(vc, animated: true)
+        }else if rootvc is UITabBarController {
+            let tabvc = rootvc as! UITabBarController
+            let selectVc = tabvc.selectedViewController
+            if   selectVc is UINavigationController {
+                let nav = selectVc as! UINavigationController
+                nav.pushViewController(vc, animated: true)
+            }else{
+                GlobalHubHelper.showError("待模态", view: (selectVc?.view)!)
+            }
+        }else {
+            GlobalHubHelper.showError("待模态", view: (rootvc?.view)!)
+        }
+
     }
 }
 
