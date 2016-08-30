@@ -55,31 +55,36 @@ class LoginViewController: YZWebViewController {
         ]
         MBProgressHUD.showHUDAddedTo(self.view, animated: true)
         
-        Alamofire.request(.POST, "https://github.com/login/oauth/access_token",parameters: para).responseJSON { [weak self](response) in
+        Alamofire.request(.POST, "https://github.com/login/oauth/access_token",parameters: para).responseString { [weak self](response) in
             MBProgressHUD.hideAllHUDsForView(self!.view, animated: true)
-            let str = String(data: response.data!, encoding: NSUTF8StringEncoding)
-            if let str = str {
-                let arr:[String] = (str.componentsSeparatedByString("&"))
-                if arr.count > 0 {
-                    let accesstoken = arr[0].substringFromIndex(arr[0].startIndex.advancedBy(13))
-                    let scope = arr[1].substringFromIndex(arr[1].startIndex.advancedBy(7))
-                    let tokentype = arr[2].substringFromIndex(arr[2].startIndex.advancedBy(11))
-                    
-                    //获取token 并保存到userdefault中
-                    var token = AppToken.shareInstance
-                    token.access_token = String(format: "token %@", accesstoken)
-                    token.token_type = tokentype
-                    token.scope = scope
-                    
-                    self!.getUserInfo(accesstoken)
+            switch response.result {
+            case .Failure(let error):
+                GlobalHubHelper.showError("登陆失败:\(error)", view: (self?.view)!)
+            case .Success(_):
+                let str = String(data: response.data!, encoding: NSUTF8StringEncoding)
+                if let str = str {
+                    let arr:[String] = (str.componentsSeparatedByString("&"))
+                    if arr.count > 0 {
+                        let accesstoken = arr[0].substringFromIndex(arr[0].startIndex.advancedBy(13))
+                        let scope = arr[1].substringFromIndex(arr[1].startIndex.advancedBy(7))
+                        let tokentype = arr[2].substringFromIndex(arr[2].startIndex.advancedBy(11))
+                        
+                        //获取token 并保存到userdefault中
+                        var token = AppToken.shareInstance
+                        token.access_token = String(format: "token %@", accesstoken)
+                        token.token_type = tokentype
+                        token.scope = scope
+                        
+                        self!.getUserInfo(accesstoken)
+                    }
                 }
             }
+            
         }
     }
     
     func getUserInfo(token:String) {
         
-        var message = "No data to show"
         let provider = Provider.sharedProvider
         provider.request(GitHubAPI.MyInfo, completion:{
             (result) -> () in
@@ -103,7 +108,7 @@ class LoginViewController: YZWebViewController {
                 guard let error = error as? CustomStringConvertible else {
                     break
                 }
-                message = error.description
+                print(error)
             }
         } )
     }

@@ -157,7 +157,6 @@ class ProfileViewController: BaseViewController{
 
 extension ProfileViewController:UIScrollViewDelegate{
     func scrollViewDidScroll(scrollView: UIScrollView) {
-        print(scrollView.contentOffset.y)
         //下拉
         if scrollView.contentOffset.y < -175 {
             print(scrollView.contentOffset.y)

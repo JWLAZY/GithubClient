@@ -105,7 +105,6 @@ extension ExploreDevelopersViewController:UITableViewDataSource{
             let cell = UITableViewCell(style: .Default, reuseIdentifier: "next")
             let label = UILabel()
             label.frame.size = CGSize(width: 120, height: 40)
-//            label.center = cell.center
             label.textColor = UIColor.whiteColor()
             label.text = "点击加载更多"
             label.textAlignment = .Center
@@ -118,8 +117,6 @@ extension ExploreDevelopersViewController:UITableViewDataSource{
             return cell
         }
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! DeveloperTableViewCell
-        
-//        cell.indexLable.text = "\(indexPath.row + 1)"
         cell.deve = data[indexPath.row]
         return cell
     }

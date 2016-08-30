@@ -21,7 +21,9 @@ class DeveloperViewController: UIViewController {
     let tableView:UITableView = UITableView(frame: CGRectZero, style: .Grouped)
     var headerView:UIView?
     var userImage:UIImageView?
-    
+    var userName:UILabel = UILabel()
+    var follerNumber:UILabel = UILabel()
+    var follingNumber:UILabel = UILabel()
     //MARK: UI 数据
     var headerHeight:CGFloat {
         return 200
@@ -34,7 +36,15 @@ class DeveloperViewController: UIViewController {
     var developer:ObjUser? {
         didSet{
             userImage?.kf_setImageWithURL(NSURL(string: developer!.avatar_url!)!)
+            userName.text = developer?.login
+            follerNumber.text = "\(developer?.followers ?? 0) 粉丝"
+            follingNumber.text = "关注\(developer?.following ?? 0)人"
             title = developer?.login
+        }
+    }
+    var developerName:String? {
+        didSet{
+            title = developerName
         }
     }
     
@@ -78,7 +88,9 @@ class DeveloperViewController: UIViewController {
         // MARK: user logo
         
         userImage = UIImageView(image: UIImage(named: "app_logo_90"))
-        userImage?.kf_setImageWithURL(NSURL(string: developer!.avatar_url!)!)
+        if let developer = developer{
+            userImage?.kf_setImageWithURL(NSURL(string: developer.avatar_url!)!)
+        }
         headerView?.addSubview(userImage!)
         userImage?.snp_makeConstraints(closure: { (make) in
             make.centerX.equalTo(headerView!)
@@ -87,10 +99,41 @@ class DeveloperViewController: UIViewController {
         })
         userImage?.layer.masksToBounds = true
         userImage?.layer.cornerRadius = 45
+        
+        //MARK: user name 
+        headerView?.addSubview(userName)
+        userName.textColor = UIColor.whiteColor()
+        userName.snp_makeConstraints { (make) in
+            make.centerX.equalTo(headerView!)
+            make.top.equalTo(userImage!.snp_bottom).offset(10)
+        }
+        
+        //MARK: foller number
+        headerView?.addSubview(follerNumber)
+        follerNumber.textColor = UIColor.whiteColor()
+        follerNumber.font = UIFont.systemFontOfSize(12)
+        follerNumber.snp_makeConstraints { (make) in
+            make.centerX.equalTo(headerView!).offset(-40)
+            make.top.equalTo(userName.snp_bottom).offset(5)
+        }
+        
+        headerView?.addSubview(follingNumber)
+        follingNumber.textColor = UIColor.whiteColor()
+        follingNumber.font = UIFont.systemFontOfSize(12)
+        follingNumber.snp_makeConstraints { (make) in
+            make.centerX.equalTo(headerView!).offset(40)
+            make.top.equalTo(userName.snp_bottom).offset(5)
+        }
     }
     
     func fetchDeveloperInfo() {
-        Provider.sharedProvider.request(GitHubAPI.UserInfo(username: (developer?.login)!)) {[weak self] (result) in
+        var name:String?
+        if  developerName != nil {
+            name = developerName! 
+        }else {
+            name = (developer?.login)!
+        }
+        Provider.sharedProvider.request(GitHubAPI.UserInfo(username: name!)) {[weak self] (result) in
             switch result {
             case let .Success(response):
                 do{
@@ -118,11 +161,6 @@ extension DeveloperViewController: UIScrollViewDelegate{
             oldFrame?.origin.y = offsetY + 64
             headerView?.frame = oldFrame!
         }else{
-//            print(offsetY)
-//            var oldFrame = headerView?.frame
-//            oldFrame?.size.height = fabs(offsetY) - 64
-//            oldFrame?.origin.y = -headerHeight
-//            headerView?.frame = oldFrame!
         }
     }
 }
@@ -179,7 +217,7 @@ extension DeveloperViewController:UITableViewDataSource {
             return cell!
         case 1:
             let cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier.RepoInfoCell.rawValue, forIndexPath: indexPath) as? RepoInfoCell
-            cell?.customUI(UIImage(named: "octicon_person_25")!,actionName:"详细详细")
+            cell?.customUI(UIImage(named: "octicon_person_25")!,actionName:"详细资料")
             return cell!
         default:
             let cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier.RepoInfoCell.rawValue, forIndexPath: indexPath) as? RepoInfoCell

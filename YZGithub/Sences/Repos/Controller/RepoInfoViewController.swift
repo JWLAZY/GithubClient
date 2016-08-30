@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Moya
 
 class RepoInfoViewController: UIViewController {
     
@@ -15,19 +16,32 @@ class RepoInfoViewController: UIViewController {
         case info = "infoIdentifier"
         case codeInfo = "codeInfoIdentifier"
     }
-    
+    deinit{
+        print("销毁")
+        for task in netTask {
+            task.cancel()
+        }
+    }
+    var netTask:[Cancellable] = [Cancellable]()
     var repoInfo:Repository? {
         didSet{
             fetchBranches()
         }
     }
+    //设置名字需要请求仓库数据
+    var repoName:String? {
+        didSet {
+            fetchRepoInfo()
+        }
+    }
+    var repoOwner:String?
     var branches:[Branches]?
     
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = repoInfo?.name
+        title = repoName ?? repoInfo?.name
         tableView.estimatedRowHeight = 200
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.registerNib(UINib(nibName: "RepoIntroCell",bundle: nil), forCellReuseIdentifier: Identifier.intro.rawValue)
@@ -40,14 +54,34 @@ class RepoInfoViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    func fetchRepoInfo() {
+         let nb = Provider.sharedProvider.request(GitHubAPI.UserSomeRepo(owner: repoOwner!, repo: repoName!)) { [weak self](result) in
+            switch result {
+            case .Success(let response):
+                do {
+                    if let repo:Repository? = try response.mapObject(Repository) {
+                        self!.repoInfo = repo
+                        if self?.tableView != nil {
+                            self!.tableView.reloadData()
+                        }
+                    }
+                }catch{
+                        GlobalHubHelper.showError("数据解析失败", view: self!.view)
+                }
+            case .Failure(let error):
+                GlobalHubHelper.showError("网络请求失败:\(error)", view: self!.view)
+            }
+        }
+        netTask.append(nb)
+    }
     func fetchBranches() {
-        Provider.sharedProvider.request(GitHubAPI.RepoBranchs(owner: repoInfo!.owner!.login!, repo: repoInfo!.name!)) { (result) in
+       let nb =  Provider.sharedProvider.request(GitHubAPI.RepoBranchs(owner: repoInfo!.owner!.login!, repo: repoInfo!.name!)) {[weak self] (result) in
             switch result {
             case let .Success(response):
                 do{
                     if let commits:[Branches]? = try response.mapArray(Branches) {
                         if commits != nil {
-                            self.branches = commits
+                            self!.branches = commits
                         }
                     }
                 }catch{
@@ -57,6 +91,7 @@ class RepoInfoViewController: UIViewController {
                 print(error)
             }
         }
+        netTask.append(nb)
     }
 }
 
@@ -134,7 +169,9 @@ extension RepoInfoViewController:UITableViewDataSource{
         switch indexPath.section {
         case 0:
             let cell = tableView.dequeueReusableCellWithIdentifier(Identifier.intro.rawValue,forIndexPath: indexPath) as? RepoIntroCell
-            cell!.repoinfo = repoInfo
+            if let repoinfo = repoInfo {
+                cell!.repoinfo = repoinfo
+            }
             return cell!
         case 1:
             let cell = tableView.dequeueReusableCellWithIdentifier(Identifier.info.rawValue, forIndexPath: indexPath) as? RepoInfoCell

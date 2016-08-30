@@ -10,8 +10,7 @@ import UIKit
 import Foundation
 
 extension UIColor{
-    
-    class func hexStr(hexStr : NSString,alpha : CGFloat) -> UIColor {
+        class func hexStr(hexStr : NSString,alpha : CGFloat) -> UIColor {
         let realHexStr = hexStr.stringByReplacingOccurrencesOfString("#", withString: "")
         let scanner = NSScanner(string: realHexStr as String)
         var color:UInt32 = 0

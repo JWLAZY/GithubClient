@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="108" id="KGk-i7-Jjw" customClass="EventCell" customModule="YZGithub" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="108"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="107"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ODN-3r-kCd">
+                        <rect key="frame" x="10" y="10" width="53" height="53"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="53" id="4cA-MR-zMR"/>
+                            <constraint firstAttribute="width" constant="53" id="XDR-n8-EJ7"/>
+                            <constraint firstAttribute="width" secondItem="ODN-3r-kCd" secondAttribute="height" id="npk-pB-LM4"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="简介" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u8r-pw-K4t">
+                        <rect key="frame" x="72" y="48" width="181" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" id="0JC-pb-6o2"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <color key="textColor" red="0.45726799239999999" green="0.45726799239999999" blue="0.45726799239999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="octicon_star_15" translatesAutoresizingMaskIntoConstraints="NO" id="7ps-tf-aor">
+                        <rect key="frame" x="280" y="20" width="20" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="7ps-tf-aor" secondAttribute="height" id="KSw-tb-6xU"/>
+                            <constraint firstAttribute="width" constant="20" id="oQl-vS-C8Q"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="10 min ago" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3aw-lM-1Tu">
+                        <rect key="frame" x="72" y="78" width="181" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.72549019609999998" green="0.72549019609999998" blue="0.72549019609999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="简介" translatesAutoresizingMaskIntoConstraints="NO" id="Fnb-9z-9Xf">
+                        <rect key="frame" x="72" y="10" width="181" height="40"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="33" id="hRh-6A-G1y"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                    </textView>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="7ps-tf-aor" secondAttribute="trailing" constant="20" id="12T-jb-FGF"/>
+                    <constraint firstItem="u8r-pw-K4t" firstAttribute="trailing" secondItem="Fnb-9z-9Xf" secondAttribute="trailing" id="2sE-lj-sK7"/>
+                    <constraint firstItem="Fnb-9z-9Xf" firstAttribute="leading" secondItem="ODN-3r-kCd" secondAttribute="trailing" constant="9" id="4w9-sD-Gm1"/>
+                    <constraint firstItem="3aw-lM-1Tu" firstAttribute="trailing" secondItem="u8r-pw-K4t" secondAttribute="trailing" id="6lo-aU-qZl"/>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="ODN-3r-kCd" secondAttribute="bottom" constant="10" id="9Q4-tm-n7b"/>
+                    <constraint firstItem="ODN-3r-kCd" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="BFT-WI-eiW"/>
+                    <constraint firstItem="3aw-lM-1Tu" firstAttribute="leading" secondItem="u8r-pw-K4t" secondAttribute="leading" id="FPT-n9-ahF"/>
+                    <constraint firstItem="3aw-lM-1Tu" firstAttribute="top" secondItem="u8r-pw-K4t" secondAttribute="bottom" constant="10" id="Fix-Ir-MmD"/>
+                    <constraint firstItem="ODN-3r-kCd" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="J1U-Pl-kKd"/>
+                    <constraint firstItem="u8r-pw-K4t" firstAttribute="leading" secondItem="Fnb-9z-9Xf" secondAttribute="leading" id="K4J-K2-rxy"/>
+                    <constraint firstItem="7ps-tf-aor" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="WBJ-iM-3Qc"/>
+                    <constraint firstItem="u8r-pw-K4t" firstAttribute="top" secondItem="Fnb-9z-9Xf" secondAttribute="bottom" constant="-2" id="cmF-OI-EnQ"/>
+                    <constraint firstItem="Fnb-9z-9Xf" firstAttribute="top" secondItem="ODN-3r-kCd" secondAttribute="top" id="fQU-sg-VtS"/>
+                    <constraint firstItem="7ps-tf-aor" firstAttribute="leading" secondItem="Fnb-9z-9Xf" secondAttribute="trailing" constant="27" id="k8K-oA-XIY"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="3aw-lM-1Tu" secondAttribute="bottom" constant="4" id="sm9-lb-bMP"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="EventInfo" destination="u8r-pw-K4t" id="7pA-8Q-gHy"/>
+                <outlet property="createTime" destination="3aw-lM-1Tu" id="zQJ-fQ-ghP"/>
+                <outlet property="eventLabel" destination="Fnb-9z-9Xf" id="RfO-j7-7bp"/>
+                <outlet property="eventOwnerAvator" destination="ODN-3r-kCd" id="R5z-OA-Ehv"/>
+                <outlet property="eventTypeImage" destination="7ps-tf-aor" id="XRC-rn-i9u"/>
+            </connections>
+            <point key="canvasLocation" x="577" y="373"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="octicon_star_15" width="15" height="15"/>
+    </resources>
+</document>

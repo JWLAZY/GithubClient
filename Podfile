@@ -22,5 +22,6 @@ pod 'Static', git: 'https://github.com/flexih/Static.git'
 pod "XMSegmentedControl"
 pod 'AttributedMarkdown', :git => 'https://github.com/dreamwieber/AttributedMarkdown.git'
 pod 'UMengSocialCOM', '~> 5.2.1'
+pod 'JLSwiftRouter'
 common_pods
 end
