@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1890494D1D78234800F1F1C1 /* MBProcessHUD+Show.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1890494C1D78234800F1F1C1 /* MBProcessHUD+Show.swift */; };
 		2AD2D4D3260EA7C307040B65 /* Pods_YZGithub.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F339D813CABEAFD8E1429F38 /* Pods_YZGithub.framework */; };
 		4615F81F1D73D2BD0057A689 /* String+Range.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4615F81E1D73D2BD0057A689 /* String+Range.swift */; };
 		4615F8211D73DA360057A689 /* NSMutableAttributedString+RichText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4615F8201D73DA360057A689 /* NSMutableAttributedString+RichText.swift */; };
@@ -102,6 +103,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1890494C1D78234800F1F1C1 /* MBProcessHUD+Show.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MBProcessHUD+Show.swift"; sourceTree = "<group>"; };
 		4615F81E1D73D2BD0057A689 /* String+Range.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Range.swift"; sourceTree = "<group>"; };
 		4615F8201D73DA360057A689 /* NSMutableAttributedString+RichText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+RichText.swift"; sourceTree = "<group>"; };
 		46246D801D47057C00B1FA91 /* UserInfoHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoHelper.swift; sourceTree = "<group>"; };
@@ -326,6 +328,7 @@
 				46EAF8231D36CC3D00210109 /* UINavigationBar+yztc.swift */,
 				4615F81E1D73D2BD0057A689 /* String+Range.swift */,
 				4615F8201D73DA360057A689 /* NSMutableAttributedString+RichText.swift */,
+				1890494C1D78234800F1F1C1 /* MBProcessHUD+Show.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -655,6 +658,7 @@
 				4657DEDD1D33C72C006AF3A9 /* Resources */,
 				9FCC9DF3D313E57347BEEBC4 /* [CP] Embed Pods Frameworks */,
 				360E6A45AE28B9D72435D9BB /* [CP] Copy Pods Resources */,
+				1B258B57BE788C8F3E9C5D61 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -751,6 +755,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		1B258B57BE788C8F3E9C5D61 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-YZGithub/Pods-YZGithub-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		360E6A45AE28B9D72435D9BB /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -856,6 +875,7 @@
 				46BF9FA51D6459750036D2F3 /* RepoInfoCell.swift in Sources */,
 				4615F81F1D73D2BD0057A689 /* String+Range.swift in Sources */,
 				46BF9F891D6459750036D2F3 /* ObjPermissions.swift in Sources */,
+				1890494D1D78234800F1F1C1 /* MBProcessHUD+Show.swift in Sources */,
 				46BF9F8E1D6459750036D2F3 /* ExploreDevelopersViewController.swift in Sources */,
 				46BF9F841D6459750036D2F3 /* AppToken.swift in Sources */,
 				4668A5251D6D41A3001BE615 /* MessageCell.swift in Sources */,
