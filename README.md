@@ -41,7 +41,7 @@
 > 3. 微信公众号 : YZMobileTalks
 
 <div style="text-align:center">
-扫描下面二维码获取最新文章
+<h4>扫描下面二维码获取最新文章</h4>
 <img src="http://oc3i2c6rt.bkt.clouddn.com/qrcode_for_gh_4e6ee1951601_258.jpg"/>
 </div>
 
