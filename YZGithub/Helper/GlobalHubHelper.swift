@@ -8,6 +8,22 @@
 import UIKit
 import MBProgressHUD
 
+extension UIView {
+    func showMessage(message:String){
+        let hub = MBProgressHUD.showHUDAddedTo(self, animated: true)
+        hub.labelText = message
+        hub.mode = .Text
+        hub.hide(true, afterDelay: 2)
+    }
+    func showError(error:String){
+        let hub = MBProgressHUD.showHUDAddedTo(self, animated: true)
+        hub.labelText = error
+        hub.mode = .Text
+        hub.labelColor = UIColor.navBarTintColor()
+        hub.hide(true, afterDelay: 3)
+    }
+}
+
 class GlobalHubHelper {
 
     class func showMessage(message:String,view:UIView){
