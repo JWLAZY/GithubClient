@@ -9,13 +9,26 @@
 import UIKit
 import SnapKit
 
-class BaseTableViewController<T>: UIViewController,UITableViewDataSource,UITableViewDelegate {
+enum IfloadMore {
+    case loading
+    case noload
+    mutating func change() {
+        switch self {
+        case .loading:
+            self = .noload
+        case .noload:
+            self = loading
+        }
+    }
+}
 
-    
+class BaseTableViewController<T>: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate {
+
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil  , bundle: nibBundleOrNil)
     }
     
+    var ifloading = IfloadMore.noload
     var dataArray:[T]? {
         didSet{
             self.tableView.reloadData()
@@ -66,6 +79,16 @@ class BaseTableViewController<T>: UIViewController,UITableViewDataSource,UITable
         cell?.setModel(dataArray![indexPath.row])
         cell!.selectionStyle = .None
         return cell!
+    }
+    
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        if scrollView.contentOffset.y >= fmax(0.0, scrollView.contentSize.height - scrollView.frame.size.height) + 60 {
+            print("\(scrollView.contentOffset.y)上拉加载")
+            if ifloading == .noload {
+                    ifloading.change()
+                    fetchData()
+            }
+        }
     }
     
     func scrollViewDidEndZooming(scrollView: UIScrollView, withView view: UIView?, atScale scale: CGFloat) {

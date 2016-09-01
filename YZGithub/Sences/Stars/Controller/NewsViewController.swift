@@ -37,6 +37,7 @@ class NewsViewController: BaseTableViewController<Event> {
             case .Failure(let error):
                 GlobalHubHelper.showError("网络请求失败:\(error)", view: self.view)
             }
+            self.ifloading.change()
         }
     }
     func isLogin() {
