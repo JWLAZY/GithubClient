@@ -11,41 +11,26 @@ import MBProgressHUD
 
 extension MBProgressHUD{
     
-    class func showMsg(msg:String?) {
-        
-        showMsg(msg, view: nil);
-    }
     
-    class func showError(msg:String?){
+    class func showMsg(msg:String?, view:UIView? = UIApplication.sharedApplication().keyWindow){
         
-        showError(msg, view: nil);
-    }
-    
-    class func showMsg(msg:String?, view:UIView?){
-        
-        if msg == nil || (msg?.isEmpty)! {
+        if msg == nil || msg!.isEmpty {
             return;
         }
-        var aView = view;
-        if view == nil {
-            aView = UIApplication.sharedApplication().keyWindow;
-        }
-        let hub = MBProgressHUD.showHUDAddedTo(aView, animated: true)
+        
+        let hub = MBProgressHUD.showHUDAddedTo(view, animated: true)
         hub.labelText = msg
         hub.mode = .Text
         hub.hide(true, afterDelay: 2)
     }
     
-    class func showError(msg:String?,view:UIView?){
+    class func showError(msg:String?,view:UIView? = UIApplication.sharedApplication().keyWindow){
         
-        if msg == nil || (msg?.isEmpty)! {
+        if msg == nil || msg!.isEmpty {
             return;
         }
-        var aView = view;
-        if view == nil {
-            aView = UIApplication.sharedApplication().keyWindow;
-        }
-        let hub = MBProgressHUD.showHUDAddedTo(aView, animated: true)
+        
+        let hub = MBProgressHUD.showHUDAddedTo(view, animated: true)
         hub.labelText = msg
         hub.mode = .Text
         hub.labelColor = UIColor.navBarTintColor()
