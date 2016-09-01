@@ -67,4 +67,8 @@ class BaseTableViewController<T>: UIViewController,UITableViewDataSource,UITable
         cell!.selectionStyle = .None
         return cell!
     }
+    
+    func scrollViewDidEndZooming(scrollView: UIScrollView, withView view: UIView?, atScale scale: CGFloat) {
+        print(scrollView.contentSize.height - scrollView.frame.size.height)
+    }
 }
