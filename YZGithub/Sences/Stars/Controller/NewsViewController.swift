@@ -19,11 +19,10 @@ class NewsViewController: BaseTableViewController<Event> {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "动态"
-        fetchData()
-        
+        isLogin()
     }
     
-    func fetchData() {
+    override func fetchData() {
         let hub = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
         hub.labelText = "网络请求中..."
         Provider.sharedProvider.request(GitHubAPI.UserEvent(username: UserInfoHelper.sharedInstance.user!.login!, page: 0)) { (result) in
@@ -40,5 +39,12 @@ class NewsViewController: BaseTableViewController<Event> {
             }
         }
     }
-    
+    func isLogin() {
+        if UserInfoHelper.sharedInstance.isLogin {
+            fetchData()
+        }else {
+            GlobalHubHelper.showError("请先登录...", view: self.view)
+        }
+    }
+
 }

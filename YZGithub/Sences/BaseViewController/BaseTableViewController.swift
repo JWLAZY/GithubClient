@@ -30,6 +30,10 @@ class BaseTableViewController<T>: UIViewController,UITableViewDataSource,UITable
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(fetchData), name: NotificationGitLoginSuccessful, object: nil)
+//        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(fetchData), name: NotificationGitLogOutSuccessful, object: nil)
+        
         customTableView()
     }
     func customTableView() {
@@ -43,6 +47,11 @@ class BaseTableViewController<T>: UIViewController,UITableViewDataSource,UITable
         tableView.registerNib(UINib(nibName: cellName!,bundle: nil), forCellReuseIdentifier: cellName!)
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableViewAutomaticDimension
+    }
+    
+    //MARK: NOTI
+    func fetchData(){
+        
     }
     
     //MARK: DataSource
