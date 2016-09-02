@@ -21,34 +21,29 @@ class RepoTableViewCell: UITableViewCell {
     @IBOutlet weak var repoLanguage: UILabel!
     
     var repo:Repository? {
-        
         didSet{
             updateUI()
         }
     }
-    
-
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
-
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     func updateUI() {
         repoName.text = repo?.name
         repoInfo.text = repo?.cdescription
-        repoForkNumber.text = "\(repo!.forks_count!)"
-        repoStarNumber.text = "\(repo!.stargazers_count!)"
-        repoLastActiveTime.text = (repo!.pushed_at!.toDate(DateFormat.ISO8601)?.toRelativeString(abbreviated: false, maxUnits: 1))! + " age"
+        if let forkNumber = repo?.forks_count {
+            repoForkNumber.text = "\(forkNumber)"
+        }
+        if let starNumber  = repo?.stargazers_count {
+            repoStarNumber.text = "\(starNumber)"
+        }
+        repoLastActiveTime.text = (repo?.pushed_at?.toDate(DateFormat.ISO8601)?.toRelativeString(abbreviated: false, maxUnits: 1))! + " age"
         if let lan = repo?.language {
             repoLanguage.text = lan
         }
-        
         repoImage.kf_setImageWithURL(NSURL(string: (repo?.owner!.avatar_url)!)!)
     }
-    
 }

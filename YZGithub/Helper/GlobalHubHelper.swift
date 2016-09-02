@@ -12,12 +12,14 @@ import MBProgressHUD
 class GlobalHubHelper {
 
     class func showMessage(message:String,view:UIView){
+        MBProgressHUD.hideAllHUDsForView(view, animated: true)
         let hub = MBProgressHUD.showHUDAddedTo(view, animated: true)
         hub.labelText = message
         hub.mode = .Text
         hub.hide(true, afterDelay: 2)
     }
     class func showError(error:String,view:UIView){
+        MBProgressHUD.hideAllHUDsForView(view, animated: true)
         let hub = MBProgressHUD.showHUDAddedTo(view, animated: true)
         hub.labelText = error
         hub.mode = .Text

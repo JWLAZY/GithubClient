@@ -47,8 +47,8 @@ class BaseTableViewController<T>: UIViewController,UITableViewDataSource,UITable
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(fetchData), name: NotificationGitLoginSuccessful, object: nil)
 //        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(fetchData), name: NotificationGitLogOutSuccessful, object: nil)
-        
         customTableView()
+        isLogin()
     }
     func customTableView() {
         view.addSubview(tableView)
@@ -57,12 +57,18 @@ class BaseTableViewController<T>: UIViewController,UITableViewDataSource,UITable
         }
         tableView.dataSource = self
         tableView.delegate = self
-        
         tableView.registerNib(UINib(nibName: cellName!,bundle: nil), forCellReuseIdentifier: cellName!)
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableViewAutomaticDimension
     }
     
+    func isLogin() {
+        if UserInfoHelper.sharedInstance.isLogin {
+            fetchData({})
+        }else {
+            GlobalHubHelper.showError("请先登录...", view: self.view)
+        }
+    }
     //MARK: NOTI
     func fetchData(success:()->()){
         

@@ -19,10 +19,12 @@ class NewsViewController: BaseTableViewController<Event> {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "动态"
-        isLogin()
     }
     
     override func fetchData(success:()->()) {
+        if page == -1 {
+            GlobalHubHelper.showError("没有数据了", view: self.view)
+        }
         let hub = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
         hub.labelText = "网络请求中..."
         Provider.sharedProvider.request(GitHubAPI.UserEvent(username: UserInfoHelper.sharedInstance.user!.login!, page: page)) { (result) in
@@ -37,6 +39,8 @@ class NewsViewController: BaseTableViewController<Event> {
                     }
                     if let nextpage = response.pageNumberWithType(PageType.next) { 
                         self.page = nextpage 
+                    }else {
+                        self.page = -1
                     }
                     MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
                 }catch{
@@ -49,15 +53,6 @@ class NewsViewController: BaseTableViewController<Event> {
                 self.ifloading.change()
                 success()
             }
-        }
-    }
-    func isLogin() {
-        if UserInfoHelper.sharedInstance.isLogin {
-            fetchData({ 
-                
-            })
-        }else {
-            GlobalHubHelper.showError("请先登录...", view: self.view)
         }
     }
 

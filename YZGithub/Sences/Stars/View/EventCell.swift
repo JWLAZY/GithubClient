@@ -9,6 +9,7 @@
 import UIKit
 import Kingfisher
 import JLSwiftRouter
+import SwiftDate
 
 class EventCell: BaseCell {
 
@@ -22,8 +23,12 @@ class EventCell: BaseCell {
         let event = model as? Event
         if let e = event {
             if let url = e.actor?.avatar_url {
-                    self.eventOwnerAvator.kf_setImageWithURL(NSURL(string: url)!)
+                    self.eventOwnerAvator.kf_setImageWithURL(NSURL(string: url)!, placeholderImage: UIImage(named: "empty_failed"))
             }
+            if let date = e.created_at {
+                self.createTime.text = (date.toDate(.ISO8601)?.toRelativeString(abbreviated:false, maxUnits:1))! + " age"
+            }
+             self.EventInfo.text = ""
             if let type = e.type {
                 switch type {
                 case .IssueCommentEvent:
@@ -36,13 +41,10 @@ class EventCell: BaseCell {
                     }
                 case .PullRequestEvent:
                     self.eventTypeImage.image = UIImage(named: "octicon_pull_request_25")
-                    self.EventInfo.text = ""
                 case .WatchEvent:
                     self.eventTypeImage.image = UIImage(named: "octicon_star_20")
-                    self.EventInfo.text = ""
                 case .CreateEvent:
                     self.eventTypeImage.image = UIImage(named: "octicon_repo_15")
-                    self.EventInfo.text = ""
                 case .PushEvent:
                     self.eventTypeImage.image = UIImage(named: "octicon_push_25")
                     let commit =  (e.payload!["commits"] as! [AnyObject])[0] as? [String:AnyObject?]

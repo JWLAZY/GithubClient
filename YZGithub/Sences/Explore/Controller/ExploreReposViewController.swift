@@ -49,15 +49,13 @@ class ExploreReposViewController: UIViewController {
                             self.tableView.reloadData()
                             self.tableView.setContentOffset(CGPointZero, animated:true)
                     }else{
-                            
                     }
                 }catch {
-                    
                 }
-            
             case let .Failure(error):
                 print(error)
-                guard let error = error as? CustomStringConvertible else {
+                guard error is CustomStringConvertible else {
+                    GlobalHubHelper.showError("网络请求失败", view: self.view)
                     break
                 }
             }
