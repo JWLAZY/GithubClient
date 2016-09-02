@@ -1,6 +1,9 @@
 # YZGithub ![](images/Icon-28.png)
 > Github客户端
 
+
+
+
 #### 关键字
 * SWITF 2.2
 * MOYA
@@ -8,8 +11,13 @@
 * NETWORK
 
 #### 效果图
-![](http://oc3i2c6rt.bkt.clouddn.com/14728096618167.gif)
+![](images/index.png) -  - ![](images/repoinfo.png)
 
+---
+![](images/repoList.png) -  - ![](images/deveInfo.png)
+
+---
+![](images/deveList.png)
 
 # 功能
 * [x] 授权登陆
