@@ -18,7 +18,6 @@ class RepoInfoViewController: UIViewController {
         case codeInfo = "codeInfoIdentifier"
     }
     deinit{
-        print("销毁")
         for task in netTask {
             task.cancel()
         }
@@ -49,9 +48,7 @@ class RepoInfoViewController: UIViewController {
         tableView.registerNib(UINib(nibName: "RepoInfoCell",bundle: nil), forCellReuseIdentifier: Identifier.info.rawValue)
         tableView.registerNib(UINib(nibName: "RepoCodeInfoCell",bundle: nil), forCellReuseIdentifier: Identifier.codeInfo.rawValue)
         tableView.contentInset = UIEdgeInsetsMake(-100, 0, 0, 0)
-        
     }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -90,7 +87,6 @@ class RepoInfoViewController: UIViewController {
                         }
                     }
                 }catch{
-                    
                 }
             case let .Failure(error):
                 print(error)
@@ -99,11 +95,9 @@ class RepoInfoViewController: UIViewController {
         netTask.append(nb)
     }
 }
-
 //MARK: Delegate
 extension RepoInfoViewController:UITableViewDelegate{
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-       
         let index = (indexPath.section,indexPath.row)
         switch index {
         case  (1,0):
@@ -144,18 +138,15 @@ extension RepoInfoViewController:UITableViewDelegate{
 
 //MARK: DataSource
 extension RepoInfoViewController:UITableViewDataSource{
-    
     func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 0.1
     }
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        
         if section == 0 {
             return 0
         }
         return 10
     }
-    
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 3
     }
@@ -170,7 +161,6 @@ extension RepoInfoViewController:UITableViewDataSource{
         }
     }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
         switch indexPath.section {
         case 0:
             let cell = tableView.dequeueReusableCellWithIdentifier(Identifier.intro.rawValue,forIndexPath: indexPath) as? RepoIntroCell
@@ -191,7 +181,6 @@ extension RepoInfoViewController:UITableViewDataSource{
             return cell!
         default:
             let cell = tableView.dequeueReusableCellWithIdentifier(Identifier.info.rawValue, forIndexPath: indexPath) as? RepoInfoCell
-            
             switch indexPath.row {
             case 0:
                 cell?.customUI(UIImage(named: "octicon_pull_request_25")!, actionName: "合并请求")
@@ -203,5 +192,4 @@ extension RepoInfoViewController:UITableViewDataSource{
             return cell!
         }
     }
-    
 }

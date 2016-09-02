@@ -73,7 +73,6 @@ class BaseTableViewController<T>: UIViewController,UITableViewDataSource,UITable
     func fetchData(success:()->()){
         
     }
-    
     //MARK: DataSource
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if dataArray != nil {
@@ -97,7 +96,7 @@ class BaseTableViewController<T>: UIViewController,UITableViewDataSource,UITable
                     }, completion: { (result) in
                         self.ifloading.change()
                         self.fetchData({ 
-                                self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 50, 0)
+                                self.tableView.contentInset = UIEdgeInsetsMake(64, 0, 50, 0)
                         })
                 })
             }
