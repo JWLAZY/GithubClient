@@ -22,7 +22,7 @@ class NewsViewController: BaseTableViewController<Event> {
         isLogin()
     }
     
-    override func fetchData() {
+    override func fetchData(success:()->()) {
         let hub = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
         hub.labelText = "网络请求中..."
         Provider.sharedProvider.request(GitHubAPI.UserEvent(username: UserInfoHelper.sharedInstance.user!.login!, page: 0)) { (result) in
@@ -37,12 +37,17 @@ class NewsViewController: BaseTableViewController<Event> {
             case .Failure(let error):
                 GlobalHubHelper.showError("网络请求失败:\(error)", view: self.view)
             }
-            self.ifloading.change()
+            if self.ifloading == IfloadMore.loading {
+                self.ifloading.change()
+                success()
+            }
         }
     }
     func isLogin() {
         if UserInfoHelper.sharedInstance.isLogin {
-            fetchData()
+            fetchData({ 
+                
+            })
         }else {
             GlobalHubHelper.showError("请先登录...", view: self.view)
         }

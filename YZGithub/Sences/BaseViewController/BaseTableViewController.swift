@@ -63,7 +63,7 @@ class BaseTableViewController<T>: UIViewController,UITableViewDataSource,UITable
     }
     
     //MARK: NOTI
-    func fetchData(){
+    func fetchData(success:()->()){
         
     }
     
@@ -80,18 +80,20 @@ class BaseTableViewController<T>: UIViewController,UITableViewDataSource,UITable
         cell!.selectionStyle = .None
         return cell!
     }
-    
-    func scrollViewDidScroll(scrollView: UIScrollView) {
+    //上拉加载
+    func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         if scrollView.contentOffset.y >= fmax(0.0, scrollView.contentSize.height - scrollView.frame.size.height) + 60 {
-            print("\(scrollView.contentOffset.y)上拉加载")
             if ifloading == .noload {
-                    ifloading.change()
-                    fetchData()
+                UIView.commitAnimations()
+                UIView.animateWithDuration(1.0, animations: { 
+                    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 100, 0)
+                    }, completion: { (result) in
+                        self.ifloading.change()
+                        self.fetchData({ 
+                                self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 50, 0)
+                        })
+                })
             }
         }
-    }
-    
-    func scrollViewDidEndZooming(scrollView: UIScrollView, withView view: UIView?, atScale scale: CGFloat) {
-        print(scrollView.contentSize.height - scrollView.frame.size.height)
     }
 }

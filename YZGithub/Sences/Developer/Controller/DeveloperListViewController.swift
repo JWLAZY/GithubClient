@@ -23,8 +23,6 @@ class DeveloperListViewController: BaseViewController {
             switch listType! {
             case .Follewers:
                 fetchFollewers()
-            default:
-                print("==")
             }
         }
     }
