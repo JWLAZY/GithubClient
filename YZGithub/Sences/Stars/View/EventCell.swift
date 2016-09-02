@@ -51,6 +51,8 @@ class EventCell: BaseCell {
                     if let commit = commit {
                             self.EventInfo.text = commit["message"]! as? String
                     }
+                case .ForkEvent:
+                    self.eventTypeImage.image = UIImage(named: "octicon_fork_20")
                 }
             }
             generateEvent(e)
@@ -62,6 +64,7 @@ class EventCell: BaseCell {
             self.eventLabel.attributedText = NSMutableAttributedString (string: "")
             var info = ""
             if let name = e.actor?.login{
+                var  linkArray = [String:String]()
                     switch type {
                     case .IssueCommentEvent:
                             info  =   name  + "  " + (e.payload?["action"] as! String) + " issue  " + (e.repo?.name)!
@@ -73,12 +76,24 @@ class EventCell: BaseCell {
                             info = name  + "  created " + (e.payload?["ref_type"] as! String) + "  " + (e.repo?.name)!                        
                     case .PushEvent:
                             info = name  + "  pushed to  " + (e.payload?["ref"] as! String) + " at  " + (e.repo?.name)!
+                    case .ForkEvent:
+                        if let forkRepo =  e.payload?["forkee"]?["full_name"] as? String {
+                            info = name  + " forked " + (e.repo?.name)! + " to  \(forkRepo)"
+                            linkArray[forkRepo] =  "/repos/\(forkRepo)"
+                        }else{
+                            info = name  + " forked " + (e.repo?.name)!
                         }
+                    }
                 eventinfo = NSMutableAttributedString(string:info, attributes: [:])
                 eventinfo?.linkWithString(name,inString: info,url: "/user/\(name)")
                 let urlstart = e.repo?.url?.rangeOfString("/repos")?.startIndex
                 let url = e.repo?.url?.substringFromIndex(urlstart!)
                 eventinfo?.linkWithString((e.repo?.name)!,inString: info,url: url!)
+                
+                for (string,url) in linkArray {
+                        eventinfo?.linkWithString(string, inString: info, url: url)
+                }
+                
             }
             if   let temp = eventinfo {
                 self.eventLabel.attributedText = temp

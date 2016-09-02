@@ -15,6 +15,7 @@ enum EventType:String {
     case WatchEvent
     case CreateEvent
     case PushEvent
+    case ForkEvent
 }
 
 class Event:NSObject,Mappable {

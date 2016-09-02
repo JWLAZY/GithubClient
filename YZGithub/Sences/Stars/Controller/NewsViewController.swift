@@ -20,7 +20,6 @@ class NewsViewController: BaseTableViewController<Event> {
         super.viewDidLoad()
         title = "动态"
     }
-    
     override func fetchData(success:()->()) {
         if page == -1 {
             GlobalHubHelper.showError("没有数据了", view: self.view)
@@ -55,5 +54,4 @@ class NewsViewController: BaseTableViewController<Event> {
             }
         }
     }
-
 }
