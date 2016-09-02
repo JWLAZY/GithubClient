@@ -25,14 +25,22 @@ class NewsViewController: BaseTableViewController<Event> {
     override func fetchData(success:()->()) {
         let hub = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
         hub.labelText = "网络请求中..."
-        Provider.sharedProvider.request(GitHubAPI.UserEvent(username: UserInfoHelper.sharedInstance.user!.login!, page: 0)) { (result) in
+        Provider.sharedProvider.request(GitHubAPI.UserEvent(username: UserInfoHelper.sharedInstance.user!.login!, page: page)) { (result) in
             switch result {
             case .Success(let response):
                 do {
-                    self.dataArray = try response.mapArray(Event)
+                    let array = try response.mapArray(Event)
+                    if self.page == 1 {
+                        self.dataArray = array
+                    }else {
+                        self.dataArray?.appendContentsOf(array)
+                    }
+                    if let nextpage = response.pageNumberWithType(PageType.next) { 
+                        self.page = nextpage 
+                    }
                     MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
                 }catch{
-                        GlobalHubHelper.showError("数据解析失败", view: self.view)
+                    GlobalHubHelper.showError("数据解析失败", view: self.view)
                 }
             case .Failure(let error):
                 GlobalHubHelper.showError("网络请求失败:\(error)", view: self.view)

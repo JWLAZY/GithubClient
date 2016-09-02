@@ -28,6 +28,7 @@ class BaseTableViewController<T>: UIViewController,UITableViewDataSource,UITable
         super.init(nibName: nibNameOrNil  , bundle: nibBundleOrNil)
     }
     
+    var page : Int = 1
     var ifloading = IfloadMore.noload
     var dataArray:[T]? {
         didSet{
