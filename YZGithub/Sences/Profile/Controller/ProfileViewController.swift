@@ -61,7 +61,7 @@ class ProfileViewController: BaseViewController,UITableViewDelegate{
         profileImageView = UIImageView(image: UIImage(named: "app_logo_90"))
         header.addSubview(profileImageView!)
         
-        profileImageView!.snp_makeConstraints { (make) in
+        profileImageView!.snp.makeConstraints { (make) in
             make.centerX.equalTo(header)
             make.width.height.equalTo(80)
             make.centerY.equalTo(header).offset(0)
@@ -79,9 +79,9 @@ class ProfileViewController: BaseViewController,UITableViewDelegate{
         nameLable?.font = UIFont.systemFont(ofSize: 14)
         nameLable?.textColor = UIColor.white
         header.addSubview(nameLable!)
-        nameLable!.snp_makeConstraints { (make) in
+        nameLable!.snp.makeConstraints { (make) in
             make.centerX.equalTo(header)
-            make.top.equalTo(profileImageView!.snp_bottom).offset(10);
+            make.top.equalTo(profileImageView!.snp.bottom).offset(10);
         }
         let tap:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.login(_:)))
         nameLable?.addGestureRecognizer(tap)
@@ -92,16 +92,16 @@ class ProfileViewController: BaseViewController,UITableViewDelegate{
         header.addSubview(followersLable)
         followersLable.textColor = UIColor.white
         followersLable.font = UIFont.systemFont(ofSize: 13)
-        followersLable.snp_makeConstraints { (make) in
-            make.right.equalTo((nameLable?.snp_centerX)!).offset(-10)
-            make.top.equalTo((nameLable?.snp_bottom)!).offset(10)
+        followersLable.snp.makeConstraints { (make) in
+            make.right.equalTo((nameLable?.snp.centerX)!).offset(-10)
+            make.top.equalTo((nameLable?.snp.bottom)!).offset(10)
         }
         
         header.addSubview(startLable)
         startLable.textColor = UIColor.white
         startLable.font = UIFont.systemFont(ofSize: 13)
-        startLable.snp_makeConstraints { (make) in
-            make.left.equalTo((nameLable?.snp_centerX)!).offset(10)
+        startLable.snp.makeConstraints { (make) in
+            make.left.equalTo((nameLable?.snp.centerX)!).offset(10)
             make.top.equalTo(followersLable)
         }
         

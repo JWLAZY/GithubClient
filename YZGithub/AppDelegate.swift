@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import MBProgressHUD
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -90,10 +91,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 let nav = selectVc as! UINavigationController
                 nav.pushViewController(vc, animated: true)
             }else{
-                GlobalHubHelper.showError("待模态", view: (selectVc?.view)!)
+                MBProgressHUD.showError("待模态")
             }
         }else {
-            GlobalHubHelper.showError("待模态", view: (rootvc?.view)!)
+            MBProgressHUD.showError("待模态")
         }
 
     }

@@ -25,6 +25,11 @@ class EventCell: BaseCell {
                 self.eventOwnerAvator.kf.setImage(with: URL(string: url)!, placeholder: UIImage(named: "empty_failed"))
             }
             if let date = e.created_at {
+                do {
+                    self.createTime.text = try date.date(format: DateFormat.iso8601(options: .withFullDate)).timeComponentsSinceNow(options: nil)
+                }catch{
+                    
+                }
 //                self.createTime.text = (date.date(format: DateFormat.iso8601)?.toRelativeString(abbreviated:false, maxUnits:1))! + " age"
             }
              self.EventInfo.text = ""

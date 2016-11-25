@@ -8,6 +8,7 @@
 
 import UIKit
 import SnapKit
+import MBProgressHUD
 
 enum IfloadMore {
     case loading
@@ -56,7 +57,7 @@ class BaseTableViewController<T>: UIViewController,UITableViewDataSource,UITable
     }
     func customTableView() {
         view.addSubview(tableView)
-        tableView.snp_makeConstraints { (make) in
+        tableView.snp.makeConstraints { (make) in
             make.size.left.top.equalTo(self.view)
         }
         tableView.dataSource = self
@@ -70,7 +71,7 @@ class BaseTableViewController<T>: UIViewController,UITableViewDataSource,UITable
         if UserInfoHelper.sharedInstance.isLogin {
             fetchData({})
         }else {
-            GlobalHubHelper.showError("请先登录...", view: self.view)
+            MBProgressHUD.showError("请先登录...")
         }
     }
     //MARK: NOTI

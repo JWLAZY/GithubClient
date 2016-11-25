@@ -11,20 +11,4 @@ import MBProgressHUD
 
 class GlobalHubHelper {
 
-    class func showMessage(_ message:String,view:UIView){
-        MBProgressHUD.hideAllHUDs(for: view, animated: true)
-        let hub = MBProgressHUD.showAdded(to: view, animated: true)
-        hub.labelText = message
-        hub.mode = .text
-        hub.hide(true, afterDelay: 2)
-    }
-    class func showError(_ error:String,view:UIView){
-        MBProgressHUD.hideAllHUDs(for: view, animated: true)
-        let hub = MBProgressHUD.showAdded(to: view, animated: true)
-        hub.labelText = error
-        hub.mode = .text
-        hub.labelColor = UIColor.navBarTintColor()
-        hub.hide(true, afterDelay: 3)
-    }
-    
 }
