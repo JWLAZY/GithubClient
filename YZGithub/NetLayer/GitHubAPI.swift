@@ -9,228 +9,228 @@
 import UIKit
 import Moya
 import Alamofire
+import Result
 
-typealias SuccessClosure = (result: AnyObject) -> Void
-typealias failClosure = (errorMsg:String?) -> Void
+typealias SuccessClosure = (_ result: AnyObject) -> Void
+typealias failClosure = (_ errorMsg:String?) -> Void
 
 // (Endpoint<Target>, NSURLRequest -> Void) -> Void
 func endpointResolver() -> MoyaProvider<GitHubAPI>.RequestClosure {
     return { (endpoint, closure) in
-        let request: NSMutableURLRequest = endpoint.urlRequest.mutableCopy() as! NSMutableURLRequest
-        request.HTTPShouldHandleCookies = false
-        closure(request)
+        var request = endpoint.urlRequest
+        request?.httpShouldHandleCookies = false
+        closure(Result.success(request!))
     }
 }
 
-class GitHupPorvider<Target where Target: TargetType>: MoyaProvider<Target> {
+class GitHupPorvider<Target>: MoyaProvider<Target> where Target: TargetType {
     
-    override init(endpointClosure: EndpointClosure = MoyaProvider.DefaultEndpointMapping,
-                  requestClosure: RequestClosure = MoyaProvider.DefaultRequestMapping,
-                  stubClosure: StubClosure = MoyaProvider.NeverStub,
-                  manager: Manager = Manager.sharedInstance,
-                  plugins: [PluginType] = []) {
+    override init(endpointClosure: @escaping (Target) -> Endpoint<Target>, requestClosure: @escaping (Endpoint<Target>, @escaping MoyaProvider<GitHubAPI>.RequestResultClosure) -> Void, stubClosure: @escaping (Target) -> StubBehavior, manager: Manager, plugins: [PluginType], trackInflights: Bool) {
+        
         super.init(endpointClosure: endpointClosure, requestClosure: requestClosure, stubClosure: stubClosure, manager: manager, plugins: plugins)
     }
 }
 
 
 struct Provider {
-    private static var endpointsClosure = { (target: GitHubAPI) -> Endpoint<GitHubAPI> in
-        var endpoint: Endpoint<GitHubAPI> = Endpoint<GitHubAPI>(URL: url(target), sampleResponseClosure: {.NetworkResponse(200, target.sampleData)}, method: target.method, parameters: target.parameters)
+    fileprivate static var endpointsClosure = { (target: GitHubAPI) -> Endpoint<GitHubAPI> in
+        var endpoint: Endpoint<GitHubAPI> = Endpoint<GitHubAPI>(URL: url(route: target), sampleResponseClosure: {.networkResponse(200, target.sampleData)}, method: target.method, parameters: target.parameters)
         switch target {
-        case GitHubAPI.RepoReadme(let owner, let repo):
-            endpoint.endpointByAddingHTTPHeaderFields(["Content-Type":"application/vnd.github.VERSION.raw"])
+        case GitHubAPI.repoReadme(let owner, let repo):
+            endpoint = endpoint.adding(newHttpHeaderFields: ["Content-Type":"application/vnd.github.VERSION.raw"])
             fallthrough
         default:
-            endpoint.endpointByAddingHTTPHeaderFields(["User-Agent":"YZGithub"])
+            endpoint = endpoint.adding(newHttpHeaderFields:["User-Agent":"YZGithub"])
             
-            return endpoint.endpointByAddingHTTPHeaderFields(["Authorization": AppToken.shareInstance.access_token ?? ""])
+            return endpoint.adding(newHttpHeaderFields:["Authorization": AppToken.shareInstance.access_token ?? ""])
         }
     }
-    static var sharedProvider:GitHupPorvider<GitHubAPI> =  GitHupPorvider(endpointClosure: endpointsClosure, requestClosure: endpointResolver(), stubClosure:MoyaProvider.NeverStub , manager: Alamofire.Manager.sharedInstance, plugins:[])
+    static var sharedProvider:GitHupPorvider<GitHubAPI> =  GitHupPorvider(endpointClosure: endpointsClosure, requestClosure: endpointResolver(), stubClosure: {target in StubBehavior.never}, manager: Alamofire.SessionManager.default, plugins: [], trackInflights: true)
 }
 
 public enum GitHubAPI {
     //user
-    case MyInfo
-    case UserInfo(username:String)
-    case UpdateUserInfo(name:String, email:String, blog:String, company:String, location:String,hireable:String,bio:String)
-    case AllUsers(page:Int,perpage:Int)
+    case myInfo
+    case userInfo(username:String)
+    case updateUserInfo(name:String, email:String, blog:String, company:String, location:String,hireable:String,bio:String)
+    case allUsers(page:Int,perpage:Int)
     
     // users/jianwen-zheng/followers
-    case Followers(username:String)
+    case followers(username:String)
     
     //trending
-    case TrendingRepos(since:String,language:String)
-    case TrendingShowcases()
-    case TrendingShowcase(showcase:String)
+    case trendingRepos(since:String,language:String)
+    case trendingShowcases()
+    case trendingShowcase(showcase:String)
 
     //repository
-    case MyRepos(type:String, sort:String ,direction:String)
-    case UserRepos( username:String ,page:Int,perpage:Int,type:String, sort:String ,direction:String)
-    case OrgRepos(type:String, organization:String)
-    case PubRepos(page:Int,perpage:Int)
-    case UserSomeRepo(owner:String, repo:String)
+    case myRepos(type:String, sort:String ,direction:String)
+    case userRepos( username:String ,page:Int,perpage:Int,type:String, sort:String ,direction:String)
+    case orgRepos(type:String, organization:String)
+    case pubRepos(page:Int,perpage:Int)
+    case userSomeRepo(owner:String, repo:String)
     
     //repository info /repos/:owner/:repo/readme
-    case RepoReadme(owner:String,repo:String)
-    case RepoBranchs(owner:String,repo:String)
-    case RepoPullRequest(owner:String,repo:String)
+    case repoReadme(owner:String,repo:String)
+    case repoBranchs(owner:String,repo:String)
+    case repoPullRequest(owner:String,repo:String)
     
     //message
-    case Message(page:Int)
+    case message(page:Int)
     
     //news
-    case UserEvent(username:String,page:Int)
+    case userEvent(username:String,page:Int)
     
     //search
-    case SearchUsers(para:ParaSearchUser)
+    case searchUsers(para:ParaSearchUser)
 //    case SearchRepos(para:ParaSearchRepos)
 
 }
 
 extension GitHubAPI: TargetType {
-    
-    public var baseURL: NSURL{
+    public var baseURL: URL{
         switch self {
-        case .TrendingRepos:
-            return NSURL(string: "http://trending.codehub-app.com/v2")!
-        case .TrendingShowcases:
-            return NSURL(string: "http://trending.codehub-app.com/v2")!
-        case .TrendingShowcase:
-            return NSURL(string: "http://trending.codehub-app.com/v2")!
+        case .trendingRepos:
+            return URL(string: "http://trending.codehub-app.com/v2")!
+        case .trendingShowcases:
+            return URL(string: "http://trending.codehub-app.com/v2")!
+        case .trendingShowcase:
+            return URL(string: "http://trending.codehub-app.com/v2")!
         default:
-            return NSURL(string: "https://api.github.com")!
+            return URL(string: "https://api.github.com")!
         }
 
     }
     public var path: String {
         switch self {
         //user
-        case .MyInfo:
+        case .myInfo:
             return "/user"
-        case .UserInfo(let username):
+        case .userInfo(let username):
             return "/users/\(username)"
-        case .UpdateUserInfo:
+        case .updateUserInfo:
             return "/user"
-        case AllUsers(_,_):
+        case .allUsers(_,_):
             return "/users"
-        case .Followers(let username):
+        case .followers(let username):
             return "users/\(username)/followers"
             
         //trending
-        case TrendingRepos:
+        case .trendingRepos:
             return "/trending"
-        case TrendingShowcases:
+        case .trendingShowcases:
             return "/showcases"
-        case TrendingShowcase(let showcase):
+        case .trendingShowcase(let showcase):
             return "/showcases/\(showcase)"
         
         //repos
-        case MyRepos:
+        case .myRepos:
             return "/user/repos"
-        case UserRepos(let username,_,_,_,_,_):
+        case .userRepos(let username,_,_,_,_,_):
             return "/users/\(username)/repos"
             
-        case OrgRepos(_ ,let organization):
+        case .orgRepos(_ ,let organization):
             return "/orgs/\(organization)/repos"
-        case PubRepos:
+        case .pubRepos:
             return "/repositories"
-        case UserSomeRepo(let owner,let repo):
+        case .userSomeRepo(let owner,let repo):
             return "/repos/\(owner)/\(repo)"
-        case RepoReadme(let owner, let repo):
+        case .repoReadme(let owner, let repo):
             return "/repos/\(owner)/\(repo)/readme"
-        case .RepoBranchs(let owner,let repo):
+        case .repoBranchs(let owner,let repo):
             return "/repos/\(owner)/\(repo)/branches"
-        case .RepoPullRequest(let owner, let repo):
+        case .repoPullRequest(let owner, let repo):
             return "/repos/\(owner)/\(repo)/pulls"
             
-        case .Message(_):
+        case .message(_):
             return "/notifications"
         //search
-        case SearchUsers:
+        case .searchUsers:
             return "/search/users"
             
         //news
-        case .UserEvent(let username,_):
+        case .userEvent(let username,_):
             return "/users/\(username)/received_events/public"
         }
     }
     public var method: Moya.Method{
         switch self {
-        case .UpdateUserInfo:
-            return .PATCH
+        case .updateUserInfo:
+            return .patch
         default:
-            return .GET
+            return .get
         }
     }
-    public var parameters: [String : AnyObject]?{
+    public var parameters: [String : Any]?{
         switch self {
         
-        case SearchUsers(let para):
+        case .searchUsers(let para):
             return [
-                "q":para.q,
-                "sort":para.sort,
-                "order":para.order,
-                "page":para.page,
-                "per_page":para.perPage,
+                "q":para.q as AnyObject,
+                "sort":para.sort as AnyObject,
+                "order":para.order as AnyObject,
+                "page":para.page as AnyObject,
+                "per_page":para.perPage as AnyObject,
             ]
-        case MyRepos(let type, let sort ,let direction):
+        case .myRepos(let type, let sort ,let direction):
             return [
-                "type":type,
-                "sort":sort,
-                "direction":direction
+                "type":type as AnyObject,
+                "sort":sort as AnyObject,
+                "direction":direction as AnyObject
             ]
-        case UserRepos(_,let page, let perpage,let type, let sort ,let direction):
+        case .userRepos(_,let page, let perpage,let type, let sort ,let direction):
             return [
-                "page":page,
-                "per_page":perpage,
-                "type":type,
-                "sort":sort,
-                "direction":direction
+                "page":page as AnyObject,
+                "per_page":perpage as AnyObject,
+                "type":type as AnyObject,
+                "sort":sort as AnyObject,
+                "direction":direction as AnyObject
             ]
-        case OrgRepos(let type, _):
+        case .orgRepos(let type, _):
             return [
-                "type":type,
+                "type":type as AnyObject,
             ]
-        case PubRepos(let page, let perpage):
+        case .pubRepos(let page, let perpage):
             return [
-                "page":page,
-                "per_page":perpage
+                "page":page as AnyObject,
+                "per_page":perpage as AnyObject
             ]
-        case .Message(let page):
+        case .message(let page):
             return [
-                    "all":false, //是否显示所有已读的消息
-                    "participating":false,//是否只显示直接参与的消息
-                    "page":page
+                    "all":false as AnyObject, //是否显示所有已读的消息
+                    "participating":false as AnyObject,//是否只显示直接参与的消息
+                    "page":page as AnyObject
             ]
-        case .UserEvent( _, let page):
+        case .userEvent( _, let page):
             return [
-                    "page":page
+                    "page":page as AnyObject
             ]
         default:
             return nil
         }
     }
-    public var sampleData: NSData{
+    public var sampleData: Data{
         switch self {
-        case .MyInfo:
-            return "get user info.".dataUsingEncoding(NSUTF8StringEncoding)!
+        case .myInfo:
+            return "get user info.".data(using: String.Encoding.utf8)!
 
         default :
-            return "default".dataUsingEncoding(NSUTF8StringEncoding)!
+            return "default".data(using: String.Encoding.utf8)!
         }
 
+    }
+    public var task: Task{
+        return Task.request
     }
 }
 // MARK: - Provider support
 private extension String {
     var URLEscapedString: String {
-        return self.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLHostAllowedCharacterSet())!
+        return self.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlHostAllowed)!
     }
 }
 
 public func url(route: TargetType) -> String {
-    print("api:\(route.baseURL.URLByAppendingPathComponent(route.path).absoluteString)")
-    return route.baseURL.URLByAppendingPathComponent(route.path).absoluteString
+    print("api:\(route.baseURL.appendingPathComponent(route.path).absoluteString)")
+    return route.baseURL.appendingPathComponent(route.path).absoluteString
 }

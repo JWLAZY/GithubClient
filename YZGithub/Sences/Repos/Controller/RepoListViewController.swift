@@ -38,18 +38,18 @@ class RepoListViewController: UIViewController {
     func customUI() {
         view.addSubview(tableView!)
         title = "仓库列表"
-        tableView?.snp_makeConstraints(closure: { (make) in
+        tableView?.snp.makeConstraints({ (make) in
             make.top.bottom.leading.trailing.equalTo(view)
         })
 //        tableView?.estimatedRowHeight = 100
 //        tableView?.rowHeight = UITableViewAutomaticDimension
-        tableView?.registerNib(UINib(nibName: "RepoTableViewCell",bundle: nil), forCellReuseIdentifier: "RepoTableViewCell")
-        tableView?.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView?.register(UINib(nibName: "RepoTableViewCell",bundle: nil), forCellReuseIdentifier: "RepoTableViewCell")
+        tableView?.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
     }
     func fetchRepoList() {
-        Provider.sharedProvider.request(GitHubAPI.UserRepos(username: (developer?.login)!, page: page, perpage: perpage, type: type, sort: sort, direction: direction)) { (result) in
+        Provider.sharedProvider.request(GitHubAPI.userRepos(username: (developer?.login)!, page: page, perpage: perpage, type: type, sort: sort, direction: direction)) { (result) in
             switch result {
-            case let .Success(response):
+            case let .success(response):
                 do{
                     if let repos:[Repository]? = try response.mapArray(Repository) {
                         if self.page == 1 {
@@ -64,39 +64,39 @@ class RepoListViewController: UIViewController {
                 }catch{
                     
                 }
-            case let .Failure(error):
+            case let .failure(error):
                 print(error)
             }
         }
     }
 }
 extension RepoListViewController:UITableViewDataSource{
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let a = reposArray {
                 return a.count + 1
         }
         return 0
     }
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == reposArray?.count {
-            let cell = UITableViewCell(style: .Default, reuseIdentifier: "cell")
+            let cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
             let label = UILabel()
             label.frame.size = CGSize(width: 120, height: 40)
-            label.textColor = UIColor.whiteColor()
+            label.textColor = UIColor.white
             label.text = "点击加载更多"
-            label.textAlignment = .Center
+            label.textAlignment = .center
             cell.addSubview(label)
-            label.snp_makeConstraints(closure: { (make) in
+            label.snp.makeConstraints({ (make) in
                 make.center.equalTo(cell)
             })
             cell.backgroundColor = UIColor.hexStr("00631b", alpha: 1)
             return cell
         }
-        let cell = tableView.dequeueReusableCellWithIdentifier("RepoTableViewCell", forIndexPath: indexPath) as? RepoTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "RepoTableViewCell", for: indexPath) as? RepoTableViewCell
         cell?.repo = reposArray![indexPath.row]
         return cell!
     }
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row  == reposArray?.count{
             return 40
         }
@@ -104,13 +104,13 @@ extension RepoListViewController:UITableViewDataSource{
     }
 }
 extension RepoListViewController:UITableViewDelegate{
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == reposArray?.count {
             fetchRepoList()
             return
         }
         let sb = UIStoryboard(name: "Main", bundle: nil)
-        let repoInfoVC = sb.instantiateViewControllerWithIdentifier("repoinfo") as? RepoInfoViewController
+        let repoInfoVC = sb.instantiateViewController(withIdentifier: "repoinfo") as? RepoInfoViewController
         repoInfoVC!.repoInfo = reposArray![indexPath.row]
         navigationController?.pushViewController(repoInfoVC!, animated: true)
     }

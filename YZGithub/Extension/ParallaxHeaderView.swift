@@ -10,22 +10,22 @@
 import UIKit
 
 protocol ParallaxHeaderViewDelegate: class {
-    func LockScorllView(maxOffsetY: CGFloat)
-    func autoAdjustNavigationBarAplha(aplha: CGFloat)
+    func LockScorllView(_ maxOffsetY: CGFloat)
+    func autoAdjustNavigationBarAplha(_ aplha: CGFloat)
 }
 
 extension ParallaxHeaderViewDelegate where Self : UITableViewController {
-    func LockScorllView(maxOffsetY: CGFloat) {
+    func LockScorllView(_ maxOffsetY: CGFloat) {
         self.tableView.contentOffset.y = maxOffsetY
     }
-    func autoAdjustNavigationBarAplha(aplha: CGFloat) {
+    func autoAdjustNavigationBarAplha(_ aplha: CGFloat) {
         self.navigationController?.navigationBar.setMyBackgroundColorAlpha(aplha)
     }
 }
 
 enum ParallaxHeaderViewStyle {
-    case Default
-    case Thumb
+    case `default`
+    case thumb
 }
 
 class ParallaxHeaderView: UIView {
@@ -42,11 +42,11 @@ class ParallaxHeaderView: UIView {
     
     
     /// 模糊效果的view
-    private var blurView: UIVisualEffectView?
-    private let defaultBlurViewAlpha: CGFloat = 0.5
-    private let style: ParallaxHeaderViewStyle
+    fileprivate var blurView: UIVisualEffectView?
+    fileprivate let defaultBlurViewAlpha: CGFloat = 0.5
+    fileprivate let style: ParallaxHeaderViewStyle
     
-    private let originY:CGFloat = -64
+    fileprivate let originY:CGFloat = -64
     
      // MARK: - 初始化方法
     init(style: ParallaxHeaderViewStyle,subView: UIView, headerViewSize: CGSize, maxOffsetY: CGFloat, delegate: ParallaxHeaderViewDelegate) {
@@ -56,9 +56,9 @@ class ParallaxHeaderView: UIView {
         self.delegate = delegate
         self.style = style
         
-        super.init(frame: CGRectMake(0, 0, headerViewSize.width, headerViewSize.height))
+        super.init(frame: CGRect(x: 0, y: 0, width: headerViewSize.width, height: headerViewSize.height))
         //这里是自动布局的设置，大概意思就是subView与它的superView拥有一样的frame
-        subView.autoresizingMask = [.FlexibleLeftMargin, .FlexibleRightMargin, .FlexibleTopMargin, .FlexibleBottomMargin, .FlexibleWidth, .FlexibleHeight]
+        subView.autoresizingMask = [.flexibleLeftMargin, .flexibleRightMargin, .flexibleTopMargin, .flexibleBottomMargin, .flexibleWidth, .flexibleHeight]
         self.clipsToBounds = false;  //必须得设置成false
         self.contentView.frame = self.bounds
         self.contentView.addSubview(subView)
@@ -72,13 +72,13 @@ class ParallaxHeaderView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    private func setupStyle() {
+    fileprivate func setupStyle() {
         switch style {
-        case .Default:
+        case .default:
             self.autoAdjustAplha = true
-        case .Thumb:
+        case .thumb:
             self.autoAdjustAplha = false
-            let blurEffect = UIBlurEffect(style: .Light)
+            let blurEffect = UIBlurEffect(style: .light)
             let blurView = UIVisualEffectView(effect: blurEffect)
             blurView.alpha = defaultBlurViewAlpha
             blurView.frame = self.subView.frame
@@ -91,7 +91,7 @@ class ParallaxHeaderView: UIView {
     }
     
      // MARK: - 其他方法
-    func layoutHeaderViewWhenScroll(offset: CGPoint) {
+    func layoutHeaderViewWhenScroll(_ offset: CGPoint) {
 
         let delta:CGFloat = offset.y
 
@@ -100,7 +100,7 @@ class ParallaxHeaderView: UIView {
             
         }else if delta < 0{
             
-            var rect = CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height)
+            var rect = CGRect(x: 0, y: 0, width: self.bounds.size.width, height: self.bounds.size.height)
 
             rect.origin.y += delta ;
             rect.origin.x += delta
@@ -110,10 +110,10 @@ class ParallaxHeaderView: UIView {
         }
         
         switch style {
-        case .Default:
+        case .default:
             self.layoutDefaultViewWhenScroll(delta)
             
-        case .Thumb:
+        case .thumb:
             self.layoutThumbViewWhenScroll(delta)
         }
         
@@ -123,17 +123,17 @@ class ParallaxHeaderView: UIView {
         }
     }
 
-    private func layoutDefaultViewWhenScroll(delta: CGFloat) {
+    fileprivate func layoutDefaultViewWhenScroll(_ delta: CGFloat) {
         // do nothing
     }
     
-    private func layoutThumbViewWhenScroll(delta: CGFloat) {
+    fileprivate func layoutThumbViewWhenScroll(_ delta: CGFloat) {
         
         if delta > 0 {
             self.contentView.frame.origin.y = delta
         }
         
-        if let blurView = self.blurView where delta < 0{
+        if let blurView = self.blurView, delta < 0{
             blurView.alpha = defaultBlurViewAlpha - CGFloat(delta / maxOffsetY)  < 0 ? 0 : defaultBlurViewAlpha - CGFloat(delta / maxOffsetY)
         }
     }

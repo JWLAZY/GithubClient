@@ -174,7 +174,7 @@ class Repository: NSObject,Mappable {
     }
     
     // MARK: init and mapping
-    required init?(_ map: Map) {
+    required init?(map: Map) {
         //        super.init(map)
         
     }

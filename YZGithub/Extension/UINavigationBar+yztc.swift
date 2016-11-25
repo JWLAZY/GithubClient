@@ -22,25 +22,25 @@ extension UINavigationBar {
         }
     }
     
-    func setMyBackgroundColor(color: UIColor) {
+    func setMyBackgroundColor(_ color: UIColor) {
         if self.coverView != nil {
             self.coverView!.backgroundColor = color
         }else {
-            self.setBackgroundImage(UIImage(), forBarMetrics: .Default)
+            self.setBackgroundImage(UIImage(), for: .default)
             self.shadowImage = UIImage()
-            let view = UIView(frame: CGRectMake(0, -20, UIScreen.mainScreen().bounds.size.width, CGRectGetHeight(self.bounds) + 20))
-            view.userInteractionEnabled = false
-            view.autoresizingMask = [.FlexibleHeight, .FlexibleWidth]
-            self.insertSubview(view, atIndex: 0)
+            let view = UIView(frame: CGRect(x: 0, y: -20, width: UIScreen.main.bounds.size.width, height: self.bounds.height + 20))
+            view.isUserInteractionEnabled = false
+            view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+            self.insertSubview(view, at: 0)
             view.backgroundColor = color
             self.coverView = view
         }
     }
-    func setMyBackgroundColorAlpha(alpha: CGFloat) {
+    func setMyBackgroundColorAlpha(_ alpha: CGFloat) {
         guard let coverView = self.coverView else {
             return
         }
-        self.coverView!.backgroundColor = coverView.backgroundColor?.colorWithAlphaComponent(alpha)
+        self.coverView!.backgroundColor = coverView.backgroundColor?.withAlphaComponent(alpha)
     }
 
 }

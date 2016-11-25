@@ -17,7 +17,7 @@ class PRCell: UITableViewCell {
     
     var prinfo:PullRequest? {
         didSet{
-            PRUserImage.kf_setImageWithURL(NSURL(string: prinfo!.user!.avatar_url!)!)
+            PRUserImage.kf.setImage(with:URL(string: prinfo!.user!.avatar_url!)!)
             PRTitle.text = prinfo!.title!
             PRBody.attributedText = prinfo!.body!.richText()
             
@@ -30,7 +30,7 @@ class PRCell: UITableViewCell {
         // Initialization code
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state

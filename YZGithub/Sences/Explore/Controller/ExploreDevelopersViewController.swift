@@ -26,7 +26,7 @@ class ExploreDevelopersViewController: UIViewController {
         var table:UITableView = UITableView(frame: self.view.bounds)
         table.dataSource = self
         table.delegate = self
-        table.registerNib(UINib(nibName: "DeveloperTableViewCell", bundle: nil), forCellReuseIdentifier: "DeveloperTableViewCell")
+        table.register(UINib(nibName: "DeveloperTableViewCell", bundle: nil), forCellReuseIdentifier: "DeveloperTableViewCell")
         let loadingView = DGElasticPullToRefreshLoadingViewCircle()
         loadingView.tintColor = UIColor(red: 78/255.0, green: 221/255.0, blue: 200/255.0, alpha: 1.0)
         table.dg_addPullToRefreshWithActionHandler({ [weak self] () -> Void in
@@ -50,11 +50,11 @@ class ExploreDevelopersViewController: UIViewController {
         tableView.dg_removePullToRefresh()
     }
     func fetchDeveData() {
-        Provider.sharedProvider.request(GitHubAPI.SearchUsers(para: para)) {[weak self] (result) in
+        Provider.sharedProvider.request(GitHubAPI.searchUsers(para: para)) {[weak self] (result) in
             switch result{
-            case let .Success(response):
+            case let .success(response):
                 do{
-                    if let userResult:SearchUserResponse = Mapper<SearchUserResponse>().map(try response.mapJSON()) {
+                    if let userResult:SearchUserResponse = Mapper<SearchUserResponse>().map(JSONObject: try response.mapJSON()) {
                         
                         if userResult.items == nil{
                             return
@@ -73,7 +73,7 @@ class ExploreDevelopersViewController: UIViewController {
                 }catch{
                     self!.tableView.dg_stopLoading()
                 }
-            case let .Failure(error):
+            case let .failure(error):
                 print(error)
                 self!.tableView.dg_stopLoading()
             }
@@ -93,34 +93,34 @@ extension ExploreDevelopersViewController:UIScrollViewDelegate {
 }
 
 extension ExploreDevelopersViewController:UITableViewDataSource{
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data.count + 1
     }
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if indexPath.row == data.count {
-            let cell = UITableViewCell(style: .Default, reuseIdentifier: "next")
+            let cell = UITableViewCell(style: .default, reuseIdentifier: "next")
             let label = UILabel()
             label.frame.size = CGSize(width: 120, height: 40)
-            label.textColor = UIColor.whiteColor()
+            label.textColor = UIColor.white
             label.text = "点击加载更多"
-            label.textAlignment = .Center
+            label.textAlignment = .center
             cell.addSubview(label)
-            label.snp_makeConstraints(closure: { (make) in
+            label.snp_makeConstraints({ (make) in
                 make.center.equalTo(cell)
             })
             cell.backgroundColor = UIColor.hexStr("00631b", alpha: 1)
             
             return cell
         }
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! DeveloperTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! DeveloperTableViewCell
         cell.deve = data[indexPath.row]
         return cell
     }
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row == data.count {
             return 44
         }
@@ -128,13 +128,13 @@ extension ExploreDevelopersViewController:UITableViewDataSource{
     }
 }
 extension ExploreDevelopersViewController:UITableViewDelegate{
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == data.count {
             footerRefesh()
         }else{
             let devVC = DeveloperViewController()
             devVC.developer = data[indexPath.row]
-            parentViewController?.navigationController?.pushViewController(devVC, animated: true)
+            parent?.navigationController?.pushViewController(devVC, animated: true)
         }
     }
 }

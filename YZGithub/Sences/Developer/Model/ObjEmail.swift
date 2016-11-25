@@ -15,7 +15,7 @@ class ObjEmail: NSObject,Mappable {
     var verified:Bool?
     
     
-    required init?(_ map: Map) {
+    required init?(map: Map) {
         //        super.init(map)
     }
     

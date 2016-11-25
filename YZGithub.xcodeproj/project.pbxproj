@@ -86,6 +86,8 @@
 		46BF9FA61D6459750036D2F3 /* RepoInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46BF9F7D1D6459750036D2F3 /* RepoInfoCell.xib */; };
 		46BF9FA71D6459750036D2F3 /* RepoIntroCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BF9F7E1D6459750036D2F3 /* RepoIntroCell.swift */; };
 		46BF9FA81D6459750036D2F3 /* RepoIntroCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46BF9F7F1D6459750036D2F3 /* RepoIntroCell.xib */; };
+		46E5D5AF1DE83E1E00FB8061 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 46E5D5AA1DE83E1E00FB8061 /* libWeChatSDK.a */; };
+		46E5D5B01DE83E1E00FB8061 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 46E5D5AB1DE83E1E00FB8061 /* README.txt */; };
 		46EAF8191D367F2100210109 /* UIColor+yztc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46EAF8181D367F2100210109 /* UIColor+yztc.swift */; };
 		46EAF81B1D369AFA00210109 /* KeysConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46EAF81A1D369AFA00210109 /* KeysConfig.swift */; };
 		46EAF8241D36CC3D00210109 /* UINavigationBar+yztc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46EAF8231D36CC3D00210109 /* UINavigationBar+yztc.swift */; };
@@ -189,6 +191,11 @@
 		46BF9F7D1D6459750036D2F3 /* RepoInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RepoInfoCell.xib; sourceTree = "<group>"; };
 		46BF9F7E1D6459750036D2F3 /* RepoIntroCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepoIntroCell.swift; sourceTree = "<group>"; };
 		46BF9F7F1D6459750036D2F3 /* RepoIntroCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RepoIntroCell.xib; sourceTree = "<group>"; };
+		46E5D5AA1DE83E1E00FB8061 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
+		46E5D5AB1DE83E1E00FB8061 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
+		46E5D5AC1DE83E1E00FB8061 /* WechatAuthSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WechatAuthSDK.h; sourceTree = "<group>"; };
+		46E5D5AD1DE83E1E00FB8061 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
+		46E5D5AE1DE83E1E00FB8061 /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
 		46EAF8181D367F2100210109 /* UIColor+yztc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+yztc.swift"; sourceTree = "<group>"; };
 		46EAF81A1D369AFA00210109 /* KeysConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeysConfig.swift; sourceTree = "<group>"; };
 		46EAF8231D36CC3D00210109 /* UINavigationBar+yztc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationBar+yztc.swift"; sourceTree = "<group>"; };
@@ -208,6 +215,7 @@
 				468ADD311D579C82006A2106 /* libstdc++.tbd in Frameworks */,
 				468ADD2F1D579C7A006A2106 /* CoreTelephony.framework in Frameworks */,
 				468ADD2D1D579C6E006A2106 /* libsqlite3.tbd in Frameworks */,
+				46E5D5AF1DE83E1E00FB8061 /* libWeChatSDK.a in Frameworks */,
 				468ADD2B1D579C65006A2106 /* CoreGraphics.framework in Frameworks */,
 				468ADD291D579C5B006A2106 /* libiconv.tbd in Frameworks */,
 				468ADD271D579C47006A2106 /* Security.framework in Frameworks */,
@@ -381,6 +389,7 @@
 		4657DF0B1D33C8B8006AF3A9 /* ThridParty */ = {
 			isa = PBXGroup;
 			children = (
+				46E5D5A91DE83E1E00FB8061 /* WX */,
 				4626EB751D4AF8CE00067CC3 /* JWSheet */,
 			);
 			path = ThridParty;
@@ -645,6 +654,18 @@
 			path = Stars;
 			sourceTree = "<group>";
 		};
+		46E5D5A91DE83E1E00FB8061 /* WX */ = {
+			isa = PBXGroup;
+			children = (
+				46E5D5AA1DE83E1E00FB8061 /* libWeChatSDK.a */,
+				46E5D5AB1DE83E1E00FB8061 /* README.txt */,
+				46E5D5AC1DE83E1E00FB8061 /* WechatAuthSDK.h */,
+				46E5D5AD1DE83E1E00FB8061 /* WXApi.h */,
+				46E5D5AE1DE83E1E00FB8061 /* WXApiObject.h */,
+			);
+			path = WX;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -694,14 +715,16 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = Zheng;
 				TargetAttributes = {
 					4657DEDE1D33C72C006AF3A9 = {
 						CreatedOnToolsVersion = 7.3;
+						LastSwiftMigration = 0820;
 					};
 					4657DEF21D33C72C006AF3A9 = {
 						CreatedOnToolsVersion = 7.3;
+						LastSwiftMigration = 0820;
 						TestTargetID = 4657DEDE1D33C72C006AF3A9;
 					};
 				};
@@ -733,6 +756,7 @@
 				46BF9FA61D6459750036D2F3 /* RepoInfoCell.xib in Resources */,
 				4657DEED1D33C72C006AF3A9 /* LaunchScreen.storyboard in Resources */,
 				46BF9FA81D6459750036D2F3 /* RepoIntroCell.xib in Resources */,
+				46E5D5B01DE83E1E00FB8061 /* README.txt in Resources */,
 				4657DEEA1D33C72C006AF3A9 /* Assets.xcassets in Resources */,
 				4668A53A1D6D9637001BE615 /* EventCell.xib in Resources */,
 				4668A5261D6D41A3001BE615 /* MessageCell.xib in Resources */,
@@ -797,7 +821,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		9FCC9DF3D313E57347BEEBC4 /* [CP] Embed Pods Frameworks */ = {
@@ -937,8 +961,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -982,8 +1008,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1002,6 +1030,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -1010,17 +1039,23 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = FCEA5E31BF3E45FC5B254783 /* Pods-YZGithub.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Xiangwang Huang (BC27KYGBBN)";
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = YZGithub/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/YZGithub/ThridParty/WX",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.zjw.YZGithub;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "6c682f6f-e9f0-4f78-bf50-4aed439e6e78";
 				SWIFT_OBJC_BRIDGING_HEADER = "YZGithub/Helper/YZGithub-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -1028,16 +1063,22 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4D2DBC43C8610F6D5B78CC0F /* Pods-YZGithub.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Xiangwang Huang (BC27KYGBBN)";
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = YZGithub/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/YZGithub/ThridParty/WX",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.zjw.YZGithub;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "6c682f6f-e9f0-4f78-bf50-4aed439e6e78";
 				SWIFT_OBJC_BRIDGING_HEADER = "YZGithub/Helper/YZGithub-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -1049,6 +1090,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.zjw.YZGithubTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/YZGithub.app/YZGithub";
 			};
 			name = Debug;
@@ -1061,6 +1103,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.zjw.YZGithubTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/YZGithub.app/YZGithub";
 			};
 			name = Release;

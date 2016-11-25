@@ -14,7 +14,7 @@ class ObjPermissions: NSObject,Mappable {
     var pull:Int?
     var push:Int?
     
-    required init?(_ map: Map) {
+    required init?(map: Map) {
         //        super.init(map)
     }
     

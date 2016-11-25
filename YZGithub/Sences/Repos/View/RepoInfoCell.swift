@@ -13,7 +13,7 @@ class RepoInfoCell: UITableViewCell {
     @IBOutlet weak var imageIcon: UIImageView!
     @IBOutlet weak var actionName: UILabel!
 
-    func customUI(image:UIImage,actionName:String) {
+    func customUI(_ image:UIImage,actionName:String) {
         imageIcon.image = image
         self.actionName.text = actionName
     }
@@ -23,7 +23,7 @@ class RepoInfoCell: UITableViewCell {
         // Initialization code
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state

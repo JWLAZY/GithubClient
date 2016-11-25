@@ -18,6 +18,6 @@ class BaseTabBarViewController: UITabBarController {
     }
 
     func custemUI() {
-        self.tabBar.tintColor = UIColor.whiteColor()
+        self.tabBar.tintColor = UIColor.white
     }
 }

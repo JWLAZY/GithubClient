@@ -20,7 +20,7 @@ class DeveloperTableViewCell: UITableViewCell {
     
     var deve:ObjUser? {
         didSet{
-           userImage.kf_setImageWithURL(NSURL(string: deve!.avatar_url!)!)
+            userImage.kf.setImage(with:URL(string: deve!.avatar_url!)!)
             userName.text = deve!.login
             userInfo.text = deve!.email
         }
@@ -31,7 +31,7 @@ class DeveloperTableViewCell: UITableViewCell {
         // Initialization code
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state

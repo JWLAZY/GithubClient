@@ -18,7 +18,7 @@ class DeveloperViewController: UIViewController {
         case RepoInfoCell
     }
     //MARK: UI 属性
-    let tableView:UITableView = UITableView(frame: CGRectZero, style: .Grouped)
+    let tableView:UITableView = UITableView(frame: CGRect.zero, style: .grouped)
     var headerView:UIView?
     var userImage:UIImageView?
     var userName:UILabel = UILabel()
@@ -35,7 +35,7 @@ class DeveloperViewController: UIViewController {
     //MARK: Data
     var developer:ObjUser? {
         didSet{
-            userImage?.kf_setImageWithURL(NSURL(string: developer!.avatar_url!)!)
+            userImage?.kf.setImage(with:URL(string: developer!.avatar_url!)!)
             userName.text = developer?.login
             follerNumber.text = "\(developer?.followers ?? 0) 粉丝"
             follingNumber.text = "关注\(developer?.following ?? 0)人"
@@ -60,9 +60,9 @@ class DeveloperViewController: UIViewController {
         // MARK: tableview UI
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        tableView.registerNib(UINib(nibName: CellIdentifier.UserBaseInfoCell.rawValue,bundle: nil), forCellReuseIdentifier: CellIdentifier.UserBaseInfoCell.rawValue)
-        tableView.registerNib(UINib(nibName: CellIdentifier.RepoInfoCell.rawValue,bundle: nil), forCellReuseIdentifier: CellIdentifier.RepoInfoCell.rawValue)
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.register(UINib(nibName: CellIdentifier.UserBaseInfoCell.rawValue,bundle: nil), forCellReuseIdentifier: CellIdentifier.UserBaseInfoCell.rawValue)
+        tableView.register(UINib(nibName: CellIdentifier.RepoInfoCell.rawValue,bundle: nil), forCellReuseIdentifier: CellIdentifier.RepoInfoCell.rawValue)
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableViewAutomaticDimension
         view.addSubview(tableView)
@@ -74,11 +74,11 @@ class DeveloperViewController: UIViewController {
         }
         
         // MARK: headerView
-        headerView = UIView(frame: CGRectMake(0, -headerHeight, viewWidth, headerHeight))
-        headerView?.backgroundColor = UIColor.redColor()
+        headerView = UIView(frame: CGRect(x: 0, y: -headerHeight, width: viewWidth, height: headerHeight))
+        headerView?.backgroundColor = UIColor.red
         tableView.addSubview(headerView!)
         let bgImageView = UIImageView(image: UIImage(named: "profile_bk"))
-        bgImageView.contentMode = UIViewContentMode.ScaleAspectFill
+        bgImageView.contentMode = UIViewContentMode.scaleAspectFill
         headerView!.addSubview(bgImageView)
         bgImageView.snp_makeConstraints { (make) in
             make.top.bottom.equalTo(headerView!)
@@ -89,10 +89,10 @@ class DeveloperViewController: UIViewController {
         
         userImage = UIImageView(image: UIImage(named: "app_logo_90"))
         if let developer = developer{
-            userImage?.kf_setImageWithURL(NSURL(string: developer.avatar_url!)!)
+            userImage?.kf.setImage(with:URL(string: developer.avatar_url!)!)
         }
         headerView?.addSubview(userImage!)
-        userImage?.snp_makeConstraints(closure: { (make) in
+        userImage?.snp.makeConstraints({ (make) in
             make.centerX.equalTo(headerView!)
             make.width.height.equalTo(90)
             make.bottom.equalTo(headerView!.snp_bottom).offset(-60)
@@ -102,7 +102,7 @@ class DeveloperViewController: UIViewController {
         
         //MARK: user name 
         headerView?.addSubview(userName)
-        userName.textColor = UIColor.whiteColor()
+        userName.textColor = UIColor.white
         userName.snp_makeConstraints { (make) in
             make.centerX.equalTo(headerView!)
             make.top.equalTo(userImage!.snp_bottom).offset(10)
@@ -110,16 +110,16 @@ class DeveloperViewController: UIViewController {
         
         //MARK: foller number
         headerView?.addSubview(follerNumber)
-        follerNumber.textColor = UIColor.whiteColor()
-        follerNumber.font = UIFont.systemFontOfSize(12)
+        follerNumber.textColor = UIColor.white
+        follerNumber.font = UIFont.systemFont(ofSize: 12)
         follerNumber.snp_makeConstraints { (make) in
             make.centerX.equalTo(headerView!).offset(-40)
             make.top.equalTo(userName.snp_bottom).offset(5)
         }
         
         headerView?.addSubview(follingNumber)
-        follingNumber.textColor = UIColor.whiteColor()
-        follingNumber.font = UIFont.systemFontOfSize(12)
+        follingNumber.textColor = UIColor.white
+        follingNumber.font = UIFont.systemFont(ofSize: 12)
         follingNumber.snp_makeConstraints { (make) in
             make.centerX.equalTo(headerView!).offset(40)
             make.top.equalTo(userName.snp_bottom).offset(5)
@@ -133,26 +133,26 @@ class DeveloperViewController: UIViewController {
         }else {
             name = (developer?.login)!
         }
-        Provider.sharedProvider.request(GitHubAPI.UserInfo(username: name!)) {[weak self] (result) in
+        Provider.sharedProvider.request(GitHubAPI.userInfo(username: name!)) {[weak self] (result) in
             switch result {
-            case let .Success(response):
+            case let .success(response):
                 do{
-                    if let result1:ObjUser = Mapper<ObjUser>().map(try response.mapJSON()) {
+                    if let result1:ObjUser = Mapper<ObjUser>().map(JSONObject: try response.mapJSON()) {
                         self!.developer = result1
                         self!.tableView.reloadData()
-                        self?.tableView.scrollToRowAtIndexPath(NSIndexPath(forItem: 0, inSection: 0), atScrollPosition: UITableViewScrollPosition.Top, animated: true)
+                        self?.tableView.scrollToRow(at: IndexPath(item: 0, section: 0), at: UITableViewScrollPosition.top, animated: true)
                     }
                 }catch{
                     
                 }
-            case let .Failure(error):
+            case let .failure(error):
                 print(error)
             }
         }
     }
 }
 extension DeveloperViewController: UIScrollViewDelegate{
-    func scrollViewDidScroll(scrollView: UIScrollView) {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offsetY = scrollView.contentOffset.y
         print(offsetY)
         if fabs(offsetY) > headerHeight {
@@ -165,7 +165,7 @@ extension DeveloperViewController: UIScrollViewDelegate{
     }
 }
 extension DeveloperViewController: UITableViewDelegate{
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let index = (indexPath.section, indexPath.row)
         switch index {
         case (2,0):
@@ -179,19 +179,19 @@ extension DeveloperViewController: UITableViewDelegate{
 }
 
 extension DeveloperViewController:UITableViewDataSource {
-    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0 {
             return 0.1
         }
         return 10
     }
-    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 0.1
     }
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 3
     }
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
             return 3
@@ -201,11 +201,11 @@ extension DeveloperViewController:UITableViewDataSource {
             return 1
         }
     }
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
         case 0:
-            let cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier.UserBaseInfoCell.rawValue, forIndexPath: indexPath) as? UserBaseInfoCell
-            cell?.selectionStyle = .None
+            let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.UserBaseInfoCell.rawValue, for: indexPath) as? UserBaseInfoCell
+            cell?.selectionStyle = .none
             switch indexPath.row {
             case 0:
                 cell?.customUI(name: "地址", value: developer?.location ?? "他没有写")
@@ -216,11 +216,11 @@ extension DeveloperViewController:UITableViewDataSource {
             }
             return cell!
         case 1:
-            let cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier.RepoInfoCell.rawValue, forIndexPath: indexPath) as? RepoInfoCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.RepoInfoCell.rawValue, for: indexPath) as? RepoInfoCell
             cell?.customUI(UIImage(named: "octicon_person_25")!,actionName:"详细资料")
             return cell!
         default:
-            let cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier.RepoInfoCell.rawValue, forIndexPath: indexPath) as? RepoInfoCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier.RepoInfoCell.rawValue, for: indexPath) as? RepoInfoCell
             cell?.customUI(UIImage(named: "coticon_repository_25")!, actionName: "仓库")
             return cell!
         }

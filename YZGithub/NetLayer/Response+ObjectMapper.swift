@@ -18,27 +18,29 @@ public enum PageType:String {
 }
 
 public extension Response{
-    public func mapObject<T: Mappable>(type: T.Type) throws -> T {
-        guard let object = Mapper<T>().map(try mapJSON()) else {
-            throw Error.JSONMapping(self)
+    public func mapObject<T: Mappable>(_ type: T.Type) throws -> T {
+        
+        guard let object = Mapper<T>().map(JSONObject: try mapJSON()) else {
+            throw Error.jsonMapping(self)
         }
         return object
     }
-    public func mapArray<T: Mappable>(type: T.Type) throws -> [T] {
-        guard let objects = Mapper<T>().mapArray(try mapJSON()) else {
-            throw Error.JSONMapping(self)
+    public func mapArray<T: Mappable>(_ type: T.Type) throws -> [T] {
+        
+        guard let objects = Mapper<T>().mapArray(JSONObject: try mapJSON()) else {
+            throw Error.jsonMapping(self)
         }
         return objects
     }
-    public func pageNumberWithType(type:PageType) -> Int? {
+    public func pageNumberWithType(_ type:PageType) -> Int? {
         if let linkString = self.Link() {
-            let linkArray = linkString.componentsSeparatedByString(",")
+            let linkArray = linkString.components(separatedBy: ",")
             for link in linkArray {
-                if link.containsString(type.rawValue) {
-                    let startindex = link.rangeOfString("page=")?.endIndex
-                    let endindex = link.rangeOfString(">;")?.startIndex
+                if link.contains(type.rawValue) {
+                    let startindex = link.range(of:"page=")?.upperBound
+                    let endindex = link.range(of: ">;")?.lowerBound
                     if let start = startindex , let end = endindex {
-                        let page =  link.substringWithRange(start..<end)
+                        let page =  link.substring(with: start..<end)
                             return Int(page)
                     }
                 }
@@ -46,8 +48,8 @@ public extension Response{
         }
         return nil
     }
-    private func Link() -> String? {
-        let httpresponse =  self.response as? NSHTTPURLResponse
+    fileprivate func Link() -> String? {
+        let httpresponse =  self.response as? HTTPURLResponse
         if let httpresponse = httpresponse {
             let allHeader = httpresponse.allHeaderFields as? [String:AnyObject]
             return allHeader?["Link"] as? String

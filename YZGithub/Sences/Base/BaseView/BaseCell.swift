@@ -12,7 +12,7 @@ class BaseCell: UITableViewCell {
 
 //    var model:T? 
     
-    func setModel<T>(model:T) {
+    func setModel<T>(_ model:T) {
         
     }
     
@@ -21,7 +21,7 @@ class BaseCell: UITableViewCell {
         
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state

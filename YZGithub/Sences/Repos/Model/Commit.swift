@@ -17,7 +17,7 @@ class Commit: NSObject,Mappable {
     var sha:String?
     var url:String?
     var message:String?
-    required init?(_ map: Map) {
+    required init?(map: Map) {
         
     }
     override init() {

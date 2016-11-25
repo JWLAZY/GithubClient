@@ -12,27 +12,27 @@ import MBProgressHUD
 extension MBProgressHUD{
     
     
-    class func showMsg(msg:String?, view:UIView? = UIApplication.sharedApplication().keyWindow){
+    class func showMsg(_ msg:String?, view:UIView? = UIApplication.shared.keyWindow){
         
         if msg == nil || msg!.isEmpty {
             return;
         }
         
-        let hub = MBProgressHUD.showHUDAddedTo(view, animated: true)
-        hub.labelText = msg
-        hub.mode = .Text
+        let hub = MBProgressHUD.showAdded(to: view!, animated: true)
+        hub.labelText = msg!
+        hub.mode = .text
         hub.hide(true, afterDelay: 2)
     }
     
-    class func showError(msg:String?,view:UIView? = UIApplication.sharedApplication().keyWindow){
+    class func showError(_ msg:String?,view:UIView? = UIApplication.shared.keyWindow){
         
         if msg == nil || msg!.isEmpty {
             return;
         }
         
-        let hub = MBProgressHUD.showHUDAddedTo(view, animated: true)
-        hub.labelText = msg
-        hub.mode = .Text
+        let hub = MBProgressHUD.showAdded(to: view!, animated: true)
+        hub.labelText = msg!
+        hub.mode = .text
         hub.labelColor = UIColor.navBarTintColor()
         hub.hide(true, afterDelay: 3)
     }
