@@ -37,10 +37,10 @@ class ExploreViewController: BaseViewController {
 //        self.view.addSubview(segmentView)
         
         self.view.addSubview(scrollView)
-        scrollView.snp_makeConstraints { (make) in
+        scrollView.snp.makeConstraints { (make) in
             make.top.equalTo(self.view)
             make.width.equalTo(self.view)
-            make.bottom.equalTo(self.view.snp_bottom).offset(-44)
+            make.bottom.equalTo(self.view.snp.bottom).offset(-44)
         }
         scrollView.delegate = self
         scrollView.contentSize = CGSize(width: self.view.frame.width * 2, height: scrollView.bounds.height)

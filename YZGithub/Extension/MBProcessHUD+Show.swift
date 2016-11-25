@@ -19,9 +19,9 @@ extension MBProgressHUD{
         }
         
         let hub = MBProgressHUD.showAdded(to: view!, animated: true)
-        hub.labelText = msg!
+        hub.label.text = msg!
         hub.mode = .text
-        hub.hide(true, afterDelay: 2)
+        hub.hide(animated: true, afterDelay: 2)
     }
     
     class func showError(_ msg:String?,view:UIView? = UIApplication.shared.keyWindow){
@@ -31,9 +31,9 @@ extension MBProgressHUD{
         }
         
         let hub = MBProgressHUD.showAdded(to: view!, animated: true)
-        hub.labelText = msg!
+        hub.label.text = msg!
         hub.mode = .text
-        hub.labelColor = UIColor.navBarTintColor()
-        hub.hide(true, afterDelay: 3)
+        hub.label.textColor = UIColor.navBarTintColor()
+        hub.hide(animated: true, afterDelay: 3)
     }
 }

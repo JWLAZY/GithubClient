@@ -109,7 +109,7 @@ extension ExploreDevelopersViewController:UITableViewDataSource{
             label.text = "点击加载更多"
             label.textAlignment = .center
             cell.addSubview(label)
-            label.snp_makeConstraints({ (make) in
+            label.snp.makeConstraints({ (make) in
                 make.center.equalTo(cell)
             })
             cell.backgroundColor = UIColor.hexStr("00631b", alpha: 1)

@@ -51,16 +51,15 @@ class RepoListViewController: UIViewController {
             switch result {
             case let .success(response):
                 do{
-                    if let repos:[Repository]? = try response.mapArray(Repository) {
-                        if self.page == 1 {
-                            self.reposArray?.removeAll()
-                            self.reposArray = repos!
-                        }else{
-                            self.reposArray = self.reposArray! + repos!
-                        }
-                        self.page += 1
-                        self.tableView?.reloadData()
+                    let repos:[Repository] = try response.mapArray(Repository.self) 
+                    if self.page == 1 {
+                        self.reposArray?.removeAll()
+                        self.reposArray = repos
+                    }else{
+                        self.reposArray = self.reposArray! + repos
                     }
+                    self.page += 1
+                    self.tableView?.reloadData()
                 }catch{
                     
                 }

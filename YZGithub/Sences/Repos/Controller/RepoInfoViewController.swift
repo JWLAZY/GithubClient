@@ -54,25 +54,25 @@ class RepoInfoViewController: UIViewController {
     }
     func fetchRepoInfo() {
         let hud = MBProgressHUD.showAdded(to: view, animated: true)
-        hud.labelText = "加载仓库信息中"
+        hud.label.text = "加载仓库信息中"
          let nb = Provider.sharedProvider.request(GitHubAPI.userSomeRepo(owner: repoOwner!, repo: repoName!)) { [weak self](result) in
             switch result {
             case .success(let response):
                 do {
-                    if let repo:Repository = try response.mapObject(Repository.self) {
-                        self!.repoInfo = repo
-                        print(self?.classForCoder ?? "位置类型")
-                        if self?.tableView != nil {
-                            self!.tableView.reloadData()
-                        }
+                    let repo:Repository = try response.mapObject(Repository.self)
+                    self!.repoInfo = repo
+                    print(self?.classForCoder ?? "位置类型")
+                    if self?.tableView != nil {
+                        self!.tableView.reloadData()
                     }
+                    
                 }catch{
-                        GlobalHubHelper.showError("数据解析失败", view: self!.view)
+                    MBProgressHUD.showError("数据解析失败")
                 }
             case .failure(let error):
-                GlobalHubHelper.showError("网络请求失败:\(error)", view: self!.view)
+                MBProgressHUD.showError("网络请求失败:\(error)")
             }
-            MBProgressHUD.hideAllHUDs(for: self!.view, animated: true)
+            hud.hide(animated: true)
         }
         netTask.append(nb)
     }
@@ -81,11 +81,8 @@ class RepoInfoViewController: UIViewController {
             switch result {
             case let .success(response):
                 do{
-                    if let commits:[Branches] = try response.mapArray(Branches) {
-                        if commits != nil {
-                            self!.branches = commits
-                        }
-                    }
+                    let commits:[Branches] = try response.mapArray(Branches.self)
+                    self!.branches = commits    
                 }catch{
                 }
             case let .failure(error):
