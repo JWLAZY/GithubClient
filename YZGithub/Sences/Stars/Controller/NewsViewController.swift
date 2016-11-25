@@ -26,15 +26,15 @@ class NewsViewController: BaseTableViewController<Event> {
     }
     func fetchData(success:@escaping ()->()) {
         if page == -1 {
-            GlobalHubHelper.showError("没有数据了", view: self.view)
+            MBProgressHUD.showError("没有数据了")
         }
         let hub = MBProgressHUD.showAdded(to: self.view, animated: true)
-        hub.labelText = "网络请求中..."
+        hub.label.text = "网络请求中..."
         Provider.sharedProvider.request(GitHubAPI.userEvent(username: UserInfoHelper.sharedInstance.user!.login!, page: page)) { (result) in
             switch result {
             case .success(let response):
                 do {
-                    let array = try response.mapArray(Event)
+                    let array = try response.mapArray(Event.self)
                     if self.page == 1 {
                         self.dataArray = array
                     }else {
@@ -45,12 +45,12 @@ class NewsViewController: BaseTableViewController<Event> {
                     }else {
                         self.page = -1
                     }
-                    MBProgressHUD.hideAllHUDs(for: self.view, animated: true)
+                    hub.hide(animated: true)®
                 }catch{
-                    GlobalHubHelper.showError("数据解析失败", view: self.view)
+                    MBProgressHUD.showError("数据解析失败")
                 }
             case .failure(let error):
-                GlobalHubHelper.showError("网络请求失败:\(error)", view: self.view)
+                MBProgressHUD.showError("网络请求失败:\(error)")
             }
             if self.ifloading == IfloadMore.loading {
                 self.ifloading.change()

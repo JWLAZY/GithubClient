@@ -9,6 +9,7 @@
 import UIKit
 import SnapKit
 import Kingfisher
+import MBProgressHUD
 
 class SettingViewController: BaseViewController {
 
@@ -22,7 +23,7 @@ class SettingViewController: BaseViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "settingCell")
-        tableView.snp_makeConstraints { (make) in
+        tableView.snp.makeConstraints { (make) in
             make.size.equalTo(self.view)
             make.left.top.equalTo(self.view)
         }
@@ -47,18 +48,18 @@ extension SettingViewController:UITableViewDelegate{
         switch index {
         case (0,0):
             let cell = tableView.viewWithTag(101) as! UITableViewCell
-            KingfisherManager.shared.cache.clearDiskCache(completion: { 
-                GlobalHubHelper.showMessage("缓存清除成功", view: self.view)
+            KingfisherManager.shared.cache.clearDiskCache(completion: {
+                MBProgressHUD.showError("缓存清除成功")
                 cell.textLabel?.text = "无缓存"
             })
         default:
             if ObjUser.deleteUserInfo() {
-                GlobalHubHelper.showMessage("退出成功", view: view)
+                MBProgressHUD.showMsg("退出成功")
                 self.navigationController?.popViewController(animated: true)
                 NotificationCenter.default.post(name: Notification.Name(rawValue: NotificationGitLogOutSuccessful), object: nil)
                 
             }else{
-                GlobalHubHelper.showError("退出失败", view: view)
+                MBProgressHUD.showError("退出失败")
             }
         }
     }

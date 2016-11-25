@@ -25,7 +25,7 @@ class MessagesViewController: UIViewController {
     }
     func customUI() {
         view.addSubview(tableView)
-        tableView.snp_makeConstraints { (make) in
+        tableView.snp.makeConstraints { (make) in
             make.size.left.top.equalTo(self.view)
         }
         tableView.dataSource = self
@@ -37,20 +37,21 @@ class MessagesViewController: UIViewController {
     }
     func fetchData() {
         let hub = MBProgressHUD.showAdded(to: self.view, animated: true)
-        hub.labelText = "加载数据中"
+        hub.label.text = "加载数据中"
         Provider.sharedProvider.request(GitHubAPI.message(page: 0)) { (result) in
             switch result {
             case .success(let response):
                 do{
-                    let array = try  response.mapArray(Message)
+                    let array = try  response.mapArray(Message.self)
                     self.messageArray.append(contentsOf: array)
+                    hub.hide(animated: true)
                     MBProgressHUD.hideAllHUDs(for: self.view, animated: true)
                     self.tableView.reloadData()
                 }catch {
-                    GlobalHubHelper.showMessage("数据解析失败", view: self.view)
+                    MBProgressHUD.showMsg("数据解析失败")
                 }
             case .failure(let error):
-                GlobalHubHelper.showError("error:\(error.response)", view: self.view)
+                MBProgressHUD.showError("error:\(error.response)")
             }
         }
     }
@@ -58,7 +59,7 @@ class MessagesViewController: UIViewController {
         if UserInfoHelper.sharedInstance.isLogin {
             fetchData()
         }else {
-            GlobalHubHelper.showError("请先登录...", view: self.view)
+            MBProgressHUD.showError("请先登录...")
         }
     }
 }

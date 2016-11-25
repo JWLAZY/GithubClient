@@ -51,12 +51,12 @@ class LoginViewController: YZWebViewController {
             "code":code,
             "redirect_uri":GithubRedirectUrl,
         ]
-        MBProgressHUD.showAdded(to: self.view, animated: true)
+        let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
         Alamofire.request("https://github.com/login/oauth/access_token", method: HTTPMethod.post, parameters: para, encoding: JSONEncoding.default).responseString { [weak self](response) in
-            MBProgressHUD.hideAllHUDs(for: self!.view, animated: true)
+            hud.hide(animated: true)
             switch response.result {
             case .failure(let error):
-                GlobalHubHelper.showError("登陆失败:\(error)", view: (self?.view)!)
+                MBProgressHUD.showError("登陆失败:\(error)")
             case .success(_):
                 let str = String(data: response.data!, encoding: String.Encoding.utf8)
                 if let str = str {

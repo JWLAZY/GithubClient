@@ -8,6 +8,7 @@
 
 import UIKit
 import ObjectMapper
+import MBProgressHUD
 
 class ExploreReposViewController: UIViewController {
     
@@ -43,7 +44,7 @@ class ExploreReposViewController: UIViewController {
             switch result {
             case let .success(response):
                 do{
-                    if let repos:[Repository] = try response.mapArray(Repository){
+                    if let repos:[Repository] = try response.mapArray(Repository.self){
                             self.reposData.removeAll()
                             self.reposData = repos
                             self.tableView.reloadData()
@@ -55,7 +56,7 @@ class ExploreReposViewController: UIViewController {
             case let .failure(error):
                 print(error)
                 guard error is CustomStringConvertible else {
-                    GlobalHubHelper.showError("网络请求失败", view: self.view)
+                    MBProgressHUD.showError("网络请求失败")
                     break
                 }
             }

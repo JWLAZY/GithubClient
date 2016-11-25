@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MBProgressHUD
 
 class BaseNavController: UINavigationController {
 
@@ -20,7 +21,7 @@ class BaseNavController: UINavigationController {
                 let vc = NewsViewController(nibName: nil, bundle: nil)
                 self.pushViewController(vc, animated: true)
             default:
-                GlobalHubHelper.showError("没有这个控制器", view: self.view)
+                MBProgressHUD.showError("没有这个控制器")
             }
         }
         
