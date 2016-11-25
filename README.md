@@ -1,11 +1,18 @@
 # YZGithub ![](images/Icon-28.png)
-> Github客户端
+> Github客户端.获取github中的个人或者别人的消息.
 
+**已经支持swift 3.0**
+
+
+| 分支        | swift 版本           | 状态  |
+| ------------- |:-------------:| -----:|
+| v2      | swift2.2 | 停止更新 |
+| swift3version      | swift3.0      |   开发中 |
 
 
 
 #### 关键字
-* SWITF 2.2
+* SWITF 2.2/3.0
 * MOYA
 * GITHUB
 * NETWORK
