@@ -14,7 +14,7 @@ class Subject:NSObject,Mappable {
     var type:String?
     var latest_comment_url:String?
     var url:String?
-    required init?(_ map: Map) { 
+    required init?(map: Map) { 
         
     }
     

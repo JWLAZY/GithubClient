@@ -16,7 +16,7 @@ class SearchUserResponse: NSObject,Mappable{
     var incompleteResults:Bool?
     var items:[ObjUser]?
     
-    required init?(_ map: Map) {
+    required init?(map: Map) {
         
     }
     

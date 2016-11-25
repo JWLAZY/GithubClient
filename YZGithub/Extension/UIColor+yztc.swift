@@ -10,14 +10,14 @@ import UIKit
 import Foundation
 
 extension UIColor{
-        class func hexStr(hexStr : NSString,alpha : CGFloat) -> UIColor {
-        let realHexStr = hexStr.stringByReplacingOccurrencesOfString("#", withString: "")
-        let scanner = NSScanner(string: realHexStr as String)
+        class func hexStr(_ hexStr : NSString,alpha : CGFloat) -> UIColor {
+        let realHexStr = hexStr.replacingOccurrences(of: "#", with: "")
+        let scanner = Scanner(string: realHexStr as String)
         var color:UInt32 = 0
         
         // 把16进制的字符串转成 Int 数据放到color变量中
         // bool
-        if scanner.scanHexInt(&color) {
+        if scanner.scanHexInt32(&color) {
             // & 与运算符
             let r = CGFloat( (color & 0xFF0000) >> 16 ) / 255.0
             let g = CGFloat( (color & 0x00FF00) >> 8) / 255.0
@@ -25,7 +25,7 @@ extension UIColor{
             return UIColor(red: r, green: g, blue: b, alpha: alpha)
         }else{
             print("invalid hex string",terminator:"")
-            return UIColor.whiteColor()
+            return UIColor.white
         }
     }
     class func navBarTintColor() -> UIColor {

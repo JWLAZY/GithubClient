@@ -9,7 +9,7 @@
 import Foundation
 
 public enum SearchUserQueryPrefix:String {
-    case Type = "type"
+    case `Type` = "type"
     case In = "in"
     case Repos = "repos"
     case Location = "location"
@@ -29,7 +29,7 @@ public enum UserInField : String {
     case UserName = "login"
     case FullName = "fullname"
 }
-public class ParaSearchUser : NSObject {
+open class ParaSearchUser : NSObject {
     var q:String
     var sort:String
     var order:String

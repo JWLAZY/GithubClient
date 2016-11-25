@@ -17,7 +17,7 @@ class RepoIntroCell: UITableViewCell {
     @IBOutlet weak var repoIntro: UILabel!
     var repoinfo:Repository? {
         didSet{
-            repoImage.kf_setImageWithURL(NSURL(string: (repoinfo!.owner!.avatar_url)!)!)
+            repoImage.kf.setImage(with:URL(string: (repoinfo!.owner!.avatar_url)!)!)
             repoName.text = repoinfo?.name
             repoAuthor.text = repoinfo?.owner?.login
             repoIntro.text = repoinfo?.cdescription
@@ -29,7 +29,7 @@ class RepoIntroCell: UITableViewCell {
         // Initialization code
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state

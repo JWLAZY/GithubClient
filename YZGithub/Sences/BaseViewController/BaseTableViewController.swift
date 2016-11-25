@@ -17,15 +17,19 @@ enum IfloadMore {
         case .loading:
             self = .noload
         case .noload:
-            self = loading
+            self = .loading
         }
     }
 }
 
 class BaseTableViewController<T>: UIViewController,UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate {
 
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil  , bundle: nibBundleOrNil)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     var page : Int = 1
@@ -35,17 +39,17 @@ class BaseTableViewController<T>: UIViewController,UITableViewDataSource,UITable
             self.tableView.reloadData()
         }
     }
-    let tableView = UITableView(frame: CGRectZero, style: .Plain)
+    let tableView = UITableView(frame: CGRect.zero, style: .plain)
     var cellName:String? {
         let name =  NSStringFromClass(T.self as! AnyClass) + "Cell"
-        let cellname = name.componentsSeparatedByString(".")
+        let cellname = name.components(separatedBy: ".")
          return cellname[1]
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(fetchData), name: NotificationGitLoginSuccessful, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(fetchData), name: NSNotification.Name(rawValue: NotificationGitLoginSuccessful), object: nil)
 //        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(fetchData), name: NotificationGitLogOutSuccessful, object: nil)
         customTableView()
         isLogin()
@@ -57,7 +61,7 @@ class BaseTableViewController<T>: UIViewController,UITableViewDataSource,UITable
         }
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.registerNib(UINib(nibName: cellName!,bundle: nil), forCellReuseIdentifier: cellName!)
+        tableView.register(UINib(nibName: cellName!,bundle: nil), forCellReuseIdentifier: cellName!)
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableViewAutomaticDimension
     }
@@ -70,28 +74,28 @@ class BaseTableViewController<T>: UIViewController,UITableViewDataSource,UITable
         }
     }
     //MARK: NOTI
-    func fetchData(success:()->()){
+    func fetchData(_ success:()->()){
         
     }
     //MARK: DataSource
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if dataArray != nil {
             return dataArray!.count 
         }
         return 0
     }
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellName!, forIndexPath: indexPath) as? BaseCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellName!, for: indexPath) as? BaseCell
         cell?.setModel(dataArray![indexPath.row])
-        cell!.selectionStyle = .None
+        cell!.selectionStyle = .none
         return cell!
     }
     //上拉加载
-    func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         if scrollView.contentOffset.y >= fmax(0.0, scrollView.contentSize.height - scrollView.frame.size.height) + 60 {
             if ifloading == .noload {
                 UIView.commitAnimations()
-                UIView.animateWithDuration(1.0, animations: { 
+                UIView.animate(withDuration: 1.0, animations: { 
                     self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 100, 0)
                     }, completion: { (result) in
                         self.ifloading.change()

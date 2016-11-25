@@ -14,13 +14,13 @@ class MessagesViewController: UIViewController {
 
     var messageArray = [Message]()
     
-    let tableView = UITableView(frame: CGRectZero, style: .Plain)
+    let tableView = UITableView(frame: CGRect.zero, style: .plain)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         customUI()
         isLogin()
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(fetchData), name: NotificationGitLoginSuccessful, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(fetchData), name: NSNotification.Name(rawValue: NotificationGitLoginSuccessful), object: nil)
 //        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(fetchData), name: NotificationGitLogOutSuccessful, object: nil)
     }
     func customUI() {
@@ -30,26 +30,26 @@ class MessagesViewController: UIViewController {
         }
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        tableView.registerNib(UINib(nibName: "MessageCell",bundle: nil), forCellReuseIdentifier: "messageCell")
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.register(UINib(nibName: "MessageCell",bundle: nil), forCellReuseIdentifier: "messageCell")
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableViewAutomaticDimension
     }
     func fetchData() {
-        let hub = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+        let hub = MBProgressHUD.showAdded(to: self.view, animated: true)
         hub.labelText = "加载数据中"
-        Provider.sharedProvider.request(GitHubAPI.Message(page: 0)) { (result) in
+        Provider.sharedProvider.request(GitHubAPI.message(page: 0)) { (result) in
             switch result {
-            case .Success(let response):
+            case .success(let response):
                 do{
                     let array = try  response.mapArray(Message)
-                    self.messageArray.appendContentsOf(array)
-                    MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
+                    self.messageArray.append(contentsOf: array)
+                    MBProgressHUD.hideAllHUDs(for: self.view, animated: true)
                     self.tableView.reloadData()
                 }catch {
                     GlobalHubHelper.showMessage("数据解析失败", view: self.view)
                 }
-            case .Failure(let error):
+            case .failure(let error):
                 GlobalHubHelper.showError("error:\(error.response)", view: self.view)
             }
         }
@@ -63,11 +63,11 @@ class MessagesViewController: UIViewController {
     }
 }
 extension MessagesViewController:UITableViewDataSource{
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return messageArray.count
     }
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("messageCell", forIndexPath: indexPath) as? MessageCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "messageCell", for: indexPath) as? MessageCell
         cell?.message = messageArray[indexPath.row]
         return cell!
     }

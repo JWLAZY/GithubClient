@@ -31,7 +31,7 @@ class Branches: NSObject,Mappable {
     override init() {
         
     }
-    required init?(_ map: Map) {
+    required init?(map: Map) {
         
     }
     func mapping(map: Map) {

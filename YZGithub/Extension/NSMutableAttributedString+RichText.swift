@@ -9,8 +9,8 @@
 import UIKit
 
 extension NSMutableAttributedString {
-    func linkWithString(string:String,inString:String,url:String) {
-        let range = inString.NSRangeFromRange(inString.rangeOfString(string)!)
-        self.addAttributes([NSFontAttributeName:UIFont.italicSystemFontOfSize(16),NSLinkAttributeName:NSURL(string:url)!], range: range)
+    func linkWithString(_ string:String,inString:String,url:String) {
+        let range = inString.NSRangeFromRange(inString.range(of: string)!)
+        self.addAttributes([NSFontAttributeName:UIFont.italicSystemFont(ofSize: 16),NSLinkAttributeName:URL(string:url)!], range: range!)
     }
 }

@@ -27,7 +27,7 @@ class ExploreReposViewController: UIViewController {
         table.dataSource = self
         table.delegate = self
         
-        table.registerNib(UINib(nibName: "RepoTableViewCell", bundle: nil), forCellReuseIdentifier: "RepoTableViewCell")
+        table.register(UINib(nibName: "RepoTableViewCell", bundle: nil), forCellReuseIdentifier: "RepoTableViewCell")
         return table
     }()
     
@@ -38,21 +38,21 @@ class ExploreReposViewController: UIViewController {
     
     func fetchData() {
         let provider = Provider.sharedProvider
-        provider.request(GitHubAPI.TrendingRepos(since: "daily", language: "ALL")){ result in
+        provider.request(GitHubAPI.trendingRepos(since: "daily", language: "ALL")){ result in
             
             switch result {
-            case let .Success(response):
+            case let .success(response):
                 do{
-                    if let repos:[Repository]? = try response.mapArray(Repository){
+                    if let repos:[Repository] = try response.mapArray(Repository){
                             self.reposData.removeAll()
-                            self.reposData = repos!
+                            self.reposData = repos
                             self.tableView.reloadData()
-                            self.tableView.setContentOffset(CGPointZero, animated:true)
+                            self.tableView.setContentOffset(CGPoint.zero, animated:true)
                     }else{
                     }
                 }catch {
                 }
-            case let .Failure(error):
+            case let .failure(error):
                 print(error)
                 guard error is CustomStringConvertible else {
                     GlobalHubHelper.showError("网络请求失败", view: self.view)
@@ -63,27 +63,27 @@ class ExploreReposViewController: UIViewController {
     }
 }
 extension ExploreReposViewController:UITableViewDataSource{
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return reposData.count
     }
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
     }
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! RepoTableViewCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! RepoTableViewCell
         cell.repo = reposData[indexPath.row]
         return cell
     }
 }
 extension ExploreReposViewController:UITableViewDelegate{
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let infoVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("repoinfo") as? RepoInfoViewController
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let infoVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "repoinfo") as? RepoInfoViewController
         infoVC?.repoInfo = reposData[indexPath.row]
-        self.parentViewController?.navigationController?.pushViewController(infoVC!, animated: true)
+        self.parent?.navigationController?.pushViewController(infoVC!, animated: true)
     }
     
 }

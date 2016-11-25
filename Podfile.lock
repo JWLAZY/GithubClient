@@ -1,54 +1,43 @@
 PODS:
-  - Alamofire (3.4.1)
+  - Alamofire (4.2.0)
   - AttributedMarkdown (0.9.2)
-  - Bugly (2.3.0)
-  - DGElasticPullToRefresh (1.0.3)
-  - Iconic (1.0.0-beta2)
-  - IQKeyboardManagerSwift (4.0.3)
-  - JLSwiftRouter (1.0.8)
-  - Kingfisher (2.4.1)
-  - MBProgressHUD (0.9.2)
-  - Moya (6.5.0):
-    - Moya/Core (= 6.5.0)
-  - Moya/Core (6.5.0):
-    - Alamofire (~> 3.0)
-    - Result (~> 2.0)
-  - ObjectMapper (1.3.0)
-  - ReachabilitySwift (2.3.3)
-  - Result (2.1.1)
-  - SnapKit (0.21.1)
-  - Static (0.2.0)
-  - SwiftDate (2.0.2)
-  - SwiftyJSON (2.3.2)
-  - UMengSocialCOM (5.2.1)
-  - XMSegmentedControl (0.1.4)
+  - Bugly (2.4.2)
+  - DGElasticPullToRefresh (1.1)
+  - IQKeyboardManagerSwift (4.0.7)
+  - Kingfisher (3.2.1)
+  - MBProgressHUD (1.0.0)
+  - Moya (8.0.0-beta.4):
+    - Moya/Core (= 8.0.0-beta.4)
+  - Moya/Core (8.0.0-beta.4):
+    - Alamofire (~> 4.0)
+    - Result (~> 3.0)
+  - ObjectMapper (2.2.1)
+  - ReachabilitySwift (3)
+  - Result (3.0.0)
+  - SnapKit (3.0.2)
+  - Static (2.0.0)
+  - SwiftDate (4.0.7)
+  - SwiftyJSON (3.1.3)
 
 DEPENDENCIES:
-  - Alamofire
+  - Alamofire (~> 4.0)
   - AttributedMarkdown (from `https://github.com/dreamwieber/AttributedMarkdown.git`)
   - Bugly
   - DGElasticPullToRefresh
-  - Iconic (from `https://github.com/dzenbot/Iconic.git`)
   - IQKeyboardManagerSwift
-  - JLSwiftRouter
   - Kingfisher
   - MBProgressHUD
-  - Moya
+  - Moya (= 8.0.0-beta.4)
   - ObjectMapper
   - ReachabilitySwift
   - SnapKit
   - Static (from `https://github.com/flexih/Static.git`)
-  - SwiftDate (~> 2.0)
+  - SwiftDate
   - SwiftyJSON
-  - UMengSocialCOM (~> 5.2.1)
-  - XMSegmentedControl
 
 EXTERNAL SOURCES:
   AttributedMarkdown:
     :git: https://github.com/dreamwieber/AttributedMarkdown.git
-  Iconic:
-    :git: https://github.com/dzenbot/Iconic.git
-    :submodules: true
   Static:
     :git: https://github.com/flexih/Static.git
 
@@ -56,35 +45,27 @@ CHECKOUT OPTIONS:
   AttributedMarkdown:
     :commit: 4aef3c80e0ffe6c7011c20c7f703ea56af774861
     :git: https://github.com/dreamwieber/AttributedMarkdown.git
-  Iconic:
-    :commit: 2157bb37fdd8bff8452c03f26f388f14060586b9
-    :git: https://github.com/dzenbot/Iconic.git
-    :submodules: true
   Static:
-    :commit: f9a0ddcb87caa934badbc4d016140e99debfca19
+    :commit: d347ed3e0f371bcb043f3a2d4eefb422027004d8
     :git: https://github.com/flexih/Static.git
 
 SPEC CHECKSUMS:
-  Alamofire: 01a82e2f6c0f860ade35534c8dd88be61bdef40c
+  Alamofire: aa2e09d871c9160ac53c90e83c68064a94e3dfbe
   AttributedMarkdown: ac5060667280be8cc8ee33a46c73e4ec6b17ca1a
-  Bugly: 14baf2b647a689a247aa972bf136c88c4f8ca712
-  DGElasticPullToRefresh: 040f39ae69840b3261d163fe6735c5901bf851e9
-  Iconic: a988d10415b097084316bc2a3385420c4bedd4dc
-  IQKeyboardManagerSwift: b6883b720b0e76473692fdc80828442566e1075f
-  JLSwiftRouter: 1e8f27e045685e076756dc3224e15f19fd37b61b
-  Kingfisher: 41aed5b6c1ed8fa98cf6d75283ce89cf7890f517
-  MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
-  Moya: f7a4044719381cc6299f9ad3e0ef05f426f0557b
-  ObjectMapper: 4eb08a726e9791a93b2632049951b56a7c17e471
-  ReachabilitySwift: e0f6b6f280effb47731acfaaa2d5ffe223703793
-  Result: 822c879f145943320cc80a9a8372378e3d699fe4
-  SnapKit: bbad04cb016c7cead63965f16b00c09318d271ee
-  Static: b48f14dbacee91ac877bdf37c607f7524b1213ee
-  SwiftDate: b4f4d0962afe48365ad2800c9850a6626deb9359
-  SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
-  UMengSocialCOM: 074c135ce349aa4c8848d3fb8458757bcb6ffb67
-  XMSegmentedControl: 51cf4f3daf14920692a064d9252aa7b29622dda6
+  Bugly: b09cd3c7e54048a0e079be88a7a99610f14eab8f
+  DGElasticPullToRefresh: 28f11a6026302a90f8ffebbc6e24748e584dddd3
+  IQKeyboardManagerSwift: 58bbcf46b5cf9fd4ed625d28a60cb2fbae4ab0f4
+  Kingfisher: 64ef28c6d3d6f344e3ae2d7f5c9da80439505d99
+  MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
+  Moya: bad6f72ec40661f09a8cd85ab470226d2795a485
+  ObjectMapper: 41e43e1a89f8060ef5ea5d04ba852e269a621d68
+  ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
+  Result: 1b3e431f37cbcd3ad89c6aa9ab0ae55515fae3b6
+  SnapKit: 2e456761aa92d4d4067a7a5594c18769d451a8ad
+  Static: 024f1707c8b150599931560f62afce772dcca884
+  SwiftDate: 0efb04a6751b1ab804049b2b09a69848cd304c12
+  SwiftyJSON: 38a8ea2006779c0fc4c310cb2ee8195327740faf
 
-PODFILE CHECKSUM: d3e117401b14e12d8797f5c70ae8a16612a2a103
+PODFILE CHECKSUM: 41bd19734f2a58b7e6baf10e48caa1b010302c5f
 
-COCOAPODS: 1.0.1
+COCOAPODS: 1.1.1

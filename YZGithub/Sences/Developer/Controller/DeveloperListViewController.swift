@@ -11,7 +11,7 @@ import ObjectMapper
 import Alamofire
 
 enum DeveListType {
-    case Follewers
+    case follewers
 }
 
 class DeveloperListViewController: BaseViewController {
@@ -21,7 +21,7 @@ class DeveloperListViewController: BaseViewController {
     var listType:DeveListType? {
         didSet{
             switch listType! {
-            case .Follewers:
+            case .follewers:
                 fetchFollewers()
             }
         }
@@ -43,16 +43,16 @@ class DeveloperListViewController: BaseViewController {
     func customUI() {
         view.addSubview(tableView!)
         title = "成员列表"
-        tableView?.snp_makeConstraints(closure: { (make) in
+        tableView?.snp.makeConstraints({ (make) in
             make.bottom.top.equalTo(view)
             make.width.height.equalTo(view)
         })
-        tableView?.registerNib(UINib(nibName: "DeveloperTableViewCell",bundle: nil), forCellReuseIdentifier: "DeveloperTableViewCell")
+        tableView?.register(UINib(nibName: "DeveloperTableViewCell",bundle: nil), forCellReuseIdentifier: "DeveloperTableViewCell")
     }
     func fetchFollewers() {
-            Provider.sharedProvider.request(GitHubAPI.Followers(username: developer!.login!)) { [weak self](result) in
+            Provider.sharedProvider.request(GitHubAPI.followers(username: developer!.login!)) { [weak self](result) in
                 switch result {
-                case let .Success(value):
+                case let .success(value):
                     
                     do{
                     let string = try value.mapString()
@@ -64,7 +64,7 @@ class DeveloperListViewController: BaseViewController {
                     }catch{
                         print("解析失败")
                     }
-                case let .Failure(error):
+                case let .failure(error):
                         print(error)
                 }
             }
@@ -75,7 +75,7 @@ class DeveloperListViewController: BaseViewController {
     }
 }
 extension DeveloperListViewController:UITableViewDelegate{
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let devInfo = DeveloperViewController()
         if listType != nil{
                 devInfo.developer = developers[indexPath.row]
@@ -86,15 +86,15 @@ extension DeveloperListViewController:UITableViewDelegate{
     }
 }
 extension DeveloperListViewController:UITableViewDataSource{
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if listType != nil{
             return developers.count
         }else{
             return 1
         }
     }
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("DeveloperTableViewCell",forIndexPath: indexPath) as? DeveloperTableViewCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "DeveloperTableViewCell",for: indexPath) as? DeveloperTableViewCell
         if listType != nil{
                 cell?.deve = developers[indexPath.row]
         }else{
@@ -102,7 +102,7 @@ extension DeveloperListViewController:UITableViewDataSource{
         }
         return cell!
     }
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 70
     }
 }

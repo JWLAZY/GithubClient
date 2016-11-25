@@ -26,7 +26,7 @@ class Event:NSObject,Mappable {
     var actor:ObjUser?
     var repo:Repository?
     var ispublic:Bool?
-    required init?(_ map: Map) { 
+    required init?(map: Map) { 
         
     }
     

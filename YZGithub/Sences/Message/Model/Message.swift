@@ -29,7 +29,7 @@ class Message:NSObject,Mappable {
     var reason:Reason?
     var repository:Repository?
     var url:String?
-    required init?(_ map: Map) { 
+    required init?(map: Map) { 
         
     }
     

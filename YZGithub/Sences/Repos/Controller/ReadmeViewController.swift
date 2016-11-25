@@ -33,44 +33,45 @@ class ReadmeViewController: UIViewController {
     func customUI() {
         contentView = UITextView()
         view.addSubview(contentView!)
-        contentView?.snp_makeConstraints(closure: { (make) in
+        contentView?.snp.makeConstraints({ (make) in
             make.size.top.leading.equalTo(view)
         })
     }
 
     func fetchReadMeFile() {
-        Provider.sharedProvider.request(GitHubAPI.RepoReadme(owner: repo!.owner!.login!, repo: repo!.name!)) { (result) in
+        Provider.sharedProvider.request(GitHubAPI.repoReadme(owner: repo!.owner!.login!, repo: repo!.name!)) { (result) in
             switch result {
-            case let .Success(response):
+            case let .success(response):
                 if response.statusCode == 404 {
                     self.contentView?.text = "作者太懒,什么都没有写"
                     return
                 }
                 do{
-                    if NSThread.currentThread().isMainThread {
-                        dispatch_async(dispatch_get_global_queue(0, 0), {
+                    if Thread.current.isMainThread {
+                        DispatchQueue.global(qos: .utility).async(execute: { 
                             do{
-                                let string = try NSJSONSerialization.JSONObjectWithData(response.data, options: .AllowFragments)
-                                let decodedData = NSData(base64EncodedString: "\(string.valueForKey("content")!)", options: NSDataBase64DecodingOptions(rawValue: 1))!
-                                let decodedString = NSString(data: decodedData, encoding: NSUTF8StringEncoding)!
+                                let string = try JSONSerialization.jsonObject(with: response.data, options: .allowFragments)
+//                                let content = string as []
+                                let decodedData = NSData(base64Encoded: string as! String, options: NSData.Base64DecodingOptions(rawValue: 1))!
+                                let decodedString = NSString(data: decodedData as Data, encoding: String.Encoding.utf8.rawValue)!
                                 let prettyText = decodedString.richText()
-                                dispatch_async(dispatch_get_main_queue(), { 
-                                        self.contentView?.attributedText = prettyText
+                                DispatchQueue.main.async(execute: { 
+                                    self.contentView?.attributedText = prettyText
                                 })
                             }catch{
                             }
                         })
                     }else{
-                        let string = try NSJSONSerialization.JSONObjectWithData(response.data, options: .AllowFragments)
-                        let decodedData = NSData(base64EncodedString: "\(string.valueForKey("content")!)", options: NSDataBase64DecodingOptions(rawValue: 1))!
-                        let decodedString = NSString(data: decodedData, encoding: NSUTF8StringEncoding)!
+                        let string = try JSONSerialization.jsonObject(with: response.data, options: .allowFragments)
+                        let decodedData = NSData(base64Encoded: string as! String, options: NSData.Base64DecodingOptions(rawValue: 1))!
+                        let decodedString = NSString(data: decodedData as Data, encoding: String.Encoding.utf8.rawValue)!
                         let prettyText = decodedString.richText()
                         self.contentView?.attributedText = prettyText
                     }
                 }catch{
                     
                 }
-            case let .Failure(error):
+            case let .failure(error):
                 print(error)
             }
         }

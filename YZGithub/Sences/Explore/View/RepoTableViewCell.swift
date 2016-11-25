@@ -28,7 +28,7 @@ class RepoTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
     func updateUI() {
@@ -40,10 +40,10 @@ class RepoTableViewCell: UITableViewCell {
         if let starNumber  = repo?.stargazers_count {
             repoStarNumber.text = "\(starNumber)"
         }
-        repoLastActiveTime.text = (repo?.pushed_at?.toDate(DateFormat.ISO8601)?.toRelativeString(abbreviated: false, maxUnits: 1))! + " age"
+//        repoLastActiveTime.text = (repo?.pushed_at?.date(format: DateFormat.iso8601)?.toRelativeString(abbreviated: false, maxUnits: 1))! + " age"
         if let lan = repo?.language {
             repoLanguage.text = lan
         }
-        repoImage.kf_setImageWithURL(NSURL(string: (repo?.owner!.avatar_url)!)!)
+        repoImage.kf.setImage(with: URL(string: (repo?.owner!.avatar_url)!)!)
     }
 }

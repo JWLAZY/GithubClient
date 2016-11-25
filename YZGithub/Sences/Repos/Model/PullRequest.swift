@@ -20,7 +20,7 @@ class PullInfo :NSObject,Mappable{
     override init() {
         
     }
-    required init?(_ map: Map) {
+    required init?(map: Map) {
         
     }
     func mapping(map: Map) {
@@ -78,7 +78,7 @@ class PullRequest: NSObject,Mappable {
 //    var _links: _links?
     var diff_url: String?
     var html_url: String?
-    required init?(_ map: Map) {
+    required init?(map: Map) {
     }
     override init() {
     }

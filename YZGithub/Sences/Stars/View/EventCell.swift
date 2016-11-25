@@ -8,7 +8,6 @@
 
 import UIKit
 import Kingfisher
-import JLSwiftRouter
 import SwiftDate
 
 class EventCell: BaseCell {
@@ -19,26 +18,27 @@ class EventCell: BaseCell {
     @IBOutlet weak var createTime: UILabel!
     @IBOutlet weak var eventTypeImage: UIImageView!
     
-    override func setModel<T>(model: T) {
+    override func setModel<T>(_ model: T) {
         let event = model as? Event
         if let e = event {
             if let url = e.actor?.avatar_url {
-                    self.eventOwnerAvator.kf_setImageWithURL(NSURL(string: url)!, placeholderImage: UIImage(named: "empty_failed"))
+                self.eventOwnerAvator.kf.setImage(with: URL(string: url)!, placeholder: UIImage(named: "empty_failed"))
             }
             if let date = e.created_at {
-                self.createTime.text = (date.toDate(.ISO8601)?.toRelativeString(abbreviated:false, maxUnits:1))! + " age"
+//                self.createTime.text = (date.date(format: DateFormat.iso8601)?.toRelativeString(abbreviated:false, maxUnits:1))! + " age"
             }
              self.EventInfo.text = ""
             if let type = e.type {
                 switch type {
                 case .IssueCommentEvent:
                     self.eventTypeImage.image = UIImage(named: "octicon_comment_15")
-                    if let body = e.payload?["comment"]?["body"] {
-                        var text = (body as? String)?.stringByReplacingOccurrencesOfString(" ", withString: "")
-                       text = text?.stringByReplacingOccurrencesOfString("\n", withString: "")
-                        text = text?.stringByReplacingOccurrencesOfString("\r", withString: "")
-                        self.EventInfo.text = text
+                    guard let dic = e.payload?["comment"] as? [String:Any] ,let body = dic["body"] else {
+                        break;
                     }
+                    var text = (body as? String)?.replacingOccurrences(of: " ", with: "")
+                    text = text?.replacingOccurrences(of: "\n", with: "")
+                    text = text?.replacingOccurrences(of: "\r", with: "")
+                    self.EventInfo.text = text
                 case .PullRequestEvent:
                     self.eventTypeImage.image = UIImage(named: "octicon_pull_request_25")
                 case .WatchEvent:
@@ -58,7 +58,7 @@ class EventCell: BaseCell {
             generateEvent(e)
         }
     }
-    func generateEvent(e:Event) {
+    func generateEvent(_ e:Event) {
         if let type = e.type {
             var eventinfo:NSMutableAttributedString?
             self.eventLabel.attributedText = NSMutableAttributedString (string: "")
@@ -77,17 +77,17 @@ class EventCell: BaseCell {
                     case .PushEvent:
                             info = name  + "  pushed to  " + (e.payload?["ref"] as! String) + " at  " + (e.repo?.name)!
                     case .ForkEvent:
-                        if let forkRepo =  e.payload?["forkee"]?["full_name"] as? String {
-                            info = name  + " forked " + (e.repo?.name)! + " to  \(forkRepo)"
-                            linkArray[forkRepo] =  "/repos/\(forkRepo)"
-                        }else{
+                        guard let forkRepo = e.payload?["forkee"] as? [String:Any], let fullName = forkRepo["full_name"] as? String else {
                             info = name  + " forked " + (e.repo?.name)!
+                            break;
                         }
+                        info = name  + " forked " + (e.repo?.name)! + " to  \(fullName)"
+                        linkArray[fullName] =  "/repos/\(fullName)"
                     }
                 eventinfo = NSMutableAttributedString(string:info, attributes: [:])
                 eventinfo?.linkWithString(name,inString: info,url: "/user/\(name)")
-                let urlstart = e.repo?.url?.rangeOfString("/repos")?.startIndex
-                let url = e.repo?.url?.substringFromIndex(urlstart!)
+                let urlstart = e.repo?.url?.range(of: "/repos")?.lowerBound
+                let url = e.repo?.url?.substring(from: urlstart!)
                 eventinfo?.linkWithString((e.repo?.name)!,inString: info,url: url!)
                 
                 for (string,url) in linkArray {
@@ -104,19 +104,19 @@ class EventCell: BaseCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         eventLabel.delegate = self
-        eventLabel.editable = false
-        eventLabel.scrollEnabled = false
+        eventLabel.isEditable = false
+        eventLabel.isScrollEnabled = false
         eventLabel.textContainerInset = UIEdgeInsetsMake(0, -4, 0, 0)
     }
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
     
 }
 extension BaseCell:UITextViewDelegate {
-    func textView(textView: UITextView, shouldInteractWithURL URL: NSURL, inRange characterRange: NSRange) -> Bool {
-        let router = Router.sharedInstance
-        router.routeURL(URL.absoluteString) 
+    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange) -> Bool {
+//        let router = Router.sharedInstance
+//        router.routeURL(URL.absoluteString) 
         return true
     }
 }

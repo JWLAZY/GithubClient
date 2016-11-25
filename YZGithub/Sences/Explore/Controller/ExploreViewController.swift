@@ -7,16 +7,15 @@
 //
 
 import UIKit
-import XMSegmentedControl
 import SnapKit
 
 class ExploreViewController: BaseViewController {
 
 
-    var segmentView: XMSegmentedControl!
+//    var segmentView: XMSegmentedControl!
     let scrollView:UIScrollView = UIScrollView()
     var scrollHeight:CGFloat {
-        return UIScreen.mainScreen().bounds.height - 66 - 44 - 44
+        return UIScreen.main.bounds.height - 66 - 44 - 44
     }
     var viewWidth:CGFloat {
         return self.view.bounds.size.width
@@ -28,37 +27,37 @@ class ExploreViewController: BaseViewController {
         customUI()
     }
     func customUI() {
-        segmentView = XMSegmentedControl(frame: CGRect(x: 0, y: 64, width: self.view.frame.width, height: 44), segmentTitle: ["仓库","开发者"], selectedItemHighlightStyle: XMSelectedItemHighlightStyle.TopEdge)
+//        segmentView = XMSegmentedControl(frame: CGRect(x: 0, y: 64, width: self.view.frame.width, height: 44), segmentTitle: ["仓库","开发者"], selectedItemHighlightStyle: XMSelectedItemHighlightStyle.TopEdge)
         
-        segmentView.backgroundColor = UIColor(red: 22/255, green: 150/255, blue: 122/255, alpha: 1)
-        segmentView.highlightColor = UIColor(red: 25/255, green: 180/255, blue: 145/255, alpha: 1)
-        segmentView.tint = UIColor.whiteColor()
-        segmentView.highlightTint = UIColor.blackColor()
-        segmentView.delegate = self
-        self.view.addSubview(segmentView)
+//        segmentView.backgroundColor = UIColor(red: 22/255, green: 150/255, blue: 122/255, alpha: 1)
+//        segmentView.highlightColor = UIColor(red: 25/255, green: 180/255, blue: 145/255, alpha: 1)
+//        segmentView.tint = UIColor.whiteColor()
+//        segmentView.highlightTint = UIColor.blackColor()
+//        segmentView.delegate = self
+//        self.view.addSubview(segmentView)
         
         self.view.addSubview(scrollView)
         scrollView.snp_makeConstraints { (make) in
-            make.top.equalTo(segmentView.snp_bottom)
+            make.top.equalTo(self.view)
             make.width.equalTo(self.view)
             make.bottom.equalTo(self.view.snp_bottom).offset(-44)
         }
         scrollView.delegate = self
-        scrollView.contentSize = CGSizeMake(self.view.frame.width * 2, scrollView.bounds.height)
-        scrollView.pagingEnabled = true
-        scrollView.backgroundColor = UIColor.redColor()
+        scrollView.contentSize = CGSize(width: self.view.frame.width * 2, height: scrollView.bounds.height)
+        scrollView.isPagingEnabled = true
+        scrollView.backgroundColor = UIColor.red
         
         //仓库页面
         let repo = ExploreReposViewController()
         let table1 = repo.tableView
-        table1.frame = CGRectMake(0, 0, viewWidth, scrollHeight)
+        table1.frame = CGRect(x: 0, y: 0, width: viewWidth, height: scrollHeight)
         scrollView.addSubview(table1)
         self.addChildViewController(repo)
         
         //开发者页面
         let deve = ExploreDevelopersViewController()
         let table2 = deve.tableView
-        table2.frame = CGRectMake(viewWidth, 0, viewWidth, scrollHeight)
+        table2.frame = CGRect(x: viewWidth, y: 0, width: viewWidth, height: scrollHeight)
         scrollView.addSubview(table2)
         self.addChildViewController(deve)
         
@@ -68,35 +67,32 @@ class ExploreViewController: BaseViewController {
         
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
     }
 }
 extension ExploreViewController:UIScrollViewDelegate{
-    func scrollViewDidScroll(scrollView: UIScrollView) {
-        if scrollView.contentOffset.x > viewWidth {
-            segmentView.selectedSegment = 1
-        }else{
-            segmentView.selectedSegment = 0
-        }
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//        if scrollView.contentOffset.x > viewWidth {
+//            segmentView.selectedSegment = 1
+//        }else{
+//            segmentView.selectedSegment = 0
+//        }
     }
 }
 
-extension ExploreViewController:XMSegmentedControlDelegate{
-    func xmSegmentedControl(xmSegmentedControl: XMSegmentedControl, selectedSegment: Int) {
-        print(selectedSegment)
-        if selectedSegment == 1 {
-            UIView.animateWithDuration(0.2, animations: {
-                    self.scrollView.contentOffset = CGPoint(x: self.viewWidth, y: 0)
-            })
-        }else {
-            UIView.animateWithDuration(0.2, animations: {
-                    self.scrollView.contentOffset = CGPoint(x: 0, y: 0)
-            })
-            
-        }
-    }
-}
-extension XMSegmentedControl{
-    
-}
+//extension ExploreViewController:XMSegmentedControlDelegate{
+//    func xmSegmentedControl(_ xmSegmentedControl: XMSegmentedControl, selectedSegment: Int) {
+//        print(selectedSegment)
+//        if selectedSegment == 1 {
+//            UIView.animate(withDuration: 0.2, animations: {
+//                    self.scrollView.contentOffset = CGPoint(x: self.viewWidth, y: 0)
+//            })
+//        }else {
+//            UIView.animate(withDuration: 0.2, animations: {
+//                    self.scrollView.contentOffset = CGPoint(x: 0, y: 0)
+//            })
+//            
+//        }
+//    }
+//}

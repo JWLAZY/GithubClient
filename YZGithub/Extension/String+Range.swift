@@ -10,10 +10,14 @@ import UIKit
 import Foundation
 
 extension String {
-    func NSRangeFromRange(range:Range<String.Index>) -> NSRange {
+    func NSRangeFromRange(_ range:Range<String.Index>) -> NSRange? {
         let utf16view = self.utf16
-        let from = String.UTF16View.Index(range.startIndex, within: utf16view)
-        let to = String.UTF16View.Index(range.endIndex, within: utf16view)
-        return NSMakeRange(utf16view.startIndex.distanceTo(from), from.distanceTo(to))
+        let from = String.UTF16View.Index(range.lowerBound, within: utf16view)
+        let to = String.UTF16View.Index(range.upperBound, within: utf16view)
+//        return NSMakeRange(utf16view.startIndex.distanceTo(from), from.distanceTo(to))
+//        return (from...to)
+        return nil
+//        return NSRange(from.)
+//        return NSMakeRange(<#T##loc: Int##Int#>, <#T##len: Int##Int#>)
     }
 }
