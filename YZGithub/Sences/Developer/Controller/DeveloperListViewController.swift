@@ -55,12 +55,11 @@ class DeveloperListViewController: BaseViewController {
                 case let .success(value):
                     
                     do{
-                    let string = try value.mapString()
+                        let string = try value.mapString()
                         print(string)
-                    if let deves:[ObjUser] = try value.mapArray(ObjUser) {
+                        let deves:[ObjUser] = try value.mapArray(ObjUser.self) 
                         self!.developers = deves
                         self?.tableView?.reloadData()
-                        }
                     }catch{
                         print("解析失败")
                     }

@@ -51,17 +51,14 @@ class PRListViewController: UIViewController {
             switch result {
             case let .success(response):
                 do{
-                    if let prs:[PullRequest] = try response.mapArray(PullRequest.self) {
-                        if prs.count == 0{
-                            let hub = MBProgressHUD.showAdded(to: self.view, animated: true)
-                            hub.labelText = "这个仓库太冷清,没人提PR"
-                            hub.mode = .text
-                            hub.hide(true, afterDelay: 1)
-                            return
-                        }
-                        self.prArray = prs
-                        self.tableView?.reloadData()
+                    let prs:[PullRequest] = try response.mapArray(PullRequest.self) 
+                    if prs.count == 0 {
+                        MBProgressHUD.showMsg("这个仓库太冷清,没人提PR")
+                        return
                     }
+                    self.prArray = prs
+                    self.tableView?.reloadData()
+                    
                 }catch{
                     
                 }

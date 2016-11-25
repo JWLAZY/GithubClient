@@ -68,7 +68,7 @@ class DeveloperViewController: UIViewController {
         view.addSubview(tableView)
         automaticallyAdjustsScrollViewInsets = false
         tableView.contentInset = UIEdgeInsetsMake(64 + headerHeight, 0, 60, 0)
-        tableView.snp_makeConstraints { (make) in
+        tableView.snp.makeConstraints { (make) in
             make.size.equalTo(view)
             make.top.bottom.leading.trailing.equalTo(view)
         }
@@ -80,7 +80,7 @@ class DeveloperViewController: UIViewController {
         let bgImageView = UIImageView(image: UIImage(named: "profile_bk"))
         bgImageView.contentMode = UIViewContentMode.scaleAspectFill
         headerView!.addSubview(bgImageView)
-        bgImageView.snp_makeConstraints { (make) in
+        bgImageView.snp.makeConstraints { (make) in
             make.top.bottom.equalTo(headerView!)
             make.leading.trailing.equalTo(headerView!)
         }
@@ -95,7 +95,7 @@ class DeveloperViewController: UIViewController {
         userImage?.snp.makeConstraints({ (make) in
             make.centerX.equalTo(headerView!)
             make.width.height.equalTo(90)
-            make.bottom.equalTo(headerView!.snp_bottom).offset(-60)
+            make.bottom.equalTo(headerView!.snp.bottom).offset(-60)
         })
         userImage?.layer.masksToBounds = true
         userImage?.layer.cornerRadius = 45
@@ -103,26 +103,26 @@ class DeveloperViewController: UIViewController {
         //MARK: user name 
         headerView?.addSubview(userName)
         userName.textColor = UIColor.white
-        userName.snp_makeConstraints { (make) in
+        userName.snp.makeConstraints { (make) in
             make.centerX.equalTo(headerView!)
-            make.top.equalTo(userImage!.snp_bottom).offset(10)
+            make.top.equalTo(userImage!.snp.bottom).offset(10)
         }
         
         //MARK: foller number
         headerView?.addSubview(follerNumber)
         follerNumber.textColor = UIColor.white
         follerNumber.font = UIFont.systemFont(ofSize: 12)
-        follerNumber.snp_makeConstraints { (make) in
+        follerNumber.snp.makeConstraints { (make) in
             make.centerX.equalTo(headerView!).offset(-40)
-            make.top.equalTo(userName.snp_bottom).offset(5)
+            make.top.equalTo(userName.snp.bottom).offset(5)
         }
         
         headerView?.addSubview(follingNumber)
         follingNumber.textColor = UIColor.white
         follingNumber.font = UIFont.systemFont(ofSize: 12)
-        follingNumber.snp_makeConstraints { (make) in
+        follingNumber.snp.makeConstraints { (make) in
             make.centerX.equalTo(headerView!).offset(40)
-            make.top.equalTo(userName.snp_bottom).offset(5)
+            make.top.equalTo(userName.snp.bottom).offset(5)
         }
     }
     
@@ -179,13 +179,13 @@ extension DeveloperViewController: UITableViewDelegate{
 }
 
 extension DeveloperViewController:UITableViewDataSource {
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    private func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0 {
             return 0.1
         }
         return 10
     }
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    private func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 0.1
     }
     func numberOfSections(in tableView: UITableView) -> Int {
