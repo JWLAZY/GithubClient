@@ -45,7 +45,7 @@ class NewsViewController: BaseTableViewController<Event> {
                     }else {
                         self.page = -1
                     }
-                    hub.hide(animated: true)®
+                    hub.hide(animated: true)
                 }catch{
                     MBProgressHUD.showError("数据解析失败")
                 }
