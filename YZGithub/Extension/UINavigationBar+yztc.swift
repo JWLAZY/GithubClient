@@ -23,7 +23,6 @@ extension UINavigationBar {
     }
     
     func setMyBackgroundColor(color: UIColor) {
-        
         if self.coverView != nil {
             self.coverView!.backgroundColor = color
         }else {
@@ -33,13 +32,11 @@ extension UINavigationBar {
             view.userInteractionEnabled = false
             view.autoresizingMask = [.FlexibleHeight, .FlexibleWidth]
             self.insertSubview(view, atIndex: 0)
-            
             view.backgroundColor = color
             self.coverView = view
         }
     }
     func setMyBackgroundColorAlpha(alpha: CGFloat) {
-        
         guard let coverView = self.coverView else {
             return
         }

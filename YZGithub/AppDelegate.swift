@@ -9,6 +9,7 @@
 import UIKit
 import Iconic
 import JLSwiftRouter
+import Alamofire
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

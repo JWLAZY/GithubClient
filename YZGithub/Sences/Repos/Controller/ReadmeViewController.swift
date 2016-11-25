@@ -10,6 +10,7 @@ import UIKit
 import SnapKit
 import ObjectMapper
 import SwiftyJSON
+import Alamofire
 //import 
 
 
