@@ -15,7 +15,7 @@ class ExploreViewController: BaseViewController {
 //    var segmentView: XMSegmentedControl!
     let scrollView:UIScrollView = UIScrollView()
     var scrollHeight:CGFloat {
-        return UIScreen.main.bounds.height - 66 - 44 - 44
+        return UIScreen.main.bounds.height - 66 - 44
     }
     var viewWidth:CGFloat {
         return self.view.bounds.size.width
@@ -40,7 +40,7 @@ class ExploreViewController: BaseViewController {
         scrollView.snp.makeConstraints { (make) in
             make.top.equalTo(self.view)
             make.width.equalTo(self.view)
-            make.bottom.equalTo(self.view.snp.bottom).offset(-44)
+            make.bottom.equalTo(self.view.snp.bottom)
         }
         scrollView.delegate = self
         scrollView.contentSize = CGSize(width: self.view.frame.width * 2, height: scrollView.bounds.height)

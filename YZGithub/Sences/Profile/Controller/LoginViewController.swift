@@ -43,7 +43,7 @@ class LoginViewController: YZWebViewController {
             let code = url.substring(with: codeR)
             
             viewModel.loginin(code: code).subscribe(onNext: { (msg) in
-                print(msg)
+                _ = self.navigationController?.popViewController(animated: true)
             }, onError: { (error) in
                 print("--------error-----------\n\(error)\n-----------------------\n")
             }, onCompleted: nil, onDisposed: nil).addDisposableTo(bag)

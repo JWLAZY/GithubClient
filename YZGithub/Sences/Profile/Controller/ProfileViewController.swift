@@ -10,9 +10,11 @@ import UIKit
 import SnapKit
 import Static
 import Kingfisher
+import RxSwift
+import RxCocoa
 
 
-class ProfileViewController: BaseViewController,UITableViewDelegate{
+class ProfileViewController: BaseViewController{
     
     var user:ObjUser?
     var isLogin:Bool?
@@ -26,21 +28,24 @@ class ProfileViewController: BaseViewController,UITableViewDelegate{
         return tableView?.viewWithTag(101) as? UIImageView
     }
     var datasource = DataSource()
-    
+    var data = [
+        [["title":"关注"]],
+        [["title":"设置"]],
+        [["title":"分享"],["title":"评个分呗!"],["title":"关于"]]
+    ]
     let identifier : String = "reuseIdentifier"
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         //通知中心.注册登录成功和退出事件
         NotificationCenter.default.addObserver(self, selector: #selector(updateUserinfoData), name: NSNotification.Name(rawValue: NotificationGitLoginSuccessful), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateUserinfoData), name: NSNotification.Name(rawValue: NotificationGitLogOutSuccessful), object: nil)
 
-        tableView = UITableView(frame: self.view.bounds, style: .grouped)
+        tableView = UITableView(frame: self.view.bounds, style: .plain)
         self.view.addSubview(tableView!)
         tableView?.delegate = self
-        
-        tableView?.register(UITableViewCell.classForCoder(), forCellReuseIdentifier: identifier as String)
+        tableView?.dataSource = self
+        tableView?.register(SettingCell.classForCoder(), forCellReuseIdentifier: identifier as String)
         tableView?.tableFooterView = UIView()
         
         customUI()
@@ -51,9 +56,7 @@ class ProfileViewController: BaseViewController,UITableViewDelegate{
     }
     
     func customUI() {
-        
         tableView?.contentInset = UIEdgeInsetsMake(175 - 44, 0, 0, 0)
-        
         let header:UIImageView = UIImageView(frame: CGRect(x: 0,y:-175,width: 375,height: 175))
         header.image = UIImage(named: "profile_bk")
         header.tag = 101
@@ -70,9 +73,7 @@ class ProfileViewController: BaseViewController,UITableViewDelegate{
         profileImageView!.layer.cornerRadius = 40
         
         tableView?.addSubview(header)
-        
         self.navigationController?.navigationBar.setMyBackgroundColor(UIColor(red: 0/255.0, green: 130/255.0, blue: 210/255.0, alpha: 0))
-        
         
         nameLable = UILabel()
         nameLable!.text = "登陆"
@@ -88,7 +89,7 @@ class ProfileViewController: BaseViewController,UITableViewDelegate{
         nameLable?.isUserInteractionEnabled = true
         header.isUserInteractionEnabled = true
         
-//        //粉丝和关注的人
+        //粉丝和关注的人
         header.addSubview(followersLable)
         followersLable.textColor = UIColor.white
         followersLable.font = UIFont.systemFont(ofSize: 13)
@@ -105,26 +106,6 @@ class ProfileViewController: BaseViewController,UITableViewDelegate{
             make.top.equalTo(followersLable)
         }
         
-        //自定义cell
-        var rows = [[Row]]()
-        let row = Row(text: "关注",selection: {(index) in
-            print("\(index)")
-        }, cellClass: Value1Cell.self)
-        let row3 = Row(text: "设置",cellClass: Value1Cell.self)
-        let row4 = Row(text: "分享",cellClass: Value1Cell.self)
-        let row5 = Row(text: "评个分呗!",cellClass: Value1Cell.self)
-        let row6 = Row(text: "关于",cellClass: Value1Cell.self)
-        rows = [[row],[row3],[row4,row5,row6]]
-        
-        let header2 = Section.Extremity.title("联系我们")
-        
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: 1, height: 0.01))
-        view.backgroundColor = UIColor.red
-        let title =  Section.Extremity.view(view)
-        
-        datasource.sections = [Section(header:title,rows:rows[0],footer:title),Section(rows:rows[1],footer:title),Section(header:header2, rows:rows[2])]
-        datasource.tableView = tableView
-        datasource.tableView?.delegate = self
         updateUserinfoData()
     }
     
@@ -154,12 +135,51 @@ class ProfileViewController: BaseViewController,UITableViewDelegate{
         }
     }
 }
+extension ProfileViewController:UITableViewDataSource{
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
+        let dic = data[indexPath.section][indexPath.row]
+        cell.textLabel?.text = dic["title"]
+        return cell
+    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return data[section].count
+    }
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return data.count
+    }
+}
+extension ProfileViewController: UITableViewDelegate{
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = UIView()
+        view.backgroundColor = UIColor.hexStr("f7f7f7", alpha: 1)
+        let label = UILabel()
+        view.addSubview(label)
+        label.font = UIFont.systemFont(ofSize: 15)
+        label.textColor = UIColor.gray
+        label.snp.makeConstraints { (make) in
+            make.centerY.equalTo(view)
+            make.left.equalTo(view).offset(10)
+        }
+        label.text = "联系我们"
+        if section == 2 {
+            return view
+        }
+        return nil
+
+    }
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 2 {
+            return 30
+        }
+        return 20
+    }
+}
 
 extension ProfileViewController:UIScrollViewDelegate{
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         //下拉
         if scrollView.contentOffset.y < -175 {
-            print(scrollView.contentOffset.y)
             var frame = headerView?.frame
             frame?.size.height = fabs(scrollView.contentOffset.y)
             frame?.origin.y = scrollView.contentOffset.y

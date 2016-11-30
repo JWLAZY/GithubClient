@@ -39,6 +39,8 @@
 		468315F51DEEE695007F3362 /* LoginEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468315F41DEEE695007F3362 /* LoginEngine.swift */; };
 		468315F71DEEEA39007F3362 /* BaseEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468315F61DEEEA39007F3362 /* BaseEngine.swift */; };
 		468315FA1DEEFF82007F3362 /* UserEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468315F91DEEFF82007F3362 /* UserEngine.swift */; };
+		468315FD1DEF2B61007F3362 /* SettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468315FC1DEF2B61007F3362 /* SettingCell.swift */; };
+		468315FF1DEF2B8A007F3362 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468315FE1DEF2B8A007F3362 /* ProfileViewModel.swift */; };
 		468ADD251D579BF4006A2106 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 468ADD241D579BF4006A2106 /* SystemConfiguration.framework */; };
 		468ADD271D579C47006A2106 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 468ADD261D579C47006A2106 /* Security.framework */; };
 		468ADD291D579C5B006A2106 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 468ADD281D579C5B006A2106 /* libiconv.tbd */; };
@@ -146,6 +148,8 @@
 		468315F41DEEE695007F3362 /* LoginEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginEngine.swift; sourceTree = "<group>"; };
 		468315F61DEEEA39007F3362 /* BaseEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseEngine.swift; sourceTree = "<group>"; };
 		468315F91DEEFF82007F3362 /* UserEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserEngine.swift; sourceTree = "<group>"; };
+		468315FC1DEF2B61007F3362 /* SettingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingCell.swift; sourceTree = "<group>"; };
+		468315FE1DEF2B8A007F3362 /* ProfileViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		468ADD241D579BF4006A2106 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		468ADD261D579C47006A2106 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		468ADD281D579C5B006A2106 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
@@ -439,6 +443,7 @@
 			isa = PBXGroup;
 			children = (
 				468315EC1DEEE5D0007F3362 /* LoginViewModel.swift */,
+				468315FE1DEF2B8A007F3362 /* ProfileViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -469,6 +474,14 @@
 			children = (
 			);
 			path = User;
+			sourceTree = "<group>";
+		};
+		468315FB1DEF2B44007F3362 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				468315FC1DEF2B61007F3362 /* SettingCell.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		46BF9F431D6459750036D2F3 /* BaseViewController */ = {
@@ -616,6 +629,7 @@
 		46BF9F661D6459750036D2F3 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				468315FB1DEF2B44007F3362 /* View */,
 				468315EB1DEEE541007F3362 /* ViewModel */,
 				46BF9F671D6459750036D2F3 /* Controller */,
 			);
@@ -900,6 +914,7 @@
 				46BF9F9E1D6459750036D2F3 /* PullRequest.swift in Sources */,
 				4615F8211D73DA360057A689 /* NSMutableAttributedString+RichText.swift in Sources */,
 				46BF9F8C1D6459750036D2F3 /* UserBaseInfoCell.swift in Sources */,
+				468315FF1DEF2B8A007F3362 /* ProfileViewModel.swift in Sources */,
 				46BF9F901D6459750036D2F3 /* ExploreViewController.swift in Sources */,
 				46246D811D47057C00B1FA91 /* UserInfoHelper.swift in Sources */,
 				46BF9F8A1D6459750036D2F3 /* ObjPlan.swift in Sources */,
@@ -915,6 +930,7 @@
 				46BF9FA31D6459750036D2F3 /* RepoCodeInfoCell.swift in Sources */,
 				46EAF8261D36D1ED00210109 /* ParallaxHeaderView.swift in Sources */,
 				468315FA1DEEFF82007F3362 /* UserEngine.swift in Sources */,
+				468315FD1DEF2B61007F3362 /* SettingCell.swift in Sources */,
 				4668A5221D6D3587001BE615 /* Subject.swift in Sources */,
 				46BF9F8F1D6459750036D2F3 /* ExploreReposViewController.swift in Sources */,
 				4668A5201D6D352B001BE615 /* Message.swift in Sources */,

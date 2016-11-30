@@ -20,8 +20,6 @@ enum NetError:Error {
             return ("网络请求错误: \(error)")
         case .seriaelError(let msg):
             return (msg)
-        default:
-            return ("其他错误")
         }
     }
 }
