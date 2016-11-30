@@ -6,26 +6,26 @@ def common_pods
 end
 
 target :YZGithub do
-pod 'Alamofire','~> 4.0'
-pod 'IQKeyboardManagerSwift'
-pod 'SwiftyJSON'
-pod 'SnapKit'
-pod 'Moya', '8.0.0-beta.4'
-pod 'ObjectMapper'
-pod 'Kingfisher'
-pod 'ReachabilitySwift'
-pod 'MBProgressHUD'
-pod 'DGElasticPullToRefresh'
-pod "SwiftDate"
-pod 'Bugly'
-pod 'Static', git: 'https://github.com/flexih/Static.git'
-#pod "XMSegmentedControl"
-pod 'AttributedMarkdown', :git => 'https://github.com/dreamwieber/AttributedMarkdown.git'
-#pod 'UMengSocialCOM', '~> 5.2.1'
-#pod 'JLSwiftRouter','2.0.0'
-pod "WeiboSDK", :git => "https://github.com/sinaweibosdk/weibo_ios_sdk.git"
-common_pods
+    pod 'Alamofire','~> 4.0'
+    pod 'RxSwift',    '~> 3.0'
+    pod 'RxCocoa',    '~> 3.0'
+    pod 'IQKeyboardManagerSwift'
+    pod 'SwiftyJSON'
+    pod 'SnapKit'
+    pod 'Moya', '8.0.0-beta.4'
+    pod 'ObjectMapper'
+    pod 'Kingfisher'
+    pod 'ReachabilitySwift'
+    pod 'MBProgressHUD'
+    pod 'DGElasticPullToRefresh'
+    pod "SwiftDate"
+    pod 'Bugly'
+    pod 'Static', git: 'https://github.com/flexih/Static.git'
+    pod 'AttributedMarkdown', :git => 'https://github.com/dreamwieber/AttributedMarkdown.git'
+    pod "WeiboSDK", :git => "https://github.com/sinaweibosdk/weibo_ios_sdk.git"
+    common_pods
 end
+
 post_install do |installer|
   installer.pods_project.targets.each do |target|
     target.build_configurations.each do |config|

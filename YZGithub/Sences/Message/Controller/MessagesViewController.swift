@@ -45,7 +45,6 @@ class MessagesViewController: UIViewController {
                     let array = try  response.mapArray(Message.self)
                     self.messageArray.append(contentsOf: array)
                     hub.hide(animated: true)
-                    MBProgressHUD.hideAllHUDs(for: self.view, animated: true)
                     self.tableView.reloadData()
                 }catch {
                     MBProgressHUD.showMsg("数据解析失败")

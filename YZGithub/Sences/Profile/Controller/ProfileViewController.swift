@@ -170,29 +170,3 @@ extension ProfileViewController:UIScrollViewDelegate{
         
     }
 }
-//extension ProfileViewController:UITableViewDelegate, UMSocialUIDelegate{
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let index = (indexPath.section,indexPath.row)
-//        switch index {
-//        case (0,0):
-//            if !isUserLogin() {
-//                GlobalHubHelper.showError("请先登陆", view: view)
-//                return
-//            }
-//            let follewVC = DeveloperListViewController()
-//            follewVC.developer = user
-//            follewVC.listType = DeveListType.follewers
-//            self.navigationController?.pushViewController(follewVC, animated: true)
-//        case (2,0):
-//            UMSocialSnsService.presentSnsIconSheetView(self, appKey: "56025946e0f55a744000439c", shareText: "加入我们吧!", shareImage: UIImage(named: "app_logo_90"), shareToSnsNames: [UMShareToSina], delegate: self)
-//        case (1,0):
-//            let setVC = SettingViewController()
-//            navigationController?.pushViewController(setVC, animated: true)
-//        default:
-//            print("等会")
-//        }
-//    }
-//    func isUserLogin()  -> Bool {
-//        return user  == nil ? false : true 
-//    }
-//}
