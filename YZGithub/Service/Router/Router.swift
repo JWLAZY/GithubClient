@@ -10,6 +10,7 @@ import UIKit
 
 public enum RouterPage:String {
     case setting
+    case login
 }
 
 class Router {

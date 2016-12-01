@@ -16,9 +16,9 @@ import RxCocoa
 
 class ProfileViewController: BaseViewController{
     
-    var user:ObjUser?
     var isLogin:Bool?
     
+    var vm = ProfileViewModel()
     var tableView : UITableView?
     var profileImageView : UIImageView?
     var nameLable : UILabel?
@@ -38,8 +38,8 @@ class ProfileViewController: BaseViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         //通知中心.注册登录成功和退出事件
-        NotificationCenter.default.addObserver(self, selector: #selector(updateUserinfoData), name: NSNotification.Name(rawValue: NotificationGitLoginSuccessful), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(updateUserinfoData), name: NSNotification.Name(rawValue: NotificationGitLogOutSuccessful), object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(updateUserinfoData), name: NSNotification.Name(rawValue: NotificationGitLoginSuccessful), object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(updateUserinfoData), name: NSNotification.Name(rawValue: NotificationGitLogOutSuccessful), object: nil)
 
         tableView = UITableView(frame: self.view.bounds, style: .grouped)
         self.view.addSubview(tableView!)
@@ -88,7 +88,7 @@ class ProfileViewController: BaseViewController{
         nameLable?.addGestureRecognizer(tap)
         nameLable?.isUserInteractionEnabled = true
         header.isUserInteractionEnabled = true
-        
+    
         //粉丝和关注的人
         header.addSubview(followersLable)
         followersLable.textColor = UIColor.white
@@ -120,19 +120,23 @@ class ProfileViewController: BaseViewController{
     
     //MARK: 更新UI
     func updateUserinfoData() {
-        user = UserInfoHelper.sharedInstance.user
-        isLogin = UserInfoHelper.sharedInstance.isLogin
-        if isLogin! == true {
-            nameLable?.text = user?.name
-            profileImageView?.kf.setImage(with: URL(string: user!.avatar_url!)!)
-            followersLable.text = "\((user?.followers!)! as Int) 人关注"
-            startLable.text = "关注\((user?.following!)! as Int)人"
-        }else{
-            nameLable?.text = "登陆"
-            profileImageView?.image = UIImage(named: "app_logo_90")
-            followersLable.text = ""
-            startLable.text = ""
-        }
+        vm.user.asObservable().subscribe { [weak self](event) in
+            let user = event.element!
+            self?.isLogin = UserInfoHelper.sharedInstance.isLogin
+            if self?.isLogin! == true {
+                self?.nameLable?.text = user?.name
+                self?.profileImageView?.kf.setImage(with: URL(string: (user!.avatar_url!)))
+                self?.followersLable.text = "\((user?.followers!)! as Int) 人关注"
+                self?.startLable.text = "关注\((user?.following!)! as Int)人"
+            }else{
+                self?.nameLable?.text = "登陆"
+                self?.profileImageView?.image = UIImage(named: "app_logo_90")
+                self?.followersLable.text = ""
+                self?.startLable.text = ""
+            }
+        }.addDisposableTo(disposeBag)
+        
+        
     }
 }
 extension ProfileViewController:UITableViewDataSource{
