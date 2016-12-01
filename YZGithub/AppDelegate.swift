@@ -61,7 +61,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        UMSocialSinaSSOHandler.openNewSinaSSO(withAppKey: "3006877935", secret: "46fd11d135010fcc578a1b0ced7e50d4", redirectURL: "https://api.weibo.com/oauth2/default.html")
     }
     func customRouter() {
-        Router.share.addPath(path: RouterPage.setting.rawValue, viewController: SettingViewController.self)
+        RouterPage.setting.addPath(viewController: SettingViewController.self)
+        RouterPage.login(url: "").addPath(viewController: LoginViewController.self)
     }
     func showDetailPage(_ vc:UIViewController) {
         let rootvc = self.window?.rootViewController
