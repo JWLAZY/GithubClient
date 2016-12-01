@@ -11,5 +11,4 @@ import UIKit
 class ProfileViewModel: NSObject {
 
     
-    
 }

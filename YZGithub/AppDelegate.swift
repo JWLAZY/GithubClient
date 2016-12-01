@@ -17,11 +17,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     override init() {
         super.init()
-//        Iconic.registerIconFont()
     }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
         customUI()
         customSocial()
         customRouter()
@@ -63,21 +61,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        UMSocialSinaSSOHandler.openNewSinaSSO(withAppKey: "3006877935", secret: "46fd11d135010fcc578a1b0ced7e50d4", redirectURL: "https://api.weibo.com/oauth2/default.html")
     }
     func customRouter() {
-//        let router = Router.sharedInstance
-//        router.map("/user/:name") { (result) -> (Bool) in
-//            let devVc = DeveloperViewController()
-//            devVc.developerName = result!["name"]
-//            self.showDetailPage(devVc)
-//            return true
-//        }
-//        router.map("repos/:owner/:reponame") { (result) -> (Bool) in
-//            let sb = UIStoryboard(name: "Main", bundle: nil)
-//            let repoVC  = sb.instantiateViewControllerWithIdentifier("repoinfo") as!RepoInfoViewController
-//            repoVC.repoOwner = result!["owner"]
-//            repoVC.repoName = result!["reponame"]
-//            self.showDetailPage(repoVC)
-//            return true
-//        }
+        Router.share.addPath(path: RouterPage.setting.rawValue, viewController: SettingViewController.self)
     }
     func showDetailPage(_ vc:UIViewController) {
         let rootvc = self.window?.rootViewController
