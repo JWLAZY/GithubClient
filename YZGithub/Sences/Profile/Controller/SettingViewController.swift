@@ -55,7 +55,7 @@ extension SettingViewController:UITableViewDelegate{
         default:
             if ObjUser.deleteUserInfo() {
                 MBProgressHUD.showMsg("退出成功")
-                self.navigationController?.popViewController(animated: true)
+                _ = self.navigationController?.popViewController(animated: true)
                 NotificationCenter.default.post(name: Notification.Name(rawValue: NotificationGitLogOutSuccessful), object: nil)
                 
             }else{

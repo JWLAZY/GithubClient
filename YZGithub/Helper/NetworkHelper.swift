@@ -16,7 +16,5 @@ open class NetworkHelper: NSObject {
         for cookie in storage.cookies! {
             storage.deleteCookie(cookie)
         }
-        UserDefaults.standard
-        
     }
 }

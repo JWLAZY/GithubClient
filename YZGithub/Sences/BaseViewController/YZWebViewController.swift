@@ -13,6 +13,7 @@ import MBProgressHUD
 class YZWebViewController: BaseViewController, WKNavigationDelegate {
 
     var webView:UIWebView?
+    var hub:MBProgressHUD?
     
     var url:String? {
         didSet{
@@ -70,19 +71,17 @@ class YZWebViewController: BaseViewController, WKNavigationDelegate {
 extension YZWebViewController:UIWebViewDelegate{
     
     func webViewDidStartLoad(_ webView: UIWebView) {
-        MBProgressHUD.showAdded(to: self.view, animated: true)
+       hub = MBProgressHUD.showAdded(to: self.view, animated: true)
     }
     
     func webViewDidFinishLoad(_ webView: UIWebView) {
-        
-        MBProgressHUD.hideAllHUDs(for: self.view, animated: true)
+        hub?.hide(animated: true)
         self.webView!.scrollView.contentInset = UIEdgeInsetsMake(self.topOffset, 0, 0, 0)
         self.webView!.scrollView.scrollRectToVisible(CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 0.1), animated: true)
         
     }
     func webView(_ webView: UIWebView, didFailLoadWithError error: Error) {
-        MBProgressHUD.hideAllHUDs(for: self.view, animated: true)
-        print(error)
+        hub?.hide(animated: true)
     }
 
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
