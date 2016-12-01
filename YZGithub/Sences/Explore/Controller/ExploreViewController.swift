@@ -11,8 +11,6 @@ import SnapKit
 
 class ExploreViewController: BaseViewController {
 
-
-//    var segmentView: XMSegmentedControl!
     let scrollView:UIScrollView = UIScrollView()
     var scrollHeight:CGFloat {
         return UIScreen.main.bounds.height - 66 - 44
@@ -20,22 +18,11 @@ class ExploreViewController: BaseViewController {
     var viewWidth:CGFloat {
         return self.view.bounds.size.width
     }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         customUI()
     }
     func customUI() {
-//        segmentView = XMSegmentedControl(frame: CGRect(x: 0, y: 64, width: self.view.frame.width, height: 44), segmentTitle: ["仓库","开发者"], selectedItemHighlightStyle: XMSelectedItemHighlightStyle.TopEdge)
-        
-//        segmentView.backgroundColor = UIColor(red: 22/255, green: 150/255, blue: 122/255, alpha: 1)
-//        segmentView.highlightColor = UIColor(red: 25/255, green: 180/255, blue: 145/255, alpha: 1)
-//        segmentView.tint = UIColor.whiteColor()
-//        segmentView.highlightTint = UIColor.blackColor()
-//        segmentView.delegate = self
-//        self.view.addSubview(segmentView)
-        
         self.view.addSubview(scrollView)
         scrollView.snp.makeConstraints { (make) in
             make.top.equalTo(self.view)
@@ -80,19 +67,3 @@ extension ExploreViewController:UIScrollViewDelegate{
 //        }
     }
 }
-
-//extension ExploreViewController:XMSegmentedControlDelegate{
-//    func xmSegmentedControl(_ xmSegmentedControl: XMSegmentedControl, selectedSegment: Int) {
-//        print(selectedSegment)
-//        if selectedSegment == 1 {
-//            UIView.animate(withDuration: 0.2, animations: {
-//                    self.scrollView.contentOffset = CGPoint(x: self.viewWidth, y: 0)
-//            })
-//        }else {
-//            UIView.animate(withDuration: 0.2, animations: {
-//                    self.scrollView.contentOffset = CGPoint(x: 0, y: 0)
-//            })
-//            
-//        }
-//    }
-//}

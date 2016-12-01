@@ -51,6 +51,7 @@
 		468ADD331D579C8C006A2106 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 468ADD321D579C8C006A2106 /* libz.tbd */; };
 		468ADD351D579EB9006A2106 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 468ADD341D579EB9006A2106 /* ImageIO.framework */; };
 		46AB8A181D4A713C009F64F8 /* NSString+TranToRich.m in Sources */ = {isa = PBXBuildFile; fileRef = 46AB8A171D4A713C009F64F8 /* NSString+TranToRich.m */; };
+		46BF2F8F1DF07FFF00042FE5 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BF2F8E1DF07FFF00042FE5 /* Router.swift */; };
 		46BF9E3A1D5B7EEE0036D2F3 /* GlobalHubHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BF9E391D5B7EEE0036D2F3 /* GlobalHubHelper.swift */; };
 		46BF9F811D6459750036D2F3 /* BaseTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BF9F441D6459750036D2F3 /* BaseTabBarViewController.swift */; };
 		46BF9F821D6459750036D2F3 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BF9F451D6459750036D2F3 /* BaseViewController.swift */; };
@@ -162,6 +163,7 @@
 		46AB8A121D4A7003009F64F8 /* YZGithub-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "YZGithub-Bridging-Header.h"; sourceTree = "<group>"; };
 		46AB8A161D4A713C009F64F8 /* NSString+TranToRich.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+TranToRich.h"; sourceTree = "<group>"; };
 		46AB8A171D4A713C009F64F8 /* NSString+TranToRich.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+TranToRich.m"; sourceTree = "<group>"; };
+		46BF2F8E1DF07FFF00042FE5 /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		46BF9E391D5B7EEE0036D2F3 /* GlobalHubHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalHubHelper.swift; sourceTree = "<group>"; };
 		46BF9F441D6459750036D2F3 /* BaseTabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTabBarViewController.swift; sourceTree = "<group>"; };
 		46BF9F451D6459750036D2F3 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -451,6 +453,7 @@
 		468315EE1DEEE642007F3362 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				46BF2F8D1DF07E4C00042FE5 /* Router */,
 				468315F81DEEEBAA007F3362 /* User */,
 				468315EF1DEEE66C007F3362 /* NetLayer */,
 			);
@@ -482,6 +485,14 @@
 				468315FC1DEF2B61007F3362 /* SettingCell.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		46BF2F8D1DF07E4C00042FE5 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				46BF2F8E1DF07FFF00042FE5 /* Router.swift */,
+			);
+			path = Router;
 			sourceTree = "<group>";
 		};
 		46BF9F431D6459750036D2F3 /* BaseViewController */ = {
@@ -923,6 +934,7 @@
 				4668A5391D6D9637001BE615 /* EventCell.swift in Sources */,
 				46374AD61D44CBE500393B8A /* NetworkHelper.swift in Sources */,
 				46BF9F951D6459750036D2F3 /* LoginViewController.swift in Sources */,
+				46BF2F8F1DF07FFF00042FE5 /* Router.swift in Sources */,
 				46BF9F9C1D6459750036D2F3 /* Branches.swift in Sources */,
 				46BF9F811D6459750036D2F3 /* BaseTabBarViewController.swift in Sources */,
 				46BF9FA71D6459750036D2F3 /* RepoIntroCell.swift in Sources */,

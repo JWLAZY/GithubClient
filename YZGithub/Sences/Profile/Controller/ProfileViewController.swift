@@ -41,7 +41,7 @@ class ProfileViewController: BaseViewController{
         NotificationCenter.default.addObserver(self, selector: #selector(updateUserinfoData), name: NSNotification.Name(rawValue: NotificationGitLoginSuccessful), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateUserinfoData), name: NSNotification.Name(rawValue: NotificationGitLogOutSuccessful), object: nil)
 
-        tableView = UITableView(frame: self.view.bounds, style: .plain)
+        tableView = UITableView(frame: self.view.bounds, style: .grouped)
         self.view.addSubview(tableView!)
         tableView?.delegate = self
         tableView?.dataSource = self
@@ -150,29 +150,32 @@ extension ProfileViewController:UITableViewDataSource{
     }
 }
 extension ProfileViewController: UITableViewDelegate{
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view = UIView()
-        view.backgroundColor = UIColor.hexStr("f7f7f7", alpha: 1)
-        let label = UILabel()
-        view.addSubview(label)
-        label.font = UIFont.systemFont(ofSize: 15)
-        label.textColor = UIColor.gray
-        label.snp.makeConstraints { (make) in
-            make.centerY.equalTo(view)
-            make.left.equalTo(view).offset(10)
-        }
-        label.text = "联系我们"
-        if section == 2 {
-            return view
-        }
-        return nil
-
-    }
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section == 2 {
-            return 30
+        if section == 0 {
+            return 0.1
         }
-        return 20
+        return 10
+    }
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let index = (indexPath.section,indexPath.row)
+        switch index {
+        case (0,0):
+            print("关注")
+        case (1,0):
+            Router.push(form: self, page: .setting)
+        case (2,0):
+            print("分享")
+        case (2,1):
+            print("评分")
+        case (2,2):
+            print("关于")
+        default:
+            print("其他")
+        }
     }
 }
 
@@ -185,7 +188,7 @@ extension ProfileViewController:UIScrollViewDelegate{
             frame?.origin.y = scrollView.contentOffset.y
             headerView?.frame = frame!
         }else{//上拉
-            
+            scrollView.contentOffset.y = -175
         }
         
     }

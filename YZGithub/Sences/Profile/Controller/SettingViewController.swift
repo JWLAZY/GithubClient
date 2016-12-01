@@ -37,7 +37,7 @@ class SettingViewController: BaseViewController {
 }
 extension SettingViewController:UITableViewDelegate{
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 1.0
+        return 10.0
     }
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 1.0
