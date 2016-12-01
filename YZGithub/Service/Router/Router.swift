@@ -8,25 +8,42 @@
 
 import UIKit
 
-public enum RouterPage:String {
+public enum RouterPage {
     case setting
-    case login
+    case login(url:String)
+    
+    static var rlues:Dictionary<String, Any> = [:]
+    
+    func addPath(viewController:AnyClass) {
+        RouterPage.rlues[self.path()] = viewController
+    }
+    func path() -> String {
+        switch self {
+        case .setting:
+            return "setting"
+        case .login(_):
+            return "login"
+        default:
+            return ""
+        }
+    }
+    func vc() -> UIViewController {
+        var vc = (RouterPage.rlues[self.path()] as! UIViewController.Type).init()
+        switch self {
+        case .login(let url):
+            let loginvc = vc as! LoginViewController
+            loginvc.url = url
+            vc = loginvc
+            vc.hidesBottomBarWhenPushed = true
+        default:
+            print("")
+        }
+        return vc
+    }
 }
 
 class Router {
-    static let share = Router()
-    var rlues:Dictionary<String, Any> = [:]
-    init() {
-        
-    }
-    func addPath(path:String,viewController:AnyClass) {
-        rlues[path] = viewController
-    }
-    func vcFor(path:String) -> UIViewController {
-        let vc = (rlues[path] as! UIViewController.Type).init()
-        return vc
-    }
     class func push(form vc:UIViewController,page:RouterPage) {
-        vc.navigationController?.pushViewController(Router.share.vcFor(path: page.rawValue), animated: true)
+        vc.navigationController?.pushViewController(page.vc(), animated: true)
     }
 }

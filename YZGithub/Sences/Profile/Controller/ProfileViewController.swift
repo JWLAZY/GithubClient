@@ -111,11 +111,8 @@ class ProfileViewController: BaseViewController{
     
     func login(_ tap:UITapGestureRecognizer){
         NetworkHelper.clearCookies()
-        let loginVC = LoginViewController()
         let url = String(format: "https://github.com/login/oauth/authorize/?client_id=%@&redirect_uri=%@&scope=%@", GithubClientID,GithubRedirectUrl,"user,user:email,user:follow,public_repo,repo,repo_deployment,repo:status,delete_repo,notifications,gist,read:repo_hook,write:repo_hook,admin:repo_hook,admin:org_hook,read:org,write:org,admin:org,read:public_key,write:public_key,admin:public_key")
-        loginVC.url = url
-        loginVC.hidesBottomBarWhenPushed = true
-        self.navigationController?.pushViewController(loginVC, animated: true)
+        Router.push(form: self, page: .login(url: url))
     }
     
     //MARK: 更新UI
