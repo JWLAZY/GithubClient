@@ -44,13 +44,11 @@ class ExploreReposViewController: UIViewController {
             switch result {
             case let .success(response):
                 do{
-                    if let repos:[Repository] = try response.mapArray(Repository.self){
-                            self.reposData.removeAll()
-                            self.reposData = repos
-                            self.tableView.reloadData()
-                            self.tableView.setContentOffset(CGPoint.zero, animated:true)
-                    }else{
-                    }
+                    let repos:[Repository] = try response.mapArray(Repository.self)
+                    self.reposData.removeAll()
+                    self.reposData = repos
+                    self.tableView.reloadData()
+                    self.tableView.setContentOffset(CGPoint.zero, animated:true)
                 }catch {
                 }
             case let .failure(error):
