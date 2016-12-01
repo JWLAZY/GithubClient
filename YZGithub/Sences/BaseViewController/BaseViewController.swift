@@ -7,11 +7,13 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class BaseViewController: UIViewController,UIGestureRecognizerDelegate {
 
     var topOffset: CGFloat = 64.0
-    
+    var disposeBag = DisposeBag()
     var leftItem:UIButton? {
         didSet{
             

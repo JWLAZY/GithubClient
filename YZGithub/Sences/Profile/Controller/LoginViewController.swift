@@ -36,7 +36,7 @@ class LoginViewController: YZWebViewController {
         super.webViewDidFinishLoad(webView)
         let  url:String =  (webView.request?.url?.absoluteString)!
         let codePrefix:String = "code="
-        if url.contains(codePrefix) {
+        if url.contains("code=") {
             let range = url.range(of: codePrefix)!
             let index = url.characters.distance(from: url.startIndex, to: range.lowerBound) + 5
             let codeR = url.characters.index(url.startIndex, offsetBy: index) ..< url.endIndex
@@ -45,7 +45,7 @@ class LoginViewController: YZWebViewController {
             viewModel.loginin(code: code).subscribe(onNext: { (msg) in
                 _ = self.navigationController?.popViewController(animated: true)
             }, onError: { (error) in
-                print("--------error-----------\n\(error)\n-----------------------\n")
+                MBProgressHUD.showMsg("\(error)")
             }, onCompleted: nil, onDisposed: nil).addDisposableTo(bag)
             
         }
