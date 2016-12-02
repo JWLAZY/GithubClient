@@ -1,6 +1,7 @@
 # YZGithub ![](images/Icon-28.png)
 > Github客户端.获取github中的个人或者别人的消息.
 
+
 **已经支持swift 3.0**
 
 
@@ -15,6 +16,7 @@
 * MOYA
 * GITHUB
 * NETWORK
+* RxSwift
 
 #### 效果图
 ![](images/index.png) -  - ![](images/repoinfo.png)
