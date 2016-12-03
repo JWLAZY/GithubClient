@@ -97,7 +97,6 @@ class ProfileViewController: BaseViewController{
             make.right.equalTo((nameLable?.snp.centerX)!).offset(-10)
             make.top.equalTo((nameLable?.snp.bottom)!).offset(10)
         }
-        
         header.addSubview(startLable)
         startLable.textColor = UIColor.white
         startLable.font = UIFont.systemFont(ofSize: 13)
@@ -105,14 +104,12 @@ class ProfileViewController: BaseViewController{
             make.left.equalTo((nameLable?.snp.centerX)!).offset(10)
             make.top.equalTo(followersLable)
         }
-        
         updateUserinfoData()
     }
     
     func login(_ tap:UITapGestureRecognizer){
         NetworkHelper.clearCookies()
-        let url = String(format: "https://github.com/login/oauth/authorize/?client_id=%@&redirect_uri=%@&scope=%@", GithubClientID,GithubRedirectUrl,"user,user:email,user:follow,public_repo,repo,repo_deployment,repo:status,delete_repo,notifications,gist,read:repo_hook,write:repo_hook,admin:repo_hook,admin:org_hook,read:org,write:org,admin:org,read:public_key,write:public_key,admin:public_key")
-        Router.push(form: self, page: .login(url: url))
+        Router.push(form: self, page: .login(url: GithubAuthUrl))
     }
     
     //MARK: 更新UI

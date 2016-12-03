@@ -23,8 +23,6 @@ public enum RouterPage {
             return "setting"
         case .login(_):
             return "login"
-        default:
-            return ""
         }
     }
     func vc() -> UIViewController {

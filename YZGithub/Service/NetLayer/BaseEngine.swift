@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ObjectMapper
 
 typealias Completion = (Any)->()
 typealias EngineError = (Error) -> ()
@@ -14,6 +15,7 @@ typealias EngineError = (Error) -> ()
 enum NetError:Error {
     case seriaelError(String)
     case httpError(Error)
+    
     var localizedDescription: String{
         switch self {
         case .httpError(let error):
@@ -24,7 +26,28 @@ enum NetError:Error {
     }
 }
 
-class BaseEngine: NSObject {
-
+class BaseEngine {
+    let provider = Provider.sharedProvider
+    class func fetchData<T:Mappable>(api:GitHubAPI,model:T.Type,onCompetion: @escaping (T)->(), onError:@escaping (Error)->()) {
+        let engine = BaseEngine()
+        engine.provider.request(api, completion: {
+            (result) -> () in
+            switch result{
+            case .success(let res):
+                do {
+                    let object = Mapper<T>().map(JSON: try res.mapJSON() as! [String : Any])
+                    guard let r = object else {
+                        onError(NetError.seriaelError("no data"))
+                        return
+                    }
+                    onCompetion(r)
+                }catch{
+                    onError(NetError.seriaelError("result is not json "))
+                }
+            case .failure(let error):
+                onError(NetError.httpError(error))
+            }
+        })
+    }
 }
 
