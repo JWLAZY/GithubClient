@@ -18,7 +18,6 @@ class LoginEngine: BaseEngine {
             case .success(_):
                 let str = String(data: response.data!, encoding: String.Encoding.utf8)
                 if let str = str {
-                    
                     let arr:[String] = (str.components(separatedBy: "&"))
                     if arr.count > 0 {
                         
@@ -31,7 +30,6 @@ class LoginEngine: BaseEngine {
                         token.access_token = String(format: "token %@", accesstoken)
                         token.token_type = tokentype
                         token.scope = scope
-//                        onCompletion(accesstoken)
                         UserEngine.getUserInfo(token: accesstoken, onCompletion: { (token) in
                             onCompletion(accesstoken)
                         }, onError: { (error) in

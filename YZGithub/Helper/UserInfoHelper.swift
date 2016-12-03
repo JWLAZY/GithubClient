@@ -23,20 +23,21 @@ class UserInfoHelper: NSObject {
     }
     var isLogin:Bool{
         get {
-            if user != nil {
-                if ( ((user!.name) != nil) && !((user!.name!).isEmpty) && (AppToken().access_token != nil)){
-                    return true
+            if let u = user {
+                guard let _ = u.name,let _ = AppToken().access_token else {
+                    return false
                 }
+                return true
             }
             return false
         }
     }
     var isUser:Bool {
         get {
-            if (isLogin && ( (user!.type!) == "User" )) {
-                return true
+            guard isLogin,let t = user?.type, t == "User" else {
+                return false
             }
-            return false
+            return true
         }
     }
 
