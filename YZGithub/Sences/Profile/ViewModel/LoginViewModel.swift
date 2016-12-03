@@ -12,6 +12,9 @@ import MBProgressHUD
 
 class LoginViewModel {
     
+    deinit {
+        print("销毁")
+    }
     func loginin(code: String) -> Observable<Any> {
         return Observable.create({ (observer) -> Disposable in
             let para = [

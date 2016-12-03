@@ -11,7 +11,7 @@ import Alamofire
 
 class LoginEngine: BaseEngine {
     class func loginIn(parameters:Dictionary<String, Any>, onCompletion: @escaping Completion, onError:@escaping EngineError) -> URLSessionTask{
-        let request = Alamofire.request("https://github.com/login/oauth/access_token", method: HTTPMethod.post, parameters: parameters, encoding: JSONEncoding.default).responseString { (response) in
+        let request = Alamofire.request("https://github.com/lovar/oauth/access_token", method: HTTPMethod.post, parameters: parameters, encoding: JSONEncoding.default).responseString { (response) in
             switch response.result {
             case .failure(let error):
                 onError(error)
@@ -26,12 +26,10 @@ class LoginEngine: BaseEngine {
                         let tokentype = arr[2].substring(from: arr[2].index(arr[2].startIndex, offsetBy: 11))
                         
                         //获取token 并保存到userdefault中
-                        var token = AppToken.shareInstance
-                        token.access_token = String(format: "token %@", accesstoken)
-                        token.token_type = tokentype
-                        token.scope = scope
-                        UserEngine.getUserInfo(token: accesstoken, onCompletion: { (token) in
-                            onCompletion(accesstoken)
+                        AppToken.shareInstance.setData(token: accesstoken, token_type: tokentype, scope: scope)
+                        
+                        UserEngine.getUserInfo(token: accesstoken, onCompletion: { (result) in
+                            onCompletion(result)
                         }, onError: { (error) in
                             onError(error)
                         })

@@ -22,7 +22,7 @@ class LoginViewController: YZWebViewController {
         super.viewDidLoad()
     }
     deinit{
-        
+       print("登陆界面销毁") 
     }
     
     override func didReceiveMemoryWarning() {
@@ -42,8 +42,8 @@ class LoginViewController: YZWebViewController {
             let codeR = url.characters.index(url.startIndex, offsetBy: index) ..< url.endIndex
             let code = url.substring(with: codeR)
             
-            viewModel.loginin(code: code).subscribe(onNext: { (msg) in
-                _ = self.navigationController?.popViewController(animated: true)
+            viewModel.loginin(code: code).subscribe(onNext: { [weak self](msg) in
+                _ = self?.navigationController?.popViewController(animated: true)
             }, onError: { (error) in
                 MBProgressHUD.showMsg("\(error)")
             }, onCompleted: nil, onDisposed: nil).addDisposableTo(bag)

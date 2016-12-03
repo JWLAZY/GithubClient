@@ -19,25 +19,13 @@ class UserEngine: BaseEngine {
         }, onError: {error in
             onError(error)
         })
-//        let provider = Provider.sharedProvider
-//        provider.request(GitHubAPI.myInfo, completion:{
-//            (result) -> () in
-//            switch result{
-//            case let .success(response):
-//                do {
-//                    if let gitUser:ObjUser = Mapper<ObjUser>().map(JSONObject: try response.mapJSON()) {
-//                        onCompletion("获取好友信息成功")
-//                        ObjUser.saveUserInfo(gitUser)
-//                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: NotificationGitLoginSuccessful), object:nil)
-//                        
-//                    } else {
-//                    }
-//                }catch{
-//                    onError(NetError.seriaelError("解析错误"))
-//                }
-//            case let .failure(error):
-//                onError(NetError.httpError(error))
-//            }
-//        } )
+    }
+    class func getFollowers(userName:String, onCompletion:@escaping Completion,onError:@escaping EngineError) {
+        fetchDatas(api: GitHubAPI.followers(username: userName), model: ObjUser.self, onCompetion: {
+            result -> () in
+            onCompletion(result)
+        }, onError: { error in
+            onError(error)
+        })
     }
 }

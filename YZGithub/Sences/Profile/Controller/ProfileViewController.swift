@@ -37,9 +37,6 @@ class ProfileViewController: BaseViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //通知中心.注册登录成功和退出事件
-//        NotificationCenter.default.addObserver(self, selector: #selector(updateUserinfoData), name: NSNotification.Name(rawValue: NotificationGitLoginSuccessful), object: nil)
-//        NotificationCenter.default.addObserver(self, selector: #selector(updateUserinfoData), name: NSNotification.Name(rawValue: NotificationGitLogOutSuccessful), object: nil)
 
         tableView = UITableView(frame: self.view.bounds, style: .grouped)
         self.view.addSubview(tableView!)

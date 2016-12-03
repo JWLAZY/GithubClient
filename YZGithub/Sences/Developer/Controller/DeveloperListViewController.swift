@@ -37,7 +37,6 @@ class DeveloperListViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         customUI()
     }
     func customUI() {
@@ -50,23 +49,7 @@ class DeveloperListViewController: BaseViewController {
         tableView?.register(UINib(nibName: "DeveloperTableViewCell",bundle: nil), forCellReuseIdentifier: "DeveloperTableViewCell")
     }
     func fetchFollewers() {
-            Provider.sharedProvider.request(GitHubAPI.followers(username: developer!.login!)) { [weak self](result) in
-                switch result {
-                case let .success(value):
-                    
-                    do{
-                        let string = try value.mapString()
-                        print(string)
-                        let deves:[ObjUser] = try value.mapArray(ObjUser.self) 
-                        self!.developers = deves
-                        self?.tableView?.reloadData()
-                    }catch{
-                        print("解析失败")
-                    }
-                case let .failure(error):
-                        print(error)
-                }
-            }
+            
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

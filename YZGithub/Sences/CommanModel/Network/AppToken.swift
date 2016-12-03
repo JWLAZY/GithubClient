@@ -18,7 +18,7 @@ struct AppToken {
     
     let defaults : UserDefaults
     
-    static let shareInstance = AppToken()
+    static var shareInstance = AppToken()
     
     init(defaults:UserDefaults){
         self.defaults = defaults
@@ -54,6 +54,12 @@ struct AppToken {
         set(newScope) {
             defaults.set(newScope, forKey: DefaultsKeys.TokenScope.rawValue)
         }
+    }
+    mutating func setData(token:String,token_type:String,scope:String) {
+        self.access_token = String(format: "token %@", token)
+        self.token_type = token_type
+        self.scope = scope
+
     }
     var isValid: Bool {
         if let token = access_token {
