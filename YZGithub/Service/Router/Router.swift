@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import RxSwift
 
 public enum RouterPage {
     case setting
     case login(url:String)
+    case DeveList(ofUser:ObjUser?)
     
     static var rlues:Dictionary<String, Any> = [:]
     
@@ -23,6 +25,8 @@ public enum RouterPage {
             return "setting"
         case .login(_):
             return "login"
+        case .DeveList(_):
+            return "develist"
         }
     }
     func vc() -> UIViewController {
@@ -33,6 +37,10 @@ public enum RouterPage {
             loginvc.url = url
             vc = loginvc
             vc.hidesBottomBarWhenPushed = true
+        case .DeveList(let user):
+            let listvc = vc as! DeveloperListViewController
+            listvc.vm.user = Variable<ObjUser>(user!)
+            listvc.listType = .follewers
         default:
             print("")
         }

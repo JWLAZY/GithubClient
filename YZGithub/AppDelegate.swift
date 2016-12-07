@@ -63,6 +63,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func customRouter() {
         RouterPage.setting.addPath(viewController: SettingViewController.self)
         RouterPage.login(url: "").addPath(viewController: LoginViewController.self)
+        RouterPage.DeveList(ofUser: nil).addPath(viewController: DeveloperListViewController.self)
     }
     func showDetailPage(_ vc:UIViewController) {
         let rootvc = self.window?.rootViewController

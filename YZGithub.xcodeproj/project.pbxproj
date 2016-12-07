@@ -51,6 +51,7 @@
 		468ADD311D579C82006A2106 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 468ADD301D579C82006A2106 /* libstdc++.tbd */; };
 		468ADD331D579C8C006A2106 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 468ADD321D579C8C006A2106 /* libz.tbd */; };
 		468ADD351D579EB9006A2106 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 468ADD341D579EB9006A2106 /* ImageIO.framework */; };
+		46A8E2A01DF87DEF00B3770A /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A8E29F1DF87DEF00B3770A /* BaseViewModel.swift */; };
 		46AB8A181D4A713C009F64F8 /* NSString+TranToRich.m in Sources */ = {isa = PBXBuildFile; fileRef = 46AB8A171D4A713C009F64F8 /* NSString+TranToRich.m */; };
 		46BF2F8F1DF07FFF00042FE5 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BF2F8E1DF07FFF00042FE5 /* Router.swift */; };
 		46BF9E3A1D5B7EEE0036D2F3 /* GlobalHubHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BF9E391D5B7EEE0036D2F3 /* GlobalHubHelper.swift */; };
@@ -162,6 +163,7 @@
 		468ADD301D579C82006A2106 /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
 		468ADD321D579C8C006A2106 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		468ADD341D579EB9006A2106 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		46A8E29F1DF87DEF00B3770A /* BaseViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
 		46AB8A121D4A7003009F64F8 /* YZGithub-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "YZGithub-Bridging-Header.h"; sourceTree = "<group>"; };
 		46AB8A161D4A713C009F64F8 /* NSString+TranToRich.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+TranToRich.h"; sourceTree = "<group>"; };
 		46AB8A171D4A713C009F64F8 /* NSString+TranToRich.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+TranToRich.m"; sourceTree = "<group>"; };
@@ -439,6 +441,7 @@
 			isa = PBXGroup;
 			children = (
 				4668A5341D6D956A001BE615 /* BaseView */,
+				46A8E29F1DF87DEF00B3770A /* BaseViewModel.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -932,6 +935,7 @@
 				468315F31DEEE66C007F3362 /* Response+ObjectMapper.swift in Sources */,
 				46BF9F961D6459750036D2F3 /* ProfileViewController.swift in Sources */,
 				46BF9F9A1D6459750036D2F3 /* RepoInfoViewController.swift in Sources */,
+				46A8E2A01DF87DEF00B3770A /* BaseViewModel.swift in Sources */,
 				4668A52B1D6D8A7D001BE615 /* Event.swift in Sources */,
 				46BF9F9E1D6459750036D2F3 /* PullRequest.swift in Sources */,
 				4615F8211D73DA360057A689 /* NSMutableAttributedString+RichText.swift in Sources */,

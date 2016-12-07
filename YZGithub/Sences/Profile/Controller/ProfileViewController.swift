@@ -160,6 +160,7 @@ extension ProfileViewController: UITableViewDelegate{
         switch index {
         case (0,0):
             print("关注")
+            Router.push(form: self, page: .DeveList(ofUser: vm.user.value))
         case (1,0):
             Router.push(form: self, page: .setting)
         case (2,0):

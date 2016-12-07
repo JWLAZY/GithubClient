@@ -9,6 +9,7 @@
 import UIKit
 import ObjectMapper
 import Alamofire
+import MBProgressHUD
 
 enum DeveListType {
     case follewers
@@ -16,6 +17,7 @@ enum DeveListType {
 
 class DeveloperListViewController: BaseViewController {
 
+    let vm = DevelopListViewModel()
     var developer:ObjUser?
     var developers:[ObjUser] = [ObjUser]()
     var listType:DeveListType? {
@@ -26,18 +28,21 @@ class DeveloperListViewController: BaseViewController {
             }
         }
     }
-    
     lazy var tableView: UITableView? = {
         let table = UITableView()
-        table.delegate = self
         table.dataSource = self
         table.tableFooterView = UIView()
         return table
     }()
     
+
     override func viewDidLoad() {
         super.viewDidLoad()
         customUI()
+        
+        vm.user?.asObservable().subscribe({ [weak self](event) in
+            self?.fetchFollewers()
+        }).addDisposableTo(disposeBag)
     }
     func customUI() {
         view.addSubview(tableView!)
@@ -47,9 +52,18 @@ class DeveloperListViewController: BaseViewController {
             make.width.height.equalTo(view)
         })
         tableView?.register(UINib(nibName: "DeveloperTableViewCell",bundle: nil), forCellReuseIdentifier: "DeveloperTableViewCell")
+        tableView?.rx.setDelegate(self).addDisposableTo(disposeBag)
+//        tableView?.rx.setDataSource(self).addDisposableTo(disposeBag)
+        vm.users?.asObservable().bindTo(self.tableView!.rx.items(cellIdentifier: "DeveloperTableViewCell", cellType: DeveloperTableViewCell.self)){ (row,element,cell) in 
+            cell.deve = element
+        }.addDisposableTo(disposeBag)
     }
+    
     func fetchFollewers() {
-            
+//        vm.fetchListNoRx()
+        vm.fetchList().subscribe(onNext: { [weak self](users) in
+            self?.tableView?.reloadData()
+        }, onError: nil, onCompleted: nil, onDisposed: nil).addDisposableTo(disposeBag)
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -66,11 +80,17 @@ extension DeveloperListViewController:UITableViewDelegate{
         }
         self.navigationController?.pushViewController(devInfo, animated: true)
     }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+            return 70
+    }
 }
 extension DeveloperListViewController:UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if listType != nil{
-            return developers.count
+            if let c = vm.users?.value {
+                return c.count
+            }
+            return 0
         }else{
             return 1
         }
@@ -78,13 +98,11 @@ extension DeveloperListViewController:UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DeveloperTableViewCell",for: indexPath) as? DeveloperTableViewCell
         if listType != nil{
-                cell?.deve = developers[indexPath.row]
+                cell?.deve = vm.users?.value[indexPath.row]
         }else{
-                cell?.deve = developer
+                cell?.deve = vm.user?.value
         }
         return cell!
     }
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 70
-    }
+    
 }

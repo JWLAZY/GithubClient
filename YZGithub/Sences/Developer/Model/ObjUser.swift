@@ -9,7 +9,7 @@
 import UIKit
 import ObjectMapper
 
-class ObjUser: NSObject,NSCoding,Mappable {
+public class ObjUser: NSObject,NSCoding,Mappable {
     
     // MARK: repos
     var total_private_repos:Int?
@@ -102,14 +102,14 @@ class ObjUser: NSObject,NSCoding,Mappable {
         
     }
     
-    required init?(map: Map) {
+    required public init?(map: Map) {
         
     }
     
     override init() {
         
     }
-    func mapping(map: Map) {
+    public func mapping(map: Map) {
         
         total_private_repos <- map[UserKey.totalPrivateReposKey]
         public_repos <- map[UserKey.publicReposKey]
@@ -152,7 +152,7 @@ class ObjUser: NSObject,NSCoding,Mappable {
         html_url <- map[UserKey.htmlUrlKey]
         plan <- map[UserKey.planKey]
     }
-    func encode(with aCoder: NSCoder) {
+    public func encode(with aCoder: NSCoder) {
         
         aCoder.encode(total_private_repos, forKey:UserKey.totalPrivateReposKey)
         aCoder.encode(public_repos, forKey:UserKey.publicReposKey)
@@ -196,7 +196,7 @@ class ObjUser: NSObject,NSCoding,Mappable {
         aCoder.encode(plan, forKey:UserKey.planKey)
         
     }
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         super.init()
         total_private_repos = aDecoder.decodeObject(forKey: UserKey.totalPrivateReposKey) as? Int
         public_repos = aDecoder.decodeObject(forKey: UserKey.publicReposKey) as? Int
